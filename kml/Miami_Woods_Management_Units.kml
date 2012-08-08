@@ -1,0 +1,2962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Miami_Woods_Management_Units.kml</name>
+	<Schema name="COMPLETED_Natural_Communities_FPDCC_acres" id="COMPLETED_Natural_Communities_FPDCC_acres_schema">
+		<SimpleField type="int" name="FID"><displayName>FID</displayName>
+</SimpleField>
+		<SimpleField type="int" name="ID"><displayName>ID</displayName>
+</SimpleField>
+		<SimpleField type="string" name="LABEL"><displayName>LABEL</displayName>
+</SimpleField>
+		<SimpleField type="string" name="CLSMGDPRTN"><displayName>CLSMGDPRTN</displayName>
+</SimpleField>
+		<SimpleField type="string" name="NATCOMM"><displayName>NATCOMM</displayName>
+</SimpleField>
+		<SimpleField type="string" name="STMGMTUNIT"><displayName>STMGMTUNIT</displayName>
+</SimpleField>
+		<SimpleField type="double" name="ACREAGE"><displayName>ACREAGE</displayName>
+</SimpleField>
+		<SimpleField type="string" name="NATCOMNOW"><displayName>NATCOMNOW</displayName>
+</SimpleField>
+		<SimpleField type="string" name="NATCOMFUTU"><displayName>NATCOMFUTU</displayName>
+</SimpleField>
+		<SimpleField type="string" name="CONDNOW"><displayName>CONDNOW</displayName>
+</SimpleField>
+		<SimpleField type="double" name="F_AREA"><displayName>F_AREA</displayName>
+</SimpleField>
+	</Schema>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin0">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin22</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl3</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES2</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES12</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin3</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl10</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin8</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl26</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES0">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin14</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl15</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES1">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl25</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin1">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl0">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin5</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl28</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin28</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl1">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES2">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl2">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin26</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl14</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl21</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin2">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin3">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl3">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin16</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl4</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl4">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin9">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin27</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl27</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin4">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin10">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin18</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl24</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin11">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin5">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl5">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin21</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl17</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES3">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="FEATURES4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES11</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES9</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl6">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl7">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl8">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin13">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl12</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl9">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin14">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin17</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl29</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl10">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin6">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin7">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin8">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES24</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES17</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin15">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin24</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl18</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin9">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin16">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin1</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl5</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin10">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin11">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES18</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES20</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl11">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES7">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="FEATURES8">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="FEATURES9">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin12">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin13">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES10">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin14">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl12">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl13">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin15">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES11">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="FEATURES12">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="FEATURES13">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin17">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin19</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl11</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="FEATURES14">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES27</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES13</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES15">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin18">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin23</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl9</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin16">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl14">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl15">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl16">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES16">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES15</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES21</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl17">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin17">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin18">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin19">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin19">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin12</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl19</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin20">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl18">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin21">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES17">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin22">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES18">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl19">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin20">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin9</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl16</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl20">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="FEATURES19">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin21">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin7</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl13</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin22">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin20</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl8</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES20">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin23">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl23</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES21">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin24">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin25</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin25">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin15</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl22</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="FEATURES22">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES19</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES10</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin23">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES23">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES7</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl21">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl22">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin26">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin13</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl30</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES24">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin27">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin11</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl20</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES25">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl23">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES26">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES8</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin24">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl24">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl25">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin25">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl26">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl27">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin26">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin27">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin28">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin30</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl6</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="FEATURES27">
+		<BalloonStyle>
+			<text><![CDATA[FID = $[COMPLETED_Natural_Communities_FPDCC_acres/FID]<br />
+ID = $[COMPLETED_Natural_Communities_FPDCC_acres/ID]<br />
+LABEL = $[COMPLETED_Natural_Communities_FPDCC_acres/LABEL]<br />
+CLSMGDPRTN = $[COMPLETED_Natural_Communities_FPDCC_acres/CLSMGDPRTN]<br />
+NATCOMM = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMM]<br />
+STMGMTUNIT = $[COMPLETED_Natural_Communities_FPDCC_acres/STMGMTUNIT]<br />
+ACREAGE = $[COMPLETED_Natural_Communities_FPDCC_acres/ACREAGE]<br />
+NATCOMNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMNOW]<br />
+NATCOMFUTU = $[COMPLETED_Natural_Communities_FPDCC_acres/NATCOMFUTU]<br />
+CONDNOW = $[COMPLETED_Natural_Communities_FPDCC_acres/CONDNOW]<br />
+F_AREA = $[COMPLETED_Natural_Communities_FPDCC_acres/F_AREA]<br />]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff7563a1</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl28">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin28">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin29">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin2</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl2</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl29">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin29">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl30">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="FEATURES28">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#FEATURES25</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#FEATURES3</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin30">
+		<IconStyle>
+			<scale>0</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin30">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin29</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl7</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder>
+		<name>Miami Woods Management Units</name>
+		<Style>
+			<ListStyle>
+				<listItemType>checkHideChildren</listItemType>
+				<bgColor>00ffffff</bgColor>
+				<maxSnippetLines>2</maxSnippetLines>
+			</ListStyle>
+		</Style>
+		<Placemark>
+			<name>1126</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES16</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">1126</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">UW03</SimpleData>
+					<SimpleData name="NATCOMM">Unassociated Woody Growth</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208UW03</SimpleData>
+					<SimpleData name="ACREAGE">4.945</SimpleData>
+					<SimpleData name="NATCOMNOW">UW</SimpleData>
+					<SimpleData name="NATCOMFUTU">UW</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">215410.994211552</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79587126623341,42.030214417866,0 -87.7955319107068,42.030212828316,0 -87.7943768452493,42.0302074104402,0 -87.7943554784267,42.0302073101088,0 -87.794364510438,42.0304772381877,0 -87.79449733283199,42.0308236527955,0 -87.7945855495372,42.0310939525367,0 -87.7946395459748,42.0313978273,0 -87.79466060350239,42.0315834724875,0 -87.7947726565083,42.0317105071895,0 -87.7949414129908,42.0318209399214,0 -87.79516708654459,42.031889469661,0 -87.795245664513,42.0319305741584,0 -87.79531350434711,42.0319660614025,0 -87.79532741343669,42.0319892608037,0 -87.79535163568241,42.03205499706662,0 -87.7953673687214,42.03218439369016,0 -87.79532776433268,42.03237283409251,0 -87.79528013424,42.03263198559257,0 -87.79525612280868,42.03280812165994,0 -87.79525589984091,42.0329724145057,0 -87.79515296000116,42.03312615597317,0 -87.79517658632147,42.03332630282033,0 -87.79504163520619,42.0336375673407,0 -87.7972246648242,42.03361810879229,0 -87.79718519685963,42.03358289045115,0 -87.79751667035887,42.03358834517473,0 -87.79712995117015,42.0333243143472,0 -87.79686914767254,42.03310688090323,0 -87.7966794726192,42.03295409161177,0 -87.796473939515,42.03273660201604,0 -87.79630793659034,42.03256614122488,0 -87.7961024960659,42.03224291377048,0 -87.79601384904799,42.0319806186125,0 -87.7959041522961,42.0316820750517,0 -87.79582958604649,42.0311335207131,0 -87.79587126623341,42.030214417866,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>944</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">944</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO13</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO13</SimpleData>
+					<SimpleData name="ACREAGE">2.431</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">105914.153368174</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7949961697456,42.0337395207295,0 -87.7950018002517,42.0337152766203,0 -87.79503775630261,42.033645139997,0 -87.7951071851855,42.0335097100935,0 -87.7951779122012,42.0333168597664,0 -87.79516226754509,42.0331236044441,0 -87.7952323421889,42.0330080238021,0 -87.7952667897116,42.0329688763664,0 -87.795261071458,42.0328176419622,0 -87.7952973556074,42.0325394925672,0 -87.7953329282094,42.0323456790554,0 -87.7953682161216,42.0321855998898,0 -87.7953692828723,42.03205909602,0 -87.79532741343669,42.0319892608037,0 -87.79531350434711,42.0319660614025,0 -87.795245664513,42.0319305741584,0 -87.7950356630939,42.0319400230526,0 -87.7948290031779,42.0318903005677,0 -87.7945189146525,42.0318515185841,0 -87.7944914932209,42.0318480890128,0 -87.7946813543322,42.0325965275705,0 -87.7947533916356,42.0331006475007,0 -87.7945757874085,42.0334817131254,0 -87.7944879796548,42.0335544305517,0 -87.7945060546177,42.0335610137714,0 -87.7949961697456,42.0337395207295,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>947</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">947</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO12</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO12</SimpleData>
+					<SimpleData name="ACREAGE">1.574</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">68565.1800640949</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7942861818391,42.034400173642,0 -87.7945457645195,42.0343169566852,0 -87.7948236094408,42.0342906646745,0 -87.7948242727898,42.0342811108767,0 -87.79493009401909,42.0340240313972,0 -87.7949961697456,42.0337395207295,0 -87.7945060546177,42.0335610137714,0 -87.7944716574696,42.0335736343344,0 -87.7942202713236,42.033860144428,0 -87.79386961394761,42.0341090660555,0 -87.79360710984579,42.034237756737,0 -87.79335728824751,42.0343386654599,0 -87.79310801598641,42.0343746138429,0 -87.792970538802,42.0344389290768,0 -87.7929873046799,42.034437937199,0 -87.7934064514664,42.0344131394584,0 -87.7937925721713,42.0343871141363,0 -87.7940422363758,42.0343047644071,0 -87.794228797885,42.0343242015046,0 -87.7942861818391,42.034400173642,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>949</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">949</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">FO03</SimpleData>
+					<SimpleData name="NATCOMM">Forest</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208FO03</SimpleData>
+					<SimpleData name="ACREAGE">0.907</SimpleData>
+					<SimpleData name="NATCOMNOW">Forest</SimpleData>
+					<SimpleData name="NATCOMFUTU">Forest</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">39489.5229879557</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7930144463368,42.0348072559139,0 -87.7931916939102,42.0347833426012,0 -87.7934784687247,42.0347290097602,0 -87.7937778480044,42.034656174775,0 -87.79408917164891,42.0346908250677,0 -87.7940826417987,42.0346720967502,0 -87.7942381841695,42.0344155606355,0 -87.7942861818391,42.034400173642,0 -87.794228797885,42.0343242015046,0 -87.7940422363758,42.0343047644071,0 -87.7937925721713,42.0343871141363,0 -87.7934064514664,42.0344131394584,0 -87.7929873046799,42.034437937199,0 -87.7929829867164,42.0344389876795,0 -87.7929827508943,42.0344668275886,0 -87.7929818862103,42.0345689072542,0 -87.7929803926547,42.0347452266723,0 -87.7930144463368,42.0348072559139,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>946</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">946</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">PR03</SimpleData>
+					<SimpleData name="NATCOMM">Prairie</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208PR03</SimpleData>
+					<SimpleData name="ACREAGE">0.933</SimpleData>
+					<SimpleData name="NATCOMNOW">Prairie</SimpleData>
+					<SimpleData name="NATCOMFUTU">Prairie</SimpleData>
+					<SimpleData name="CONDNOW">restoration</SimpleData>
+					<SimpleData name="F_AREA">40645.3316483175</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79425694881949,42.0349694182479,0 -87.7942580570562,42.0349671900402,0 -87.7948501102849,42.0349634787427,0 -87.79480308431749,42.034744648083,0 -87.79480460640551,42.0345643520994,0 -87.7948236094408,42.0342906646745,0 -87.7945457645195,42.0343169566852,0 -87.7942861818391,42.034400173642,0 -87.7942381841695,42.0344155606355,0 -87.7940826417987,42.0346720967502,0 -87.79408917164891,42.0346908250677,0 -87.79415751393211,42.0348868374639,0 -87.79425694881949,42.0349694182479,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>948</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">948</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">SA03</SimpleData>
+					<SimpleData name="NATCOMM">Savanna</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208SA03</SimpleData>
+					<SimpleData name="ACREAGE">1.301</SimpleData>
+					<SimpleData name="NATCOMNOW">Savanna</SimpleData>
+					<SimpleData name="NATCOMFUTU">Savanna</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">56660.8490064435</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7933365219149,42.035280992639,0 -87.79355852649211,42.0351995422543,0 -87.79365661794679,42.0352000035149,0 -87.7938849483162,42.0352660809665,0 -87.7940373978053,42.0352830483898,0 -87.7941470065757,42.0352104337489,0 -87.79421370563691,42.0350563623499,0 -87.79425694881949,42.0349694182479,0 -87.79415751393211,42.0348868374639,0 -87.79408917164891,42.0346908250677,0 -87.7937778480044,42.034656174775,0 -87.7934784687247,42.0347290097602,0 -87.7931916939102,42.0347833426012,0 -87.7930144463368,42.0348072559139,0 -87.79299229038089,42.0348102450587,0 -87.7929788990858,42.034921546085,0 -87.7930771470396,42.0350797743386,0 -87.793250712467,42.0351641142237,0 -87.7933365219149,42.035280992639,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>945</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">945</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">PR02</SimpleData>
+					<SimpleData name="NATCOMM">Prairie</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208PR02</SimpleData>
+					<SimpleData name="ACREAGE">1.747</SimpleData>
+					<SimpleData name="NATCOMNOW">Prairie</SimpleData>
+					<SimpleData name="NATCOMFUTU">Prairie</SimpleData>
+					<SimpleData name="CONDNOW">restoration</SimpleData>
+					<SimpleData name="F_AREA">76104.1583903813</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7934318795118,42.0355111343879,0 -87.7935973310998,42.0354965062284,0 -87.7939119739615,42.0355595227511,0 -87.79412175198181,42.0355996685941,0 -87.7942493655402,42.0355946737306,0 -87.79455664739019,42.035640870996,0 -87.7947147017375,42.0355856697517,0 -87.7948648741431,42.0355751857579,0 -87.79494746422451,42.0355699788859,0 -87.7950146688277,42.035609454242,0 -87.7949991417084,42.0356709187798,0 -87.79498337849741,42.0357603537354,0 -87.7951480048941,42.0358079930921,0 -87.7951480871313,42.035805880607,0 -87.7951541141359,42.0358067523436,0 -87.7951397770517,42.0357894095897,0 -87.79514097227521,42.0356477484782,0 -87.7950906688101,42.0354672094964,0 -87.7949364992357,42.0353119409082,0 -87.79488619660511,42.0351314018311,0 -87.7948501102849,42.0349634787427,0 -87.7942580570562,42.0349671900402,0 -87.79425694881949,42.0349694182479,0 -87.79421370563691,42.0350563623499,0 -87.7941470065757,42.0352104337489,0 -87.7940373978053,42.0352830483898,0 -87.7938849483162,42.0352660809665,0 -87.79365661794679,42.0352000035149,0 -87.79355852649211,42.0351995422543,0 -87.7933365219149,42.035280992639,0 -87.7933179907575,42.0352877914333,0 -87.7933284771207,42.0353365938335,0 -87.7934034639238,42.035491331305,0 -87.7934318795118,42.0355111343879,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>1125</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES5</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">1125</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">PR01</SimpleData>
+					<SimpleData name="NATCOMM">Prairie</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208PR01</SimpleData>
+					<SimpleData name="ACREAGE">18.593</SimpleData>
+					<SimpleData name="NATCOMNOW">Prairie</SimpleData>
+					<SimpleData name="NATCOMFUTU">Prairie</SimpleData>
+					<SimpleData name="CONDNOW">restoration</SimpleData>
+					<SimpleData name="F_AREA">809931.420726228</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7951541141359,42.0358067523436,0 -87.79526800836049,42.0358232257645,0 -87.7955751505943,42.0358862025651,0 -87.7957548207184,42.0359373929682,0 -87.7958739882137,42.0360442428492,0 -87.79597106834611,42.0361006404511,0 -87.79611364358929,42.0361013078676,0 -87.79627811842779,42.0361748035489,0 -87.7964954039759,42.0362149801812,0 -87.7967278860004,42.0362328502283,0 -87.7968702263188,42.0362614871334,0 -87.79710974234131,42.036335332336,0 -87.79713913411641,42.0363427888976,0 -87.79748104423091,42.0362442185448,0 -87.79775315959348,42.03621268486397,0 -87.79820190941452,42.03610772083339,0 -87.79854851867982,42.0358978922305,0 -87.79871513577544,42.03581204973276,0 -87.7987669414812,42.0357574885885,0 -87.7987805978775,42.0357614774236,0 -87.7987036032219,42.035187882989,0 -87.7983978403617,42.0345682761955,0 -87.7980039818389,42.0341543184281,0 -87.7974887747647,42.0337913080209,0 -87.7972263896505,42.0336160709164,0 -87.79503775630261,42.033645139997,0 -87.7950018002517,42.0337152766203,0 -87.7949961697456,42.0337395207295,0 -87.79493009401909,42.0340240313972,0 -87.7948242727898,42.0342811108767,0 -87.7948236094408,42.0342906646745,0 -87.79480460640551,42.0345643520994,0 -87.79480308431749,42.034744648083,0 -87.7948501102849,42.0349634787427,0 -87.79488619660511,42.0351314018311,0 -87.7949364992357,42.0353119409082,0 -87.7950906688101,42.0354672094964,0 -87.79514097227521,42.0356477484782,0 -87.7951397770517,42.0357894095897,0 -87.7951541141359,42.0358067523436,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>1127</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES6</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">1127</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">UW02</SimpleData>
+					<SimpleData name="NATCOMM">Unassociated Woody Growth</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208UW02</SimpleData>
+					<SimpleData name="ACREAGE">1.146</SimpleData>
+					<SimpleData name="NATCOMNOW">UW</SimpleData>
+					<SimpleData name="NATCOMFUTU">UW</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">49934.2537441772</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79897078095561,42.03601236383767,0 -87.798975068497,42.0358648761117,0 -87.7989788413126,42.0358193812136,0 -87.7989877834147,42.0357115516473,0 -87.79883622462469,42.0350252532336,0 -87.79862182506371,42.0346183115159,0 -87.79821458544249,42.0341202608876,0 -87.7977699166226,42.0337573485299,0 -87.7975255315278,42.0335905905994,0 -87.79718586285129,42.0335890044592,0 -87.7972263896505,42.0336160709164,0 -87.7974887747647,42.0337913080209,0 -87.7980039818389,42.0341543184281,0 -87.7983978403617,42.0345682761955,0 -87.7987036032219,42.035187882989,0 -87.79877917052413,42.03576435399907,0 -87.79856135687561,42.03588835426518,0 -87.79820192013429,42.03609817971107,0 -87.79772751816712,42.03622223017154,0 -87.79748394668161,42.03623179339206,0 -87.79712484535578,42.03632728665163,0 -87.79726631419234,42.03638464425141,0 -87.79893196110852,42.03638435186073,0 -87.79897078095561,42.03601236383767,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2769</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2769</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO11</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO11</SimpleData>
+					<SimpleData name="ACREAGE">1.357</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">59116.5631244927</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7951480048941,42.0358079930921,0 -87.79498337849741,42.0357603537354,0 -87.7949991417084,42.0356709187798,0 -87.7950146688277,42.035609454242,0 -87.79494746422451,42.0355699788859,0 -87.7948648741431,42.0355751857579,0 -87.7947147017375,42.0355856697517,0 -87.79455664739019,42.035640870996,0 -87.7942493655402,42.0355946737306,0 -87.79412175198181,42.0355996685941,0 -87.7939119739615,42.0355595227511,0 -87.7935973310998,42.0354965062284,0 -87.7934318795118,42.0355111343879,0 -87.7934170957912,42.0355124414569,0 -87.7934614089372,42.0355965644826,0 -87.793550508956,42.0357088696526,0 -87.79364749184739,42.0357764573739,0 -87.793706576714,42.0358886212843,0 -87.793722286581,42.0359158568775,0 -87.7937219178087,42.0359158221276,0 -87.7939165311596,42.035945358326,0 -87.79412147823371,42.0359737267202,0 -87.7942367420185,42.0360679997625,0 -87.7943505766511,42.0359906499933,0 -87.7945656746803,42.0358444916872,0 -87.794668835823,42.0359288654142,0 -87.7948289088294,42.0360597857525,0 -87.79498248910819,42.0360556177002,0 -87.79511710265881,42.0361498588476,0 -87.79513841359,42.0359911463343,0 -87.7951480048941,42.0358079930921,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2771</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2771</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO10</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO10</SimpleData>
+					<SimpleData name="ACREAGE">1.453</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">63297.4911593479</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7972835781259,42.0363891977307,0 -87.79724453205669,42.0363695278064,0 -87.79713913411641,42.0363427888976,0 -87.79710974234131,42.036335332336,0 -87.7968702263188,42.0362614871334,0 -87.7967278860004,42.0362328502283,0 -87.7964954039759,42.0362149801812,0 -87.79627811842779,42.0361748035489,0 -87.79611364358929,42.0361013078676,0 -87.79597106834611,42.0361006404511,0 -87.7958739882137,42.0360442428492,0 -87.7957548207184,42.0359373929682,0 -87.7955751505943,42.0358862025651,0 -87.79526800836049,42.0358232257645,0 -87.7951541141359,42.0358067523436,0 -87.79515149986931,42.0358063742202,0 -87.7951480048941,42.0358079930921,0 -87.79513841359,42.0359911463343,0 -87.79511710265881,42.0361498588476,0 -87.7954412933465,42.0363768186263,0 -87.7956311406039,42.0364941064745,0 -87.7957781233919,42.0365849120942,0 -87.7960049596424,42.0365315606128,0 -87.7960060434896,42.0364028966721,0 -87.7960059441005,42.0363765478152,0 -87.7972835781259,42.0363891977307,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2768</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2768</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO09</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO09</SimpleData>
+					<SimpleData name="ACREAGE">1.292</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">56300.7858014003</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79511710265881,42.0361498588476,0 -87.79498248910819,42.0360556177002,0 -87.7948289088294,42.0360597857525,0 -87.794668835823,42.0359288654142,0 -87.7945656746803,42.0358444916872,0 -87.7943505766511,42.0359906499933,0 -87.7942367420185,42.0360679997625,0 -87.79412147823371,42.0359737267202,0 -87.7939165311596,42.035945358326,0 -87.7937219178087,42.0359158221276,0 -87.79369500421259,42.0360082300038,0 -87.79369257337861,42.0362955622599,0 -87.7936975534481,42.0363954660111,0 -87.79369828210611,42.0363929937358,0 -87.7937187985394,42.0364540670786,0 -87.79383188033719,42.0364255852094,0 -87.7940718993036,42.0363439669334,0 -87.7942905788866,42.0363594294617,0 -87.7947186706775,42.036389698008,0 -87.795047291982,42.036412932318,0 -87.7950954170083,42.0363113612201,0 -87.79511710265881,42.0361498588476,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2770</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2770</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO08</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO08</SimpleData>
+					<SimpleData name="ACREAGE">0.539</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">23457.7472574787</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7960049596424,42.0365315606128,0 -87.7957781233919,42.0365849120942,0 -87.7956311406039,42.0364941064745,0 -87.7954412933465,42.0363768186263,0 -87.79511710265881,42.0361498588476,0 -87.7950954170083,42.0363113612201,0 -87.795047291982,42.036412932318,0 -87.7951321953034,42.0364789541462,0 -87.79527373882139,42.0365561758106,0 -87.79541506071681,42.0366332762045,0 -87.7956557240209,42.036764573046,0 -87.79588939453291,42.0367852448457,0 -87.7958902784471,42.0367827673928,0 -87.79599552351171,42.0367608829347,0 -87.7959953680981,42.0367722050798,0 -87.79600307467391,42.036755323981,0 -87.7960049596424,42.0365315606128,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2766</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2766</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO07</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO07</SimpleData>
+					<SimpleData name="ACREAGE">2.078</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">90504.6479324823</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.795047291982,42.036412932318,0 -87.7947186706775,42.036389698008,0 -87.7942905788866,42.0363594294617,0 -87.7940718993036,42.0363439669334,0 -87.79383188033719,42.0364255852094,0 -87.7937187985394,42.0364540670786,0 -87.79375563496011,42.0365637214794,0 -87.79370893795721,42.0368001111039,0 -87.79362669835881,42.036965452441,0 -87.7934843400138,42.037070246233,0 -87.7933719041922,42.0370989901028,0 -87.79328832793711,42.0372437015521,0 -87.79321592515259,42.0372791942722,0 -87.7931668473916,42.0373984080106,0 -87.7932142057669,42.0374822421681,0 -87.79331769239469,42.0375603681627,0 -87.79332499563181,42.0376440138093,0 -87.7933382412718,42.0378636529829,0 -87.7932531078818,42.0381551146164,0 -87.79325251822431,42.038556177827,0 -87.7934037996755,42.0383824587212,0 -87.793438334166,42.0383234210988,0 -87.7935454137549,42.0381309747794,0 -87.79357538132049,42.0379881898116,0 -87.7936052278108,42.0378596968533,0 -87.7935483770606,42.0377808202553,0 -87.7935296284321,42.0377307080131,0 -87.79351094031161,42.0376734497566,0 -87.7935502517779,42.0375592939125,0 -87.7936188046352,42.0373881051915,0 -87.7936866920772,42.0372955225514,0 -87.7937736906683,42.0372101760074,0 -87.79383235446031,42.0370746721404,0 -87.7939683091307,42.0368680685096,0 -87.7941420625272,42.0367259589541,0 -87.7942287577454,42.036676342114,0 -87.7943534337829,42.0366697813485,0 -87.7945737869025,42.036685108482,0 -87.79466053001779,42.0366947621622,0 -87.7948370146045,42.0366906437513,0 -87.79497234019701,42.0365711223944,0 -87.795047291982,42.036412932318,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>938</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">938</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">SA02</SimpleData>
+					<SimpleData name="NATCOMM">Savanna</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208SA02</SimpleData>
+					<SimpleData name="ACREAGE">4.785</SimpleData>
+					<SimpleData name="NATCOMNOW">Savanna</SimpleData>
+					<SimpleData name="NATCOMFUTU">Savanna</SimpleData>
+					<SimpleData name="CONDNOW">restoration</SimpleData>
+					<SimpleData name="F_AREA">208441.768696839</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79466053001779,42.0366947621622,0 -87.7945737869025,42.036685108482,0 -87.7943534337829,42.0366697813485,0 -87.7942287577454,42.036676342114,0 -87.7941420625272,42.0367259589541,0 -87.7939683091307,42.0368680685096,0 -87.79383235446031,42.0370746721404,0 -87.7937736906683,42.0372101760074,0 -87.7936866920772,42.0372955225514,0 -87.7936188046352,42.0373881051915,0 -87.7935502517779,42.0375592939125,0 -87.79351094031161,42.0376734497566,0 -87.7935296284321,42.0377307080131,0 -87.7935483770606,42.0377808202553,0 -87.7936052278108,42.0378596968533,0 -87.79357538132049,42.0379881898116,0 -87.7935454137549,42.0381309747794,0 -87.793438334166,42.0383234210988,0 -87.7934037996755,42.0383824587212,0 -87.7935136921278,42.038480994029,0 -87.79354814286199,42.0385091702643,0 -87.7936279391237,42.0385744331288,0 -87.7937331444421,42.0386035129576,0 -87.7939055130847,42.0386257620704,0 -87.7940687790834,42.0385907978022,0 -87.7942513379051,42.0385416313285,0 -87.79425360498649,42.0385390552296,0 -87.7943578115656,42.0384206443569,0 -87.7945612923498,42.0381643330822,0 -87.7946578770056,42.0380790308783,0 -87.79472588437891,42.0379721556062,0 -87.7947550648059,42.0379222684692,0 -87.794880286167,42.037851393036,0 -87.79495727573131,42.0378160227147,0 -87.7950345667533,42.0377449222776,0 -87.7951222274538,42.037580968569,0 -87.7951229510324,42.0374952164122,0 -87.79508527058169,42.0374164304602,0 -87.7948858963926,42.0371868138442,0 -87.79479130444599,42.0370362978285,0 -87.7947443405054,42.0369217367174,0 -87.79466053001779,42.0366947621622,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2767</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2767</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO06</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO06</SimpleData>
+					<SimpleData name="ACREAGE">3.876</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">168848.278155686</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79588939453291,42.0367852448457,0 -87.7956557240209,42.036764573046,0 -87.79541506071681,42.0366332762045,0 -87.79527373882139,42.0365561758106,0 -87.7951321953034,42.0364789541462,0 -87.795047291982,42.036412932318,0 -87.79497234019701,42.0365711223944,0 -87.7948370146045,42.0366906437513,0 -87.79466053001779,42.0366947621622,0 -87.7947443405054,42.0369217367174,0 -87.79479130444599,42.0370362978285,0 -87.7948858963926,42.0371868138442,0 -87.79508527058169,42.0374164304602,0 -87.7951229510324,42.0374952164122,0 -87.7951222274538,42.037580968569,0 -87.7950345667533,42.0377449222776,0 -87.79495727573131,42.0378160227147,0 -87.794880286167,42.037851393036,0 -87.7947550648059,42.0379222684692,0 -87.79472588437891,42.0379721556062,0 -87.7946578770056,42.0380790308783,0 -87.7945612923498,42.0381643330822,0 -87.7943578115656,42.0384206443569,0 -87.79425360498649,42.0385390552296,0 -87.7944645848918,42.0385438827065,0 -87.79499724471719,42.0385631651853,0 -87.7951550227468,42.0385415278916,0 -87.795215859056,42.0384467099822,0 -87.795217416527,42.0382621052825,0 -87.79523374639621,42.038105541351,0 -87.7953317727877,42.0380500578459,0 -87.7955044634694,42.0380396785754,0 -87.7956695555994,42.0380404520573,0 -87.7957751799896,42.0379738151574,0 -87.79580590386649,42.0378900444957,0 -87.79583077344439,42.0376104457769,0 -87.7958176508515,42.037386612164,0 -87.7958349218008,42.0371181664427,0 -87.7958364774077,42.0369335616814,0 -87.79588939453291,42.0367852448457,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>939</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">939</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">UW01</SimpleData>
+					<SimpleData name="NATCOMM">Unassociated Woody Growth</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208UW01</SimpleData>
+					<SimpleData name="ACREAGE">1.199</SimpleData>
+					<SimpleData name="NATCOMNOW">UW</SimpleData>
+					<SimpleData name="NATCOMFUTU">UW</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">52212.9815153238</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7959953680981,42.0367722050798,0 -87.79599552351171,42.0367608829347,0 -87.7958902784471,42.0367827673928,0 -87.79588939453291,42.0367852448457,0 -87.7958364774077,42.0369335616814,0 -87.7958349218008,42.0371181664427,0 -87.7958176508515,42.037386612164,0 -87.79583077344439,42.0376104457769,0 -87.79580590386649,42.0378900444957,0 -87.7957751799896,42.0379738151574,0 -87.7956695555994,42.0380404520573,0 -87.7955044634694,42.0380396785754,0 -87.7953317727877,42.0380500578459,0 -87.79523374639621,42.038105541351,0 -87.795217416527,42.0382621052825,0 -87.795215859056,42.0384467099822,0 -87.7951550227468,42.0385415278916,0 -87.79499724471719,42.0385631651853,0 -87.7944645848918,42.0385438827065,0 -87.79425360498649,42.0385390552296,0 -87.7942513379051,42.0385416313285,0 -87.7940687790834,42.0385907978022,0 -87.7939055130847,42.0386257620704,0 -87.7937331444421,42.0386035129576,0 -87.7936279391237,42.0385744331288,0 -87.79354814286199,42.0385091702643,0 -87.7933209749056,42.0386659338229,0 -87.7953568824525,42.0386319830649,0 -87.7953682557192,42.0381733035227,0 -87.79597609621661,42.0381761508984,0 -87.7959953680981,42.0367722050798,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2765</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2765</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO05</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO05</SimpleData>
+					<SimpleData name="ACREAGE">1.14</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">49670.4708187494</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7931080672067,42.0378350097002,0 -87.7930364530055,42.0378346726078,0 -87.7930752163689,42.0377906263788,0 -87.7930648403733,42.0377423384883,0 -87.7930511341745,42.0376785523605,0 -87.7930038576885,42.0376535491825,0 -87.7929517426311,42.0376391434731,0 -87.79288523171731,42.0376423704028,0 -87.7928280980816,42.0376598018116,0 -87.79280402489989,42.0376986294281,0 -87.7927798316872,42.0377516168316,0 -87.7927129305944,42.0378008629858,0 -87.7926078000971,42.0378782497187,0 -87.79247423741801,42.0379484221987,0 -87.7923358357048,42.0380291919812,0 -87.7922357533555,42.0380712012718,0 -87.79211661611259,42.0381202008032,0 -87.7920357685159,42.0381339799032,0 -87.7918933083205,42.0381333079588,0 -87.7917080499532,42.0381395140613,0 -87.7915040675027,42.0381137706729,0 -87.7913143011462,42.0380916341458,0 -87.7912050817482,42.0380911183181,0 -87.79105766232441,42.038115202536,0 -87.7909719454364,42.038143118237,0 -87.7909552672576,42.0381675949441,0 -87.7909508925182,42.0381671662824,0 -87.7908625391987,42.0381816968514,0 -87.79099995390609,42.0382463504202,0 -87.79129092469201,42.0382860469719,0 -87.7917470848537,42.0383482783911,0 -87.79213676805681,42.0383300904716,0 -87.7925943724546,42.038222104136,0 -87.7931080672067,42.0378350097002,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>950</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">950</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO14</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO14</SimpleData>
+					<SimpleData name="ACREAGE">1.555</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">67735.8180659056</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7945189146525,42.0318515185841,0 -87.7948290031779,42.0318903005677,0 -87.7950356630939,42.0319400230526,0 -87.795245664513,42.0319305741584,0 -87.79516708654459,42.031889469661,0 -87.7949414129908,42.0318209399214,0 -87.7947726565083,42.0317105071895,0 -87.79466060350239,42.0315834724875,0 -87.7946395459748,42.0313978273,0 -87.7945855495372,42.0310939525367,0 -87.79449733283199,42.0308236527955,0 -87.794364510438,42.0304772381877,0 -87.7943554784267,42.0302073101088,0 -87.7943768452493,42.0302074104402,0 -87.7943669327627,42.0301904960404,0 -87.7942785044287,42.0299454968804,0 -87.7940766027877,42.029742134221,0 -87.7940014742842,42.0296744884565,0 -87.7937455668432,42.0298019889318,0 -87.79372749859171,42.0298109910152,0 -87.79407445363699,42.0304201540892,0 -87.7943206895048,42.031043843917,0 -87.7944764534505,42.0316596080503,0 -87.7945189146525,42.0318515185841,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>940</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">940</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO15</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO15</SimpleData>
+					<SimpleData name="ACREAGE">1.354</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">58965.8377046672</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7943768452493,42.0302074104402,0 -87.7955319107068,42.030212828316,0 -87.7955000717334,42.0302007724089,0 -87.7951485172062,42.0300676545163,0 -87.79471980707341,42.0299307007191,0 -87.7944717310323,42.02983676313,0 -87.7942353237934,42.0297007101705,0 -87.7940669305262,42.0295481084329,0 -87.79402353709401,42.0293286224136,0 -87.7941160976016,42.0290844733511,0 -87.7942075884602,42.0289668281163,0 -87.7940041217564,42.0289490043903,0 -87.7938007814395,42.028932079186,0 -87.79378934355,42.0289311271326,0 -87.79361817110841,42.0291074348879,0 -87.7935564825945,42.0291528512547,0 -87.7934474258997,42.0292331408198,0 -87.7934360428619,42.029241521206,0 -87.7937847078464,42.0294793107054,0 -87.7940014742842,42.0296744884565,0 -87.7940766027877,42.029742134221,0 -87.7942785044287,42.0299454968804,0 -87.7943669327627,42.0301904960404,0 -87.7943768452493,42.0302074104402,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>1283</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES28</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">1283</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN"></SimpleData>
+					<SimpleData name="NATCOMM">Unmanaged</SimpleData>
+					<SimpleData name="STMGMTUNIT"></SimpleData>
+					<SimpleData name="ACREAGE">11.625</SimpleData>
+					<SimpleData name="NATCOMNOW">Unmanaged</SimpleData>
+					<SimpleData name="NATCOMFUTU">Unmanaged</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">506384.101092644</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79357126157649,42.02654282012343,0 -87.79191100385525,42.0265104632349,0 -87.79134380497031,42.02670140896273,0 -87.79231011909535,42.02664712800315,0 -87.79274725584752,42.0267631635715,0 -87.79312035344643,42.02673455279469,0 -87.7930090065931,42.0268293661561,0 -87.79300829585451,42.0268299475345,0 -87.79289719957259,42.0268819273382,0 -87.7928258953991,42.0269865972578,0 -87.7928303138509,42.026992616344,0 -87.7928074819114,42.0269939267459,0 -87.7927949111095,42.0270652453601,0 -87.7926859304393,42.0272164099357,0 -87.79257710047401,42.0273497306611,0 -87.7925043956655,42.0274564548234,0 -87.792518115523,42.027466074591,0 -87.7925348087481,42.0274661532436,0 -87.7928402154228,42.0274675917827,0 -87.7932252299679,42.0274188005491,0 -87.79359857590001,42.0274121228106,0 -87.7938122792779,42.0275565043398,0 -87.79388746603171,42.0280291578484,0 -87.79369048299741,42.0283481204976,0 -87.79370377225329,42.0283487837239,0 -87.79357420873841,42.0289554174413,0 -87.7935564825945,42.0291528512547,0 -87.79361817110841,42.0291074348879,0 -87.79378934355,42.0289311271326,0 -87.7938007814395,42.028932079186,0 -87.79380065517,42.0289311803041,0 -87.79390331537979,42.0288304556694,0 -87.7940861542461,42.0286120326412,0 -87.79425971758791,42.0285483464552,0 -87.7942629935898,42.0285471443769,0 -87.7942677093007,42.0285454140194,0 -87.7943998148878,42.0289761647762,0 -87.7946016439556,42.0291879604807,0 -87.79470302177531,42.0292390398348,0 -87.7948085286065,42.0293266699638,0 -87.7948153555291,42.0293323401453,0 -87.79483748065491,42.0293914814486,0 -87.79482588422469,42.029425162757,0 -87.7949146698176,42.0296279935538,0 -87.7951724924654,42.0299075223031,0 -87.7952961398897,42.0300008751793,0 -87.7953753225774,42.0300012463252,0 -87.7955445732408,42.0300526430218,0 -87.7955000717334,42.0302007724089,0 -87.7955319107068,42.030212828316,0 -87.79587126623341,42.030214417866,0 -87.7958798111389,42.0296961956726,0 -87.79587953563031,42.0293028845756,0 -87.7958812935381,42.0290941977964,0 -87.7958580446624,42.0288720160286,0 -87.79581662814419,42.0286765049431,0 -87.7957572469784,42.0284835852775,0 -87.79571499689899,42.0283870666044,0 -87.79564112720411,42.0282101324713,0 -87.79552787521951,42.0280223114563,0 -87.79540024760411,42.0278370985297,0 -87.79530446533551,42.0277055462885,0 -87.7952190876982,42.0276168519884,0 -87.7950340923439,42.027426018523,0 -87.794895047406,42.0273183432321,0 -87.79475241453861,42.0272106509359,0 -87.7946418066348,42.0271352157008,0 -87.7944919526403,42.0270328403439,0 -87.79428497883551,42.0268954140372,0 -87.79389951463961,42.0266474499448,0 -87.79373864902681,42.0265744532069,0 -87.79365984082681,42.026558029228,0 -87.79357126157649,42.02654282012343,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>951</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">951</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO17</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO17</SimpleData>
+					<SimpleData name="ACREAGE">1.069</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">46571.038065983</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7937455668432,42.0298019889318,0 -87.7940014742842,42.0296744884565,0 -87.7937847078464,42.0294793107054,0 -87.7934360428619,42.029241521206,0 -87.7931324127908,42.0290292443878,0 -87.7926481565185,42.0287739463983,0 -87.7923220512171,42.0285446936915,0 -87.7920522911611,42.0283410075669,0 -87.7918948603577,42.0282306239616,0 -87.79186641379231,42.0281947630829,0 -87.7917876307291,42.0282303996426,0 -87.7917791609096,42.0282342308567,0 -87.7926482958993,42.0289508665631,0 -87.79324793401121,42.0294187145912,0 -87.7936277262809,42.0297130167012,0 -87.7937455668432,42.0298019889318,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>952</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">952</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">FO05</SimpleData>
+					<SimpleData name="NATCOMM">Forest</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208FO05</SimpleData>
+					<SimpleData name="ACREAGE">3.9</SimpleData>
+					<SimpleData name="NATCOMNOW">Forest</SimpleData>
+					<SimpleData name="NATCOMFUTU">Forest</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">169895.295890416</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7917876307291,42.0282303996426,0 -87.79186641379231,42.0281947630829,0 -87.79186128373399,42.0281882959212,0 -87.79185068796789,42.0281039066363,0 -87.7919192008499,42.0280283244577,0 -87.79197611590691,42.027986423258,0 -87.79199923966721,42.027927494806,0 -87.79218158171101,42.027768109953,0 -87.79237530572669,42.0276003445174,0 -87.7925121860324,42.0274660466528,0 -87.792518115523,42.027466074591,0 -87.7925043956655,42.0274564548234,0 -87.79257710047401,42.0273497306611,0 -87.7926859304393,42.0272164099357,0 -87.7927949111095,42.0270652453601,0 -87.7928074819114,42.0269939267459,0 -87.7928303138509,42.026992616344,0 -87.7928258953991,42.0269865972578,0 -87.79289719957259,42.0268819273382,0 -87.79300829585451,42.0268299475345,0 -87.7930090065931,42.0268293661561,0 -87.793099463996,42.0267553726138,0 -87.79276744600359,42.0267613098496,0 -87.79234572156641,42.0266693180864,0 -87.7919130482184,42.0266822788028,0 -87.791349541225,42.0267021205861,0 -87.7912270464888,42.0269115534546,0 -87.79120386927831,42.0272714634095,0 -87.7912705888685,42.0277068019567,0 -87.7915191435612,42.0280529940773,0 -87.7917876307291,42.0282303996426,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>943</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">943</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">FO04</SimpleData>
+					<SimpleData name="NATCOMM">Forest</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208FO04</SimpleData>
+					<SimpleData name="ACREAGE">3.051</SimpleData>
+					<SimpleData name="NATCOMNOW">Forest</SimpleData>
+					<SimpleData name="NATCOMFUTU">Forest</SimpleData>
+					<SimpleData name="CONDNOW">mesic upland forest</SimpleData>
+					<SimpleData name="F_AREA">132897.230411105</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79197611590691,42.027986423258,0 -87.7921118532982,42.0279870633761,0 -87.7923597756393,42.0280978732201,0 -87.7925845755408,42.0282676111058,0 -87.7928666486735,42.0283532789469,0 -87.7933306349768,42.0283301609895,0 -87.79369048299741,42.0283481204976,0 -87.79388746603171,42.0280291578484,0 -87.7938122792779,42.0275565043398,0 -87.79359857590001,42.0274121228106,0 -87.7932252299679,42.0274188005491,0 -87.7928402154228,42.0274675917827,0 -87.7925348087481,42.0274661532436,0 -87.792518115523,42.027466074591,0 -87.7925121860324,42.0274660466528,0 -87.79237530572669,42.0276003445174,0 -87.79218158171101,42.027768109953,0 -87.79199923966721,42.027927494806,0 -87.79197611590691,42.027986423258,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>942</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">942</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO16</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO16</SimpleData>
+					<SimpleData name="ACREAGE">2.248</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">97941.4067037276</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7934360428619,42.029241521206,0 -87.7934474258997,42.0292331408198,0 -87.7935564825945,42.0291528512547,0 -87.79357420873841,42.0289554174413,0 -87.79370377225329,42.0283487837239,0 -87.79369048299741,42.0283481204976,0 -87.7933306349768,42.0283301609895,0 -87.7928666486735,42.0283532789469,0 -87.7925845755408,42.0282676111058,0 -87.7923597756393,42.0280978732201,0 -87.7921118532982,42.0279870633761,0 -87.79197611590691,42.027986423258,0 -87.7919192008499,42.0280283244577,0 -87.79185068796789,42.0281039066363,0 -87.79186128373399,42.0281882959212,0 -87.79186641379231,42.0281947630829,0 -87.7918948603577,42.0282306239616,0 -87.7920522911611,42.0283410075669,0 -87.7923220512171,42.0285446936915,0 -87.7926481565185,42.0287739463983,0 -87.7931324127908,42.0290292443878,0 -87.7934360428619,42.029241521206,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>941</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES26</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">941</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">SA04</SimpleData>
+					<SimpleData name="NATCOMM">Savanna</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208SA04</SimpleData>
+					<SimpleData name="ACREAGE">1.914</SimpleData>
+					<SimpleData name="NATCOMNOW">Savanna</SimpleData>
+					<SimpleData name="NATCOMFUTU">Savanna</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">83385.8671491758</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7938007814395,42.028932079186,0 -87.7940041217564,42.0289490043903,0 -87.7942075884602,42.0289668281163,0 -87.7941160976016,42.0290844733511,0 -87.79402353709401,42.0293286224136,0 -87.7940669305262,42.0295481084329,0 -87.7942353237934,42.0297007101705,0 -87.7944717310323,42.02983676313,0 -87.79471980707341,42.0299307007191,0 -87.7951485172062,42.0300676545163,0 -87.7955000717334,42.0302007724089,0 -87.7955445732408,42.0300526430218,0 -87.7953753225774,42.0300012463252,0 -87.7952961398897,42.0300008751793,0 -87.7951724924654,42.0299075223031,0 -87.7949146698176,42.0296279935538,0 -87.79482588422469,42.029425162757,0 -87.79483748065491,42.0293914814486,0 -87.7948153555291,42.0293323401453,0 -87.7948085286065,42.0293266699638,0 -87.79470302177531,42.0292390398348,0 -87.7946016439556,42.0291879604807,0 -87.7943998148878,42.0289761647762,0 -87.7942677093007,42.0285454140194,0 -87.7942629935898,42.0285471443769,0 -87.79425971758791,42.0285483464552,0 -87.7940861542461,42.0286120326412,0 -87.79390331537979,42.0288304556694,0 -87.79380065517,42.0289311803041,0 -87.7938007814395,42.028932079186,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2764</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES4</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2764</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO04</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO04</SimpleData>
+					<SimpleData name="ACREAGE">4.566</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">198886.00939721</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7933382412718,42.0378636529829,0 -87.79322017382501,42.0378355373031,0 -87.7931080672067,42.0378350097002,0 -87.7925943724546,42.038222104136,0 -87.79213676805681,42.0383300904716,0 -87.7917470848537,42.0383482783911,0 -87.79129092469201,42.0382860469719,0 -87.79099995390609,42.0382463504202,0 -87.7908625391987,42.0381816968514,0 -87.7906245377572,42.0382208381482,0 -87.790385650332,42.0384405664812,0 -87.790162420675,42.0385609822514,0 -87.78990985314104,42.03867852229035,0 -87.78956126845405,42.0387088287375,0 -87.78930123275799,42.03873926543669,0 -87.78959288495773,42.03917718059088,0 -87.78991742986773,42.03936080731675,0 -87.79012336855426,42.0395705977857,0 -87.79024703436558,42.03973656286036,0 -87.79041270194551,42.03996723672219,0 -87.79062426006405,42.04014605929452,0 -87.79086509853579,42.04031178901509,0 -87.79100016297008,42.04023355518265,0 -87.79118823852377,42.04005931383638,0 -87.79127059721121,42.03997633635561,0 -87.79135887124693,42.03982353854829,0 -87.7911003686971,42.03971881235981,0 -87.79094757088939,42.03967079569908,0 -87.79089470388996,42.03960968671693,0 -87.79094195976037,42.03942632276354,0 -87.7909707875293,42.0393594407752,0 -87.7910789196093,42.039080433948,0 -87.79121205013411,42.0389173813254,0 -87.7913665105611,42.0388280859476,0 -87.7915755140869,42.0387799682031,0 -87.7918503866098,42.0387321608478,0 -87.79214679851221,42.0387335588538,0 -87.79241041458771,42.038718433385,0 -87.7925966973703,42.0387602315363,0 -87.7927061380104,42.038793464215,0 -87.7927093452094,42.0387928487742,0 -87.79311404429821,42.0387151888143,0 -87.79325251822431,42.038556177827,0 -87.7932531078818,42.0381551146164,0 -87.7933382412718,42.0378636529829,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>937</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">937</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">SA01</SimpleData>
+					<SimpleData name="NATCOMM">Savanna</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208SA01</SimpleData>
+					<SimpleData name="ACREAGE">4.197</SimpleData>
+					<SimpleData name="NATCOMNOW">Savanna</SimpleData>
+					<SimpleData name="NATCOMFUTU">Savanna</SimpleData>
+					<SimpleData name="CONDNOW">restoration</SimpleData>
+					<SimpleData name="F_AREA">182828.476016002</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7927093452094,42.0387928487742,0 -87.7927062021449,42.03879348369,0 -87.7925966973703,42.0387602315363,0 -87.79241041458771,42.038718433385,0 -87.79214679851221,42.0387335588538,0 -87.7918503866098,42.0387321608478,0 -87.7915755140869,42.0387799682031,0 -87.7913665105611,42.0388280859476,0 -87.79121205013411,42.0389173813254,0 -87.7910789196093,42.039080433948,0 -87.7909707875293,42.0393594407752,0 -87.7909554444272,42.0393990294666,0 -87.79089874313679,42.039611547457,0 -87.7909531478133,42.0396690930853,0 -87.7910188093217,42.0396939555777,0 -87.7910174521995,42.0396954193193,0 -87.79106338221381,42.0397086550352,0 -87.7912729705172,42.0397926398607,0 -87.79135493815591,42.0398207946104,0 -87.7915361115604,42.0398830248726,0 -87.7916841890935,42.0399267581123,0 -87.79188602788901,42.0399523015007,0 -87.7920014575931,42.0399559198557,0 -87.7921706743611,42.0399382745413,0 -87.79223677947689,42.039923216798,0 -87.7923031192322,42.0398804951904,0 -87.79249780603701,42.0397769007717,0 -87.7925724704648,42.0397249965889,0 -87.79263494696841,42.0396515177711,0 -87.792734872599,42.0395382548506,0 -87.7927724520811,42.0394831019765,0 -87.7927814543438,42.0393940018071,0 -87.792788000434,42.0391081616366,0 -87.79276419808561,42.0389973897899,0 -87.79271194921,42.0388373018397,0 -87.7927093452094,42.0387928487742,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2763</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2763</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO01</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO01</SimpleData>
+					<SimpleData name="ACREAGE">4.651</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">202587.048269104</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79354814286199,42.0385091702643,0 -87.7935136921278,42.038480994029,0 -87.7934037996755,42.0383824587212,0 -87.79311404429821,42.0387151888143,0 -87.7927093452094,42.0387928487742,0 -87.79271194921,42.0388373018397,0 -87.79276419808561,42.0389973897899,0 -87.792788000434,42.0391081616366,0 -87.7927814543438,42.0393940018071,0 -87.7927724520811,42.0394831019765,0 -87.792734872599,42.0395382548506,0 -87.79263494696841,42.0396515177711,0 -87.7925724704648,42.0397249965889,0 -87.79249780603701,42.0397769007717,0 -87.7923031192322,42.0398804951904,0 -87.79223677947689,42.039923216798,0 -87.7921706743611,42.0399382745413,0 -87.7920014575931,42.0399559198557,0 -87.79188602788901,42.0399523015007,0 -87.7916841890935,42.0399267581123,0 -87.7915361115604,42.0398830248726,0 -87.79135493815591,42.0398207946104,0 -87.79127434580791,42.0399731193245,0 -87.790982583336,42.0402538254392,0 -87.79087208644491,42.0403166437029,0 -87.7913928359979,42.0405194293369,0 -87.7915788078319,42.0405918479417,0 -87.7917853219227,42.0406722652857,0 -87.7921545948164,42.0407903837429,0 -87.79247904225051,42.0407894234924,0 -87.7924806420808,42.0402314631346,0 -87.7932868425271,42.0402305273207,0 -87.7933107506629,42.0386729893166,0 -87.7933209749056,42.0386659338229,0 -87.79354814286199,42.0385091702643,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>1284</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES14</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">1284</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">FO01</SimpleData>
+					<SimpleData name="NATCOMM">Forest</SimpleData>
+					<SimpleData name="STMGMTUNIT">Forest01</SimpleData>
+					<SimpleData name="ACREAGE">58.005</SimpleData>
+					<SimpleData name="NATCOMNOW">Forest</SimpleData>
+					<SimpleData name="NATCOMFUTU">Forest</SimpleData>
+					<SimpleData name="CONDNOW">floodplain forest</SimpleData>
+					<SimpleData name="F_AREA">2526681.08756709</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.78983420421579,42.038213715398,0 -87.7895295395617,42.0383547065163,0 -87.78924219222399,42.0385316362911,0 -87.78932706200396,42.03873610010526,0 -87.78992117771953,42.03867565594201,0 -87.790162420675,42.0385609822514,0 -87.790385650332,42.0384405664812,0 -87.7906245377572,42.0382208381482,0 -87.7909508925182,42.0381671662824,0 -87.7909552672576,42.0381675949441,0 -87.7909719454364,42.038143118237,0 -87.79105766232441,42.038115202536,0 -87.7912050817482,42.0380911183181,0 -87.7913143011462,42.0380916341458,0 -87.7915040675027,42.0381137706729,0 -87.7917080499532,42.0381395140613,0 -87.7918933083205,42.0381333079588,0 -87.7920357685159,42.0381339799032,0 -87.79211661611259,42.0381202008032,0 -87.7922357533555,42.0380712012718,0 -87.7923358357048,42.0380291919812,0 -87.79247423741801,42.0379484221987,0 -87.7926078000971,42.0378782497187,0 -87.7927129305944,42.0378008629858,0 -87.7927798316872,42.0377516168316,0 -87.79280402489989,42.0376986294281,0 -87.7928280980816,42.0376598018116,0 -87.79288523171731,42.0376423704028,0 -87.7929517426311,42.0376391434731,0 -87.7930038576885,42.0376535491825,0 -87.7930511341745,42.0376785523605,0 -87.7930648403733,42.0377423384883,0 -87.7930752163689,42.0377906263788,0 -87.7930364530055,42.0378346726078,0 -87.79322017382501,42.0378355373031,0 -87.7933382412718,42.0378636529829,0 -87.79332499563181,42.0376440138093,0 -87.79331769239469,42.0375603681627,0 -87.7932142057669,42.0374822421681,0 -87.7931668473916,42.0373984080106,0 -87.79321592515259,42.0372791942722,0 -87.79328832793711,42.0372437015521,0 -87.7933719041922,42.0370989901028,0 -87.7934843400138,42.037070246233,0 -87.79362669835881,42.036965452441,0 -87.79370893795721,42.0368001111039,0 -87.79375563496011,42.0365637214794,0 -87.78983420421579,42.038213715398,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2761</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2761</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO03</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO03</SimpleData>
+					<SimpleData name="ACREAGE">4.523</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">197017.189281252</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79054325433908,42.04009843638432,0 -87.7903401491868,42.0398898858305,0 -87.79017512026795,42.03962296343879,0 -87.7899500437934,42.03937388138286,0 -87.78959652450787,42.03917225143513,0 -87.78928591444644,42.03873614287712,0 -87.7892244787239,42.03852298574719,0 -87.78826496893592,42.03905349226982,0 -87.78821447372336,42.03924480294361,0 -87.78819857723562,42.03923284072902,0 -87.78823290165184,42.03971337455986,0 -87.78815091402342,42.04009418696713,0 -87.78796586727327,42.04047516603242,0 -87.7883206307956,42.0404776691104,0 -87.7883080813651,42.0405081449031,0 -87.7883316439743,42.0405076902927,0 -87.7883381865197,42.0407965559905,0 -87.7883381301438,42.0408016102871,0 -87.7885951005488,42.0408008583658,0 -87.7887988464671,42.0406973990172,0 -87.7891751127888,42.040679157523,0 -87.7894770892068,42.0405904717517,0 -87.7899012074606,42.0405924806232,0 -87.79004822047253,42.04048917893544,0 -87.79030426462596,42.04054865292758,0 -87.79057612277391,42.04046582652441,0 -87.7908639024525,42.04031186766554,0 -87.79054325433908,42.04009843638432,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>2762</name>
+			<open>1</open>
+			<Snippet maxLines="0"></Snippet>
+			<styleUrl>#FEATURES22</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#COMPLETED_Natural_Communities_FPDCC_acres_schema">
+					<SimpleData name="FID">2762</SimpleData>
+					<SimpleData name="ID">0</SimpleData>
+					<SimpleData name="LABEL"></SimpleData>
+					<SimpleData name="CLSMGDPRTN">WO02</SimpleData>
+					<SimpleData name="NATCOMM">Woodland</SimpleData>
+					<SimpleData name="STMGMTUNIT">1208WO02</SimpleData>
+					<SimpleData name="ACREAGE">1.795</SimpleData>
+					<SimpleData name="NATCOMNOW">Woodland</SimpleData>
+					<SimpleData name="NATCOMFUTU">Woodland</SimpleData>
+					<SimpleData name="CONDNOW"></SimpleData>
+					<SimpleData name="F_AREA">78189.5961988744</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.7921545948164,42.0407903837429,0 -87.7917853219227,42.0406722652857,0 -87.7915788078319,42.0405918479417,0 -87.7913928359979,42.0405194293369,0 -87.79087208644491,42.0403166437029,0 -87.79061351205161,42.0404636441674,0 -87.7902901925426,42.040528487684,0 -87.790101274167,42.040494407292,0 -87.79010052981781,42.0404927067918,0 -87.7899012074606,42.0405924806232,0 -87.7894770892068,42.0405904717517,0 -87.7891751127888,42.040679157523,0 -87.7887988464671,42.0406973990172,0 -87.7885951005488,42.0408008583658,0 -87.7921545948164,42.0407903837429,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>WO03</name>
+			<LookAt>
+				<longitude>-87.79185760426407</longitude>
+				<latitude>42.03957163278049</latitude>
+				<altitude>0</altitude>
+				<heading>0.03218151484507552</heading>
+				<tilt>0</tilt>
+				<range>601.0693316483765</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin28</styleUrl>
+			<Point>
+				<coordinates>-87.78965142066222,42.03985933511124,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO02</name>
+			<LookAt>
+				<longitude>-87.79151199249992</longitude>
+				<latitude>42.03938455164244</latitude>
+				<altitude>0</altitude>
+				<heading>0.03241295020725948</heading>
+				<tilt>0</tilt>
+				<range>601.2386561945746</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin3</styleUrl>
+			<Point>
+				<coordinates>-87.79075946084917,42.04059677576338,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>SAO1</name>
+			<LookAt>
+				<longitude>-87.79151199249992</longitude>
+				<latitude>42.03938455164244</latitude>
+				<altitude>0</altitude>
+				<heading>0.03241295020725948</heading>
+				<tilt>0</tilt>
+				<range>601.2386561945746</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<Point>
+				<coordinates>-87.79151199249992,42.03938455164244,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO01</name>
+			<LookAt>
+				<longitude>-87.7918785344585</longitude>
+				<latitude>42.04011172813793</latitude>
+				<altitude>0</altitude>
+				<heading>0.03216749285284488</heading>
+				<tilt>0</tilt>
+				<range>601.1630602646406</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin25</styleUrl>
+			<Point>
+				<coordinates>-87.7918785344585,42.04011172813792,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO04</name>
+			<LookAt>
+				<longitude>-87.79016288593967</longitude>
+				<latitude>42.0388192016315</latitude>
+				<altitude>0</altitude>
+				<heading>0.03301233121294922</heading>
+				<tilt>0</tilt>
+				<range>491.8301495222204</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin9</styleUrl>
+			<Point>
+				<coordinates>-87.79016288593968,42.0388192016315,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO05</name>
+			<LookAt>
+				<longitude>-87.79161707148648</longitude>
+				<latitude>42.03822970600331</latitude>
+				<altitude>0</altitude>
+				<heading>0.03203855724772958</heading>
+				<tilt>0</tilt>
+				<range>492.0674489172389</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin6</styleUrl>
+			<Point>
+				<coordinates>-87.79161707148648,42.03822970600331,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>FO01</name>
+			<LookAt>
+				<longitude>-87.79162916256109</longitude>
+				<latitude>42.03782700345925</latitude>
+				<altitude>0</altitude>
+				<heading>0.03203046078347958</heading>
+				<tilt>0</tilt>
+				<range>492.5536262829061</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin20</styleUrl>
+			<Point>
+				<coordinates>-87.79162916256109,42.03782700345925,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>SA02</name>
+			<LookAt>
+				<longitude>-87.79409226321937</longitude>
+				<latitude>42.03769265847531</latitude>
+				<altitude>0</altitude>
+				<heading>0.03038111858920048</heading>
+				<tilt>0</tilt>
+				<range>491.276861867865</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin26</styleUrl>
+			<Point>
+				<coordinates>-87.79409226321938,42.03769265847531,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>UW01</name>
+			<LookAt>
+				<longitude>-87.79599798869803</longitude>
+				<latitude>42.03805926229361</latitude>
+				<altitude>0</altitude>
+				<heading>0.02910500661121495</heading>
+				<tilt>0</tilt>
+				<range>489.9289748041152</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<coordinates>-87.79599798869805,42.03805926229361,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO06</name>
+			<LookAt>
+				<longitude>-87.79555260380506</longitude>
+				<latitude>42.03747526935922</latitude>
+				<altitude>0</altitude>
+				<heading>0.02940324482541151</heading>
+				<tilt>0</tilt>
+				<range>490.1588350278097</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin27</styleUrl>
+			<Point>
+				<coordinates>-87.79555260380506,42.03747526935921,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO08</name>
+			<LookAt>
+				<longitude>-87.79546520567295</longitude>
+				<latitude>42.03646321652267</latitude>
+				<altitude>0</altitude>
+				<heading>0.02946176766849863</heading>
+				<tilt>0</tilt>
+				<range>490.9681169524252</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin5</styleUrl>
+			<Point>
+				<coordinates>-87.79546520567295,42.03646321652267,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO07</name>
+			<LookAt>
+				<longitude>-87.79430789686079</longitude>
+				<latitude>42.03645404188565</latitude>
+				<altitude>0</altitude>
+				<heading>0.03023670566757949</heading>
+				<tilt>0</tilt>
+				<range>490.8021058754277</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin4</styleUrl>
+			<Point>
+				<coordinates>-87.7943078968608,42.03645404188565,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO09</name>
+			<LookAt>
+				<longitude>-87.79431401165971</longitude>
+				<latitude>42.03612214670237</latitude>
+				<altitude>0</altitude>
+				<heading>0.03023261116276862</heading>
+				<tilt>0</tilt>
+				<range>491.8428636328201</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin19</styleUrl>
+			<Point>
+				<coordinates>-87.79431401165971,42.03612214670237,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO011</name>
+			<LookAt>
+				<longitude>-87.79434370948618</longitude>
+				<latitude>42.03578519702751</latitude>
+				<altitude>0</altitude>
+				<heading>0.03021272574005887</heading>
+				<tilt>0</tilt>
+				<range>492.2570435114981</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin24</styleUrl>
+			<Point>
+				<coordinates>-87.79434370948617,42.03578519702751,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO10</name>
+			<LookAt>
+				<longitude>-87.79564288417953</longitude>
+				<latitude>42.0361219568782</latitude>
+				<altitude>0</altitude>
+				<heading>0.02934279759357411</heading>
+				<tilt>0</tilt>
+				<range>491.1926996350425</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<coordinates>-87.79564288417953,42.0361219568782,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>UW02</name>
+			<LookAt>
+				<longitude>-87.79877687562566</longitude>
+				<latitude>42.03609700951041</latitude>
+				<altitude>0</altitude>
+				<heading>0.02724427846585911</heading>
+				<tilt>0</tilt>
+				<range>489.314855734968</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin10</styleUrl>
+			<Point>
+				<coordinates>-87.79877687562566,42.03609700951041,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>PR01</name>
+			<LookAt>
+				<longitude>-87.79679481622857</longitude>
+				<latitude>42.03495036711358</latitude>
+				<altitude>0</altitude>
+				<heading>0.02857147453612468</heading>
+				<tilt>0</tilt>
+				<range>490.0608360435677</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin22</styleUrl>
+			<Point>
+				<coordinates>-87.79679481622858,42.03495036711358,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>PR03</name>
+			<LookAt>
+				<longitude>-87.79445019196599</longitude>
+				<latitude>42.0352112892466</latitude>
+				<altitude>0</altitude>
+				<heading>0.03014140878536655</heading>
+				<tilt>0</tilt>
+				<range>490.8317462772208</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin16</styleUrl>
+			<Point>
+				<coordinates>-87.79445019196601,42.0352112892466,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>PR03</name>
+			<LookAt>
+				<longitude>-87.7945739809451</longitude>
+				<latitude>42.03460922241619</latitude>
+				<altitude>0</altitude>
+				<heading>0.03005852239418077</heading>
+				<tilt>0</tilt>
+				<range>490.8592439207521</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin8</styleUrl>
+			<Point>
+				<coordinates>-87.7945739809451,42.03460922241619,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>SA03</name>
+			<LookAt>
+				<longitude>-87.79375642794318</longitude>
+				<latitude>42.03483602036387</latitude>
+				<altitude>0</altitude>
+				<heading>0.03060594060560455</heading>
+				<tilt>0</tilt>
+				<range>491.3067578912098</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin7</styleUrl>
+			<Point>
+				<coordinates>-87.79375642794318,42.03483602036387,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>FO03</name>
+			<LookAt>
+				<longitude>-87.79375076648498</longitude>
+				<latitude>42.03451187373253</latitude>
+				<altitude>0</altitude>
+				<heading>0.03060973207917887</heading>
+				<tilt>0</tilt>
+				<range>492.3219048042614</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin17</styleUrl>
+			<Point>
+				<coordinates>-87.79375076648498,42.03451187373254,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO12</name>
+			<LookAt>
+				<longitude>-87.79449800888834</longitude>
+				<latitude>42.03410153436155</latitude>
+				<altitude>0</altitude>
+				<heading>0.03010939771632369</heading>
+				<tilt>0</tilt>
+				<range>491.5747081936395</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin13</styleUrl>
+			<Point>
+				<coordinates>-87.79449800888834,42.03410153436155,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>UW03</name>
+			<LookAt>
+				<longitude>-87.79588545780399</longitude>
+				<latitude>42.03295380851361</latitude>
+				<altitude>0</altitude>
+				<heading>0.02918041513801474</heading>
+				<tilt>0</tilt>
+				<range>490.6831143422398</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin29</styleUrl>
+			<Point>
+				<coordinates>-87.795885457804,42.03295380851361,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO13</name>
+			<LookAt>
+				<longitude>-87.79500867474349</longitude>
+				<latitude>42.03290539408061</latitude>
+				<altitude>0</altitude>
+				<heading>0.02976747168482294</heading>
+				<tilt>0</tilt>
+				<range>491.3850065064888</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin23</styleUrl>
+			<Point>
+				<coordinates>-87.79500867474349,42.0329053940806,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO14</name>
+			<LookAt>
+				<longitude>-87.79424419958106</longitude>
+				<latitude>42.03064780581103</latitude>
+				<altitude>0</altitude>
+				<heading>0.03027931819414658</heading>
+				<tilt>0</tilt>
+				<range>492.725204532468</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin2</styleUrl>
+			<Point>
+				<coordinates>-87.79424419958106,42.03064780581103,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO15</name>
+			<LookAt>
+				<longitude>-87.79466178772627</longitude>
+				<latitude>42.03009366260795</latitude>
+				<altitude>0</altitude>
+				<heading>0.02999973332262596</heading>
+				<tilt>0</tilt>
+				<range>491.106322518422</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin12</styleUrl>
+			<Point>
+				<coordinates>-87.79466178772627,42.03009366260795,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>SA04</name>
+			<LookAt>
+				<longitude>-87.79461519428861</longitude>
+				<latitude>42.02953082199721</latitude>
+				<altitude>0</altitude>
+				<heading>0.03003092944830984</heading>
+				<tilt>0</tilt>
+				<range>490.8379742001736</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin11</styleUrl>
+			<Point>
+				<coordinates>-87.79461519428862,42.02953082199722,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO17</name>
+			<LookAt>
+				<longitude>-87.79305207234079</longitude>
+				<latitude>42.02911826672231</latitude>
+				<altitude>0</altitude>
+				<heading>0.03107745811632789</heading>
+				<tilt>0</tilt>
+				<range>492.8257704702066</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin14</styleUrl>
+			<Point>
+				<coordinates>-87.79305207234079,42.02911826672231,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>WO16</name>
+			<LookAt>
+				<longitude>-87.79306413883761</longitude>
+				<latitude>42.0287160068246</latitude>
+				<altitude>0</altitude>
+				<heading>0.0310693800314482</heading>
+				<tilt>0</tilt>
+				<range>492.0386560479967</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin15</styleUrl>
+			<Point>
+				<coordinates>-87.79306413883761,42.0287160068246,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>FO04</name>
+			<LookAt>
+				<longitude>-87.79310588631888</longitude>
+				<latitude>42.02789080884396</latitude>
+				<altitude>0</altitude>
+				<heading>0.03104143133147051</heading>
+				<tilt>0</tilt>
+				<range>491.2216101309827</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin30</styleUrl>
+			<Point>
+				<coordinates>-87.79310588631888,42.02789080884396,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>FO05</name>
+			<LookAt>
+				<longitude>-87.7919934823306</longitude>
+				<latitude>42.02727801939974</latitude>
+				<altitude>0</altitude>
+				<heading>0.03178617332432514</heading>
+				<tilt>0</tilt>
+				<range>491.8384567791607</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin18</styleUrl>
+			<Point>
+				<coordinates>-87.7919934823306,42.02727801939974,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Untitled Polygon</name>
+			<styleUrl>#FEATURES23</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-87.79321853498311,42.03678377203418,0 -87.79339850486139,42.03708075110361,0 -87.79362958989893,42.03696682717855,0 -87.79370728266632,42.03675623853925,0 -87.7937467458644,42.03655464904038,0 -87.79321853498311,42.03678377203418,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>FO02</name>
+			<LookAt>
+				<longitude>-87.79278684649093</longitude>
+				<latitude>42.0367265004245</latitude>
+				<altitude>0</altitude>
+				<heading>0.03337343665745682</heading>
+				<tilt>0</tilt>
+				<range>1076.219583392492</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin21</styleUrl>
+			<Point>
+				<coordinates>-87.79359193696983,42.03668857749778,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

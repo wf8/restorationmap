@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<GroundOverlay>
+	<name>NRCS Soil Data</name>
+	<Icon>
+		<href>http://SDMDataAccess.nrcs.usda.gov/Spatial/SDM.wms?VERSION=1.1.1&amp;REQUEST=GetMap&amp;SRS=EPSG:4326&amp;WIDTH=512&amp;HEIGHT=512&amp;LAYERS=MapunitPoly&amp;TRANSPARENT=TRUE&amp;FORMAT=image/png&amp;</href>
+		<viewRefreshMode>onStop</viewRefreshMode>
+		<viewBoundScale>1</viewBoundScale>
+	</Icon>
+	<LatLonBox>
+		<north>42.1445328128943</north>
+		<south>42.13765564141367</south>
+		<east>-87.82368286177838</east>
+		<west>-87.83738628811227</west>
+	</LatLonBox>
+</GroundOverlay>
+</kml>

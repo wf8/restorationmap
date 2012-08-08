@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Folder>
+	<name>Spring Creek Trails</name>
+	<GroundOverlay>
+		<name>SC North</name>
+		<color>9effffff</color>
+		<Icon>
+			<href>http://www.habitatproject.org/restorationmap/images/SC_trails_N.png</href>
+			<viewBoundScale>0.75</viewBoundScale>
+		</Icon>
+		<LatLonBox>
+			<north>42.15377753130618</north>
+			<south>42.10907842005544</south>
+			<east>-88.18888485008762</east>
+			<west>-88.23775201227792</west>
+		</LatLonBox>
+	</GroundOverlay>
+	<GroundOverlay>
+		<name>SC South</name>
+		<color>9effffff</color>
+		<Icon>
+			<href>http://www.habitatproject.org/restorationmap/images/SC_trails_S.png</href>
+			<viewBoundScale>0.75</viewBoundScale>
+		</Icon>
+		<LatLonBox>
+			<north>42.11754785008961</north>
+			<south>42.07546522791699</south>
+			<east>-88.18552178556894</east>
+			<west>-88.24065369605722</west>
+		</LatLonBox>
+	</GroundOverlay>
+</Folder>
+</kml>

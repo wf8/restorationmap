@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Folder>
+	<name>Wetlands Data (US FWS)</name>
+	<visibility>0</visibility>
+	<ScreenOverlay id="NWILEGEND">
+		<name>Legend: Wetland Types</name>
+		<visibility>0</visibility>
+		<description><![CDATA[<h3><font color="#008080">Click for information!</font></h3>For more information regarding wetland types<br>and codes, please follow this link:</br><br></br><br>http://www.fws.gov/wetlands/Data/wetlandcodes.html</br>]]></description>
+		<Icon>
+			<href>http://www.fws.gov/wetlands/_googleearth/wetland_types.png</href>
+		</Icon>
+		<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+		<screenXY x="0.005" y="0.02" xunits="fraction" yunits="fraction"/>
+		<rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		<size x="0" y="0" xunits="pixels" yunits="pixels"/>
+	</ScreenOverlay>
+	<GroundOverlay>
+		<name>Data</name>
+		<visibility>0</visibility>
+		<Icon>
+			<href>http://wetlandsfws.usgs.gov/ArcGIS/services/FWS_Wetlands_WMS/MapServer/WMSServer?VERSION=1.1.1&amp;REQUEST=GetMap&amp;SRS=EPSG:4326&amp;WIDTH=512&amp;HEIGHT=512&amp;LAYERS=17,8&amp;STYLES=default,default&amp;TRANSPARENT=TRUE&amp;FORMAT=image/png&amp;</href>
+			<viewRefreshMode>onStop</viewRefreshMode>
+			<viewBoundScale>1</viewBoundScale>
+		</Icon>
+		<LatLonBox>
+			<north>42.1517684072006</north>
+			<south>42.12147603054541</south>
+			<east>-87.784877493824</east>
+			<west>-87.84516616726732</west>
+		</LatLonBox>
+	</GroundOverlay>
+</Folder>
+</kml>

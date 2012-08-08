@@ -1,0 +1,97 @@
+<?php
+set_time_limit(0);
+function checkFileType()
+{
+	if (($_FILES["upload_file"]["type"] == "application/vnd.google-earth.kml+xml")
+	|| ($_FILES["upload_file"]["type"] == "application/xml")
+	|| ($_FILES["upload_file"]["type"] == "text/xml")
+	|| ($_FILES["upload_file"]["type"] == "application/gpx+xml"))
+		return true;
+	else
+		return false;
+}
+function checkFileExtension()
+{
+	$filename = explode(".", $_FILES["upload_file"]["name"]);
+	$file_extension = $filename[1];
+	if ($file_extension == "gpx" || $file_extension == "kml")
+		return true;
+	else
+		return false;
+}
+if ($_FILES["upload_file"]["error"] == 4)
+	$result = "Error: Please select a file.";
+else if ($_FILES["upload_file"]["error"] > 0)
+	$result = "Error: " . $_FILES["upload_file"]["error"];
+else if ( checkFileType() || checkFileExtension() )
+{
+	if	($_FILES["upload_file"]["size"] > 100000000) // 100 kb restriction // made it 100000kb temporarily
+		$result = "Error: File must be under 750 mb.";
+	else
+	{
+   		// Creates an array of strings to hold the lines of the KML file.
+		$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
+		$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
+		$kml[] = '<Placemark>';
+		$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+
+   		$uploaded_file = file_get_contents($_FILES['upload_file']['tmp_name']);
+
+   		$filename = explode(".", $_FILES["upload_file"]["name"]);
+		$file_extension = $filename[1];
+   		$coordinates = '';
+
+   		if ($file_extension == "gpx")
+   		{
+   			$pos_lat = 0;
+   			$pos_lon = 0;
+   			$pos_lat_old = 0;
+
+   			$finished = false;
+   			while ( ! $finished )
+   			{
+   				// <wpt lat="42.1430617000" lon="-88.0492809667">
+   				// <trkpt lat="
+				$pos_lat = strpos($uploaded_file, ' lat="', $pos_lat_old);
+				if ($pos_lat === false)
+				{
+					$finished = true;
+					break;
+				}
+				$pos_lat_end = strpos($uploaded_file, '" lon="', $pos_lat);
+				$lat = substr($uploaded_file, $pos_lat + 6, $pos_lat_end - $pos_lat - 6);
+
+				$pos_lon = strpos($uploaded_file, '" lon="', $pos_lat);
+				$pos_lon_end = strpos($uploaded_file, '">', $pos_lat);
+				$lon = substr($uploaded_file, $pos_lon + 7, $pos_lon_end - $pos_lon - 7);
+
+				$pos_lat_old = $pos_lat_end;
+
+				$coordinates = $coordinates . $lon . ',' . $lat . ',0 ';
+				
+				
+   			}
+   		}
+   		if ($file_extension == "kml")
+   		{
+   			$begin_coordinates = strpos($uploaded_file, '<coordinates>') + 13;
+   			$end_coordinates = strpos($uploaded_file, '</coordinates>');
+   			$coordinates = substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates);
+   		}
+   		$kml[] = $coordinates;
+   		$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
+   		$result = join("\n", $kml);
+		//header('Content-type: application/vnd.google-earth.kml+xml');
+	}
+} else
+	$result = "Error: Invalid file type.";
+?>
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+	var result = <?= json_encode($result); ?>;
+	window.top.window.stopKmlUpload(result);
+</script>
+</head>
+<body></body>
+</html>

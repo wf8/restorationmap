@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>lp_ art.kml</name>
+	<Style id="sn_art16">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art18">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art10">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art14">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art110">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art15">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="sn_art1">
+		<IconStyle>
+			<Icon>
+				<href>http://openlands.org/openlands_gis/icons/lakeshore%20preserve/art1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Folder>
+		<name>Art</name>
+		<open>1</open>
+		<Placemark>
+			<name>Reading the Landscape</name>
+			<description><![CDATA[<div style="width: 284px; height: px458px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/trestle%20words%20in%20place.JPG"; width: 274 px; height: 448 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art110</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="shapefilekml/art021011.kml#art021011">
+					<SimpleData name="Name">Art � TRESTLE</SimpleData>
+					<SimpleData name="Description">Art installation site for word sculpture on westernmost trestle</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.81029168181946,42.21278678516642,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Erode</name>
+			<description><![CDATA[<div style="width: 346px; height: px441px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/Erode2.JPG"; width: 336 px; height: 431 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art1</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="shapefilekml/art021011.kml#art021011">
+					<SimpleData name="Name">Art � ERODE</SimpleData>
+					<SimpleData name="Description">Art installation site for �Erode� driftwood sculpture</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80936477919094,42.21442495996326,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Arc of Nature</name>
+			<description><![CDATA[<div style="width: 458px; height: px509px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/Mural.JPG"; width: 448 px; height: 299 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art14</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#art021011">
+					<SimpleData name="Name">Art � MURAL</SimpleData>
+					<SimpleData name="Description">Art installation site for CPAG mural on north wall of Patten Bridge</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80850948592568,42.21514758070181,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>The Soil is Alive</name>
+			<description><![CDATA[<div style="width: 512px; height: px360px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/critters2.JPG"; width: 502 px; height: 350 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art10</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#art021011">
+					<SimpleData name="Name">Art � SOIL CRITTERS</SimpleData>
+					<SimpleData name="Description">Art installation site for soil critter plaques to be posted on retaining wall</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80773957631595,42.21506196890331,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Lake Prism</name>
+			<description><![CDATA[<div style="width: 458px; height: px346px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/OLP%20Lake%20Post%202.JPG"; width: 448 px; height: 336 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art16</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="#art021011">
+					<SimpleData name="Name">Art � POST #1</SimpleData>
+					<SimpleData name="Description">Art installation site for color post #1 (1 of 3 posts)</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80438165474487,42.21693001389062,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Leaf Prism</name>
+			<description><![CDATA[<div style="width: 346px; height: px458px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/OLP%20Leaf%20Post%202.JPG"; width: 336 px; height: 448 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art18</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="shapefilekml/art021011.kml#art021011">
+					<SimpleData name="Name">Art � POST #2</SimpleData>
+					<SimpleData name="Description">Art installation site for color post #2 (2 of 3 posts)</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80588887635781,42.21699074774383,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Earthbark Prism</name>
+			<description><![CDATA[<div style="width: 346px; height: px458px">
+
+<img src="http://openlands.org/openlands_gis/images/Lakeshore%20Preserve/art/OLP%20Woods%20Post%202.JPG"; width: 336 px; height: 448 px; float:left >
+
+
+</div>]]></description>
+			<styleUrl>#sn_art15</styleUrl>
+			<ExtendedData>
+				<SchemaData schemaUrl="shapefilekml/art021011.kml#art021011">
+					<SimpleData name="Name">Art � POST #3</SimpleData>
+					<SimpleData name="Description">Art installation site for color post #3 (3 of 3 posts)</SimpleData>
+				</SchemaData>
+			</ExtendedData>
+			<Point>
+				<coordinates>-87.80569592256269,42.21763327697647,0</coordinates>
+			</Point>
+		</Placemark>
+		<Schema name="art021011" id="art021011">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Decript" type="string"></SimpleField>
+</Schema>
+	</Folder>
+</Document>
+</kml>

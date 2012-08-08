@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Restoration Map</title>
+		
+		<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAq3j6zPxcfxAT4Hao04lqQRQIiJXqB2mejyaFpE8JghMz468hFhRhruBsaPcRLc21Y3qEGbnR2P9jdQ"></script>
+		<!-- earth-api-utility-library dependencies -->
+		<script src="js/geo-0.2.js"></script>
+		<script src="js/extensions.js"></script>
+		<!-- kmltree source files -->
+		<link rel="stylesheet" href="css/kmltree.css" media="screen">
+		<script src="js/kmltree.js"></script>
+		<!-- jquery file -->
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<!-- jquery plugins -->
+		<script src="js/jquery.activity-indicator-1.0.0.fix.js"></script>
+		<script src="js/jquery.dropmenu-1.1.4.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/dropmenu.css">
+		<!-- jscolor picker -->
+		<script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+		<!-- restorationmap source files -->
+		<script src="js/restoration_map.js"></script>
+		<script src="js/restoration_map_monitoring.js"></script>
+		<script src="js/map_shape.js"></script>
+		<script src="js/map_line.js"></script>
+		<script src="js/measure_tool.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/restoration_map.css">
+		
+	</head>
+	<body onResize="resize();" onLoad="resize();">    
+    
+	    <ul id="nav_menu" class="nav_menu">
+			<li><a href="javascript:void(0)">&#8226;&#8226; Restoration Map</a>
+				<ul class="transparent">
+					<li><a target="_blank" href="http://restorationmap.org">Help</a></li>
+					<li><a href="javascript:startMeasuring()">Measure</a></li>
+					<li><a href="javascript:loggedIn('beginChangePassword()', 'notLoggedInMessage()')">User Info</a></li>
+					<li><a href="javascript:showAboutPanel()">About Restoration Map</a></li>
+				</ul>
+			</li>
+			<li><a href="javascript:void(0)">New</a>
+				<ul class="transparent">
+					<li><a href="javascript:loggedIn('newTrail()', 'notLoggedInMessage()')">Trail</a></li>
+					<li><a href="javascript:loggedIn('newLandmark()', 'notLoggedInMessage()')">Geographic feature / Landmark</a></li>
+					<li><a href="javascript:loggedIn('newBrush()', 'notLoggedInMessage()')">Brush and tree removal</a></li>
+					<li><a href="javascript:loggedIn('newBurn()', 'notLoggedInMessage()')">Prescribed burn</a></li>
+					<li><a href="javascript:loggedIn('newSeed()', 'notLoggedInMessage()')">Seed collection and planting</a></li>
+					<li><a href="javascript:loggedIn('newWeed()', 'notLoggedInMessage()')">Weed control</a></li>
+					<li><a href="javascript:loggedIn('newOther()', 'notLoggedInMessage()')">Planning and other</a></li>											
+				</ul>
+			</li>				
+			<li><a id="loginMenu" href="javascript:login_logout()">Login</a></li>
+			<li id="adminMenu"><a href="php/admin.php">Admin</a></li>
+		</ul>   		
+		
+		<div id="buttonpanel">
+			<button id="refreshButton" onClick="refreshMap();">Refresh</button>
+			<button id="deleteButton" disabled="disabled" onClick="loggedIn('deleteSelected(false)', 'notLoggedInMessage()');">Delete</button>
+			<button id="editButton" disabled="disabled" onClick="loggedIn('editSelected()', 'notLoggedInMessage()');">Edit</button>
+			<button id="downloadButton" disabled="disabled" onClick="downloadSelected();">Download</button>
+		</div>
+		
+		<div id="activity_loading"></div>
+		
+        <div id="treeborder"></div>
+        
+        <div id="tree"></div>
+        
+        <div id="map3d"></div> 
+        
+        <div class="panel" id="savePanel">
+        		<div class="panelContent">
+					<input type=text size=30 class="panelTitle" id="saveTitle"></b><br><br>
+					<div class="siteSelector" id="newShapeSiteSelector">
+						<select><option>Select Site</option></select>
+					</div><br>
+					Date: <br>
+					<input type=text maxlength=2 size=2 id="shapeDateMonth"> / <input type=text maxlength=2 size=2 id="shapeDateDay"> / <input type=text maxlength=4 size=4 id="shapeDateYear"> mm/dd/yyyy<br><br>
+					Name:<br>
+					<input type=text size=10 id="shapeTitle"><br><br>
+					<span id="colorLabel"></span><br>
+					<input type=text size=10 class="color" id="shapeColor" value="14A0F0" onchange="changingColor(this.color);"><br><br>
+					Description:<br> 
+					<textarea id="shapeDescription" cols=20 rows=6></TEXTAREA><br><br>
+					Security level:<br>
+					<input type="radio" name="sl_new_shape" onClick="sl_new_shape_show_div();" value="public" checked="checked"> public: visible to anyone on the web.<br>
+					<input type="radio" name="sl_new_shape" onClick="sl_new_shape_show_div();" value="private"> private: visible to you and anyone you authorize (scroll down to authorize other users).<br><br>
+					<input type=text size=40 class="panelError" id="newShapeError"><br>
+					<button id="saveButton"  onClick="saveNewShape();">Save</button>
+					<button id="clearButton"  onClick="mapShape.clear(); mapShape.draw();">Clear</button>
+					<button id="cancelButton"  onClick="closeAllPanels();">Cancel</button><br>
+					<br><input type=text size=30 class="panelError" id="uploadError"><br>
+					Upload gpx/kml file: <br>
+					<form action="php/upload_kml.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="startKmlUpload();">
+						<input type="file" name="upload_file" id="upload_file"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					<button id="editUploadedButton" onClick="mapShape.edit();" disabled="disabled">Edit Uploaded</button><br>
+					<br><br>
+					<div id="sl_new_shape_div">
+						List of users authorized to view this shape:<br>
+						<div id="sl_authorized_users_list"></div>
+						<br>
+						<div id="sl_new_shape_user_selector">
+							<select><option>Select User</option></select>
+						</div>
+						<button onClick="authorizeUser('sl_authorized_users_list');">Authorize</button>
+						<button onClick="deauthorizeUser('sl_authorized_users_list');">Deauthorize</button><br>
+						<br>
+					</div>
+					
+        		</div>
+        </div>
+        
+        <div class="panel" id="editPanel">
+        		<div class="panelContent">
+					<b>Edit Layer</b><br><br>
+					<div class="siteSelector" id="editShapeSiteSelector">
+						<select><option>Select Site</option></select>
+					</div><br>
+					Date: <br>
+					<input type=text maxlength=2 size=2 id="editDateMonth"> / <input type=text maxlength=2 size=2 id="editDateDay"> / <input type=text maxlength=4 size=4 id="editDateYear"> mm/dd/yyyy<br><br>
+					Name:<br>
+					<input type=text size=10 id="editTitle"><br><br>
+					<span id="editColorLabel"></span><br>
+					<input type=text size=10 class="color" id="editShapeColor" value="14A0F0" onchange="changingColor(this.color);"><br><br>
+					Description:<br> 
+					<textarea id="editDescription" cols=20 rows=6></textarea><br><br>
+					Security level:<br>
+					<input type="radio" name="sl_edited_shape" onClick="sl_edited_shape_show_div();" value="public" checked="checked"> public: visible to anyone on the web.<br>
+					<input type="radio" name="sl_edited_shape" onClick="sl_edited_shape_show_div();" value="private"> private: visible to you and anyone you authorize (scroll down to authorize other users).<br><br>
+					<input type=text size=40 class="panelError" id="editShapeError"><br>
+					<button id="saveEditButton"  onClick="saveEditShape();">Save Edit</button>
+					<button id="cancelEditButton"  onClick="closeAllPanels();">Cancel Edit</button>
+					<br><br>
+					<div id="sl_edited_shape_div">
+						List of users authorized to view this shape:<br>
+						<div id="sl_edited_shape_authorized_users_list"></div>
+						<br>
+						<div id="sl_edited_shape_user_selector">
+							<select><option>Select User</option></select>
+						</div>
+						<button onClick="authorizeUser('sl_edited_shape_authorized_users_list');">Authorize</button>
+						<button onClick="deauthorizeUser('sl_edited_shape_authorized_users_list');">Deauthorize</button><br>
+						<br>
+					</div>
+        		</div>
+        </div>
+        
+        <div class="panel" id="landmarkPanel">
+        		<div class="panelContent">
+					<b>Geographic Features and Landmarks</b><br><br>
+					<div class="siteSelector" id="landmarkSiteSelector">
+						<select><option>Select Site</option></select>
+					</div><br>
+					Name:<br>
+					<input type=text size=10 id="landmarkTitle"><br><br>
+					Color:<br>
+					<input type=text size=10 class="color" id="landmarkColor" value="F7B654" onchange="changingColor(this.color);"><br><br>
+					Description:<br> 
+					<textarea id="landmarkDescription" cols=20 rows=6></TEXTAREA><br><br>
+					Security level:<br>
+					<input type="radio" name="sl_new_landmark" onClick="sl_new_landmark_show_div();" value="public" checked="checked"> public: visible to anyone on the web.<br>
+					<input type="radio" name="sl_new_landmark" onClick="sl_new_landmark_show_div();" value="private"> private: visible to you and anyone you authorize (scroll down to authorize other users).<br><br>
+					<input type=text size=40 class="panelError" id="landmarkError"><br>
+					<button onClick="saveLandmark();">Save</button>
+					<button onClick="mapShape.clear(); mapShape.draw();">Clear</button>
+					<button onClick="closeAllPanels();">Cancel</button>
+					<br><br><input type=text size=30 class="panelError" id="uploadLandmarkError"><br>
+					Upload gpx/kml file: <br>
+					<form action="php/upload_landmark_kml.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="startKmlLandmarkUpload();">
+						<input type="file" name="upload_file" id="uploadLandmarkFile"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					<button id="editUploadedLandmarkButton" onClick="mapShape.edit();" disabled="disabled">Edit Uploaded</button>
+					<br><br>
+					<div id="sl_new_landmark_div">
+						List of users authorized to view this shape:<br>
+						<div id="sl_landmark_authorized_users_list"></div>
+						<br>
+						<div id="sl_new_landmark_user_selector">
+							<select><option>Select User</option></select>
+						</div>
+						<button onClick="authorizeUser('sl_landmark_authorized_users_list');">Authorize</button>
+						<button onClick="deauthorizeUser('sl_landmark_authorized_users_list');">Deauthorize</button><br>
+						<br>
+					</div>
+        		</div>
+        </div>
+        
+        <div class="panel" id="borderPanel">
+        		<div class="panelContent">
+					<br><br>
+					<b>Edit Border</b><br><br><br>
+					<button onClick="saveEditBorder();">Save Edit</button>
+					<button onClick="cancelEditBorder();">Cancel Edit</button>
+        		</div>
+        </div>
+
+        <div class="panel" id="trailPanel">
+        		<div class="panelContent">
+					<br><br>
+					<b>Trails</b><br>
+					<br><br>
+					<div class="siteSelector" id="trailSiteSelector">
+					<select><option>Select Site</option></select>
+					</div>
+					<br>
+					<input type=text size=40 class="panelError" id="trailError"><br><br>
+					Name:<br><br>
+					<input type=text size=10 id="trailName"><br><br><br>
+					<button id="saveTrail"  onClick="saveTrail();">Save</button>
+					<button id="cancelTrail"  onClick="cancelTrail();">Cancel</button>
+				</div>
+				<div class="panelContent" id="uploadTrailStuff">
+					<br><input type=text size=30 class="panelError" id="uploadTrailError"><br>
+					Upload gpx/kml file: <br>
+        		    <form action="php/upload_trail_kml.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="startKmlTrailUpload();">
+						<input type="file" name="upload_file" id="uploadTrailFile"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					<button id="editUploadedTrailButton" onClick="mapLine.edit();" disabled="disabled">Edit Uploaded</button>
+					<br>
+        		</div>
+        </div>
+        
+        <div class="panel" id="measurePanel">
+        		<div class="panelContent">
+					<br><br><br>
+					<button id="measureAreaButton" onClick="measureArea();">Measure Area</button><br><br>
+					<span id="displayArea"></span>
+					<br><br><br>
+					<button id="measureDistanceButton" onClick="measureDistance();">Measure Distance</button><br><br>
+					<span id="displayDistance"></span>
+					<br><br><br>
+					<button onClick="measureChangeUnits();">Change Units</button><button id="doneMeasuringButton" onClick="doneMeasuring();">Done</button>
+        		</div>
+        </div>        
+        
+        <div class="panel" id="loginPanel">
+        		<div class="panelContent">
+        			<br><br>
+        			<b>Login</b><br>
+        			<br>
+        			<input type=text size=40 class="panelError" id="loginError"><br><br>
+        			email: <br>
+        			<input type=text size=20 id="loginEmail"><br><br>
+        			password: <br>
+        			<input type=password size=20 id="loginPassword"><br><br><br>
+        			<button onClick="closeAllPanels();">Cancel</button>
+        		    <button id="loginButton"  onClick="login();">Login</button>
+        		</div>
+        </div>
+        
+        <div class="panel" id="userPanel">
+        		<div class="panelContent">
+        			<br>
+					<b>User Info</b><br><br>
+					<span id="userInfo"></span><br>
+					<button onClick="closeAllPanels();">OK</button><br><br>
+					<b>Change Password</b><br>
+					<input type=text size=40 class="panelError" id="userError"><br>
+					old password: <br>
+					<input type=password size=20 id="oldPassword"><br><br>
+					new password: <br>
+					<input type=password size=20 id="newPassword1"><br><br>
+					new password again: <br>
+					<input type=password size=20 id="newPassword2"><br><br><br>
+					<button onClick="closeAllPanels();">Cancel</button>
+					<button onClick="changePassword();">Change</button><br>
+        		    <br><br>   
+        		</div>
+        </div>
+        
+        <div class="panel" id="aboutPanel">
+        		<div class="panelContent">
+        			<br><br>
+					<b>About Restoration Map</b><br>
+					<br>
+					
+					Restoration Map is a web-based tool to help document and plan ecological restoration work within Chicago Wilderness natural areas.  This work is supported by a great deal of long term monitoring data.  Restoration Map will help share that data and encourage collaboration between volunteer stewards, agency land managers, and the public.<br>
+<br>
+Restoration Map is being developed with the support of Audubon Chicago Region as free, open source software for stewards and monitors working on conservation efforts.  For more information please see <a target="_blank" href="http://restorationmap.org">restorationmap.org</a> or email willfreyman@gmail.com<br>
+					
+					<br><br><br><br>
+					Restoration Map uses <a target="_blank" href="http://code.google.com/p/kmltree/">kmltree</a> developed by the <a target="_blank" href="http://marinemap.org/">MarineMap Consortium</a>.<br>
+					<br>
+					The soil data layer is provided by the Soil Survey Staff, Natural Resources Conservation Service, United States Department of Agriculture. Soil Data Access. <a target="_blank" href="http://sdmdataaccess.nrcs.usda.gov">http://sdmdataaccess.nrcs.usda.gov</a><br>
+					<br>
+					The wetlands data layer is provided by U. S. Fish and Wildlife Service. National Wetlands Inventory. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C. <a target="_blank" href="http://www.fws.gov/wetlands/">http://www.fws.gov/wetlands/</a><br>
+					<br>
+					<button onClick="closeAllPanels();">OK</button><br>
+        		</div>		
+        </div>        
+        
+        <div class="panel" id="downloadPanel">
+        		<div class="panelContent">
+				<br><br>
+				<b>Download Layer</b><br>
+				<br><br><br><br>
+				Select KML to download a file compatible with Google Earth or SHP to download a shapefile compatible with ArcGIS.
+				<br><br>
+				<input type=text size=30 class="panelError" id="downloadError">
+				<br><div id="downloading_monitor"></div><br><br>
+				<button onClick="startKmlDownload();"> KML </button>
+				<button onClick="startShpDownload();"> SHP </button>
+				<button onClick="closeAllPanels();">Cancel</button>
+        		</div>
+        </div>
+		<form id="downloadKmlForm" method="post" action="php/downloadString.php">
+			<input type="hidden" id="downloadString" name="string" />
+		</form>
+		<form id="downloadShpForm" method="post" action="php/downloadShapefile.php">
+		</form>
+		<form id="downloadCsvForm" method="post" action="php/downloadCsv.php">
+			<input type="hidden" id="downloadCsv" name="string" />
+		</form>
+		
+		<iframe id="kml_upload_target" name="kml_upload_target" src="#"></iframe>                
+		
+		<noscript id="noScript">Restoration Map uses Javascript. Your browser either
+		doesn't support Javascript or you have it turned off.
+		To see this page as it is meant to appear please use
+		a Javascript enabled browser.</noscript>
+		
+		<div id="unsupported_browser">
+			Your browser is not supported by Restoration Map.<br>
+			Restoration Map is available in Apple Safari, Google Chrome, and Microsoft Internet Explorer (version 8.0 and newer). <br>
+			Please use one of the supported browsers.<br>
+        </div> 
+        
+        
+        <!--   ======================   -->
+		<!--   monitoring data panels   -->
+		<!--   ======================   -->
+	
+        <div class="panel" id="natural_communties_panel">
+        		<div class="panelContent">
+					<b>FPDCC Natural Communities</b><br>
+					<br>
+					Data compiled by the Forest Preserve District of Cook County.  Some areas may be out-of-date.<br>
+					<br><br>
+				<!--	Select which natural communities to show:<br>
+					<br><br>
+					Current natural communities:<br>
+					<select id="nat_comm_now">
+						<option value="all">All</option>
+						<option value="Crop">Crop</option>
+						<option value="Dolomite Cliff">Dolomite Cliff</option>
+						<option value="Eurasian Meadow">Eurasian Meadow</option>
+						<option value="Fen">Fen</option>
+						<option value="Marsh">Marsh</option>
+						<option value="Prairie">Prairie</option>
+						<option value="Reforestation">Reforestation</option>
+						<option value="Savanna">Savanna</option>
+						<option value="Sedge Meadow">Sedge Meadow</option>
+						<option value="Shrubland">Shrubland</option>
+						<option value="UW">Unassociated Woody Growth</option>
+						<option value="Unmanaged">Unmanaged</option>						
+						<option value="Woodland">Woodland</option>
+					</select>
+					<br><br>			
+					Future (planned) natural communities:<br>
+					<select id="nat_comm_fut">
+						<option value="all">All</option>
+						<option value="Crop">Crop</option>
+						<option value="Dolomite Cliff">Dolomite Cliff</option>
+						<option value="Eurasian Meadow">Eurasian Meadow</option>
+						<option value="Fen">Fen</option>
+						<option value="Marsh">Marsh</option>
+						<option value="Prairie">Prairie</option>
+						<option value="Reforestation">Reforestation</option>
+						<option value="Savanna">Savanna</option>
+						<option value="Sedge Meadow">Sedge Meadow</option>
+						<option value="Shrubland">Shrubland</option>
+						<option value="UW">Unassociated Woody Growth</option>
+						<option value="Unmanaged">Unmanaged</option>						
+						<option value="Woodland">Woodland</option>
+					</select>
+					<br><br>  -->
+					Select how to show natural communities:<br>
+					<input type="radio" name="nat_comm_how" onClick="nat_comm_show_div();" value="outline" checked="checked"> Polygons with simple white outlines (not filled).<br>
+					<input type="radio" name="nat_comm_how" onClick="nat_comm_show_div();" value="now"> Polygons color coded as current natural communities.<br>
+					<input type="radio" name="nat_comm_how" onClick="nat_comm_show_div();" value="future"> Polygons color coded as future (planned) natural communities.<br>
+					<!--
+					<input type="radio" name="nat_comm_area" value="visible" checked="checked"> Load data in visible map area (faster)<br>
+					<input type="radio" name="nat_comm_area" value="all"> Load all data (large data set may be slow to load)<br>
+					-->
+					<div id="nat_comm_loading"></div><br><br>
+					Please note: loading all natural communities will take a minute or two.  Please be patient.<br>
+					<button onClick="load_nat_comm_data();">Load data in map</button>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br>
+					<div id="nat_comm_opacity_div">
+						Select opacity of polygons:<br>
+						<input type="radio" name="nat_comm_opacity" value="100" checked="checked"> 100% (solid filled)<br>
+						<input type="radio" name="nat_comm_opacity" value="80"> 80%<br>
+						<input type="radio" name="nat_comm_opacity" value="60"> 60%<br>
+						<input type="radio" name="nat_comm_opacity" value="40"> 40%<br>
+						<input type="radio" name="nat_comm_opacity" value="20"> 20%<br>
+						<input type="radio" name="nat_comm_opacity" value="0"> 0% (no fill, color coded lines)<br>
+						<br>
+						The natural communities are color coded:<br>
+						<span style="color:#F0DC78">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Crop</span><br>
+						<span style="color:#963C14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Dolomite Cliff</span><br>
+						<span style="color:#D2B414">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Eurasian Meadow</span><br>
+						<span style="color:#14FFB4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Fen</span><br>
+						<span style="color:#007814">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Forest</span><br>
+						<span style="color:#14C8F0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Marsh</span><br>
+						<span style="color:#FFF014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Prairie</span><br>
+						<span style="color:#FF0014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Reforestation</span><br>
+						<span style="color:#FF7814">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Savanna</span><br>
+						<span style="color:#B4FF78">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Sedge Meadow</span><br>
+						<span style="color:#F05A78">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Shrubland</span><br>
+						<span style="color:#78184F">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Unassociated Woody Growth</span><br>
+						<span style="color:#DCDCDC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Unmanaged</span><br>
+						<span style="color:#00F014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Woodland</span><br>
+						<br>
+						<br>
+						<br>
+					</div>
+        		</div>
+        </div>	
+	
+		
+        <div class="panel" id="sc2011Panel">
+        		<div class="panelContent">
+					<br><br><b>Spring Creek 2011 Bird Blitz</b><br><br>
+					<br><br>
+					Select which birds to show:<br>
+					<br><br>
+					Habitat type:<br>
+					<select id="sc_2011_habitat">
+						<option value="all">All</option>
+						<option value="grassland">Grassland</option>
+						<option value="shrubland">Shrubland</option>
+						<option value="woodland">Woodland & Savanna</option>
+						<option value="wetland">Wetland</option>
+						<option value="urban">Urban & Introduced</option>
+					</select>
+					<br><br>			
+					Conservation status:<br>
+					<select id="sc_2011_status">
+						<option>All birds</option>
+						<option>Birds of Concern</option>
+						<option>CW Priority 1</option>
+						<option>CW Priority 2</option>
+						<option>CW Priority 3</option>
+						<option>Endangered in Illinois</option>
+						<option>Threatened in Illinois</option>
+					</select>
+					<br><br>
+					Bird species:<br>
+					<div id="sc2011speciesSelector">
+					<select><option>All</option></select></div>
+					<br>
+					<input type="checkbox" id="sc_2011_boundaries"> Show unit boundaries<br><br>
+					<br><div id="sc2011_loading"></div><br><br>
+					<button onClick="load_sc_2011_data();">Load data in map</button>
+					<button onClick="zoom_to_sc_2011();">Zoom to data</button><br><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+        		</div>
+        </div>
+        
+        <div class="panel" id="sc2011invasivesPanel">
+        		<div class="panelContent">
+					<br><br><b>Spring Creek 2011 Invasives Blitz</b><br><br>
+					<br><br>
+					<br><br>
+					Species:<br>
+					<select id="sc_2011_invasive_species">
+						<option value="all">All</option>
+						<option value="oriental_bittersweet">Oriental Bittersweet (Celastrus orbiculatus)</option>
+						<option value="garlic_mustard">Garlic Mustard (Alliaria petiolata)</option>
+						<option value="japanese_barberry">Japanese Barberry (Berberis thungergii)</option>
+						<option value="reed_canary_grass">Reed Canary Grass (Phalaris arundinacea)</option>
+						<option value="purple_loosestrife">Purple Loosestrife (Lythrum salicaris)</option>
+						<option value="common_reed">Common Reed (Phragmites australis)</option>
+						<option value="cattail">Cattail  (Typha sp.)</option>
+						<option value="wild_parsnip">Wild Parsnip (Pastinaca sativa)</option>
+						<option value="crown_vetch">Crown Vetch (Coronilla varia)</option>
+						<option value="leafy_spurge">Leafy Spurge  (Euphorbia esula)</option>
+						<option value="sweet_clover">White/Yellow Sweet Clover (Melilotus sp.)</option>
+						<option value="teasel">Teasel (Dipsacus sp.)</option>
+					</select>
+					<br><br>			
+					<br><div id="sc2011_invasives_loading"></div><br><br>
+					<button onClick="load_sc_2011_invasives_data();">Load data in map</button>
+					<button onClick="zoom_to_sc_2011_invasives();">Zoom to data</button><br><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br><br><br><br>
+					The distribution of species within each area is color coded:<br><br>
+					<span style="color:#FFF014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- scattered</span><br>
+					<span style="color:#FF7814">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- dense</span><br>
+					<span style="color:#FF0014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- dense & scattered</span><br>
+        		</div>
+        </div>
+        
+        <div class="panel" id="bcnPointCountPanel">
+        		<div class="panelContent">
+					<b>Bird Conservation Network:<br>Point Count Data</b><br><br><br>
+					Select year range:<br>
+					<div style="position:relative;float:left;" id="bcn_point_count_begin_year_selector"><select id="bcn_pc_begin_year">
+						<option value="all">All</option>
+					</select></div><div style="position:relative;float:left;">&nbsp;to&nbsp;</div>
+					<div style="position:relative;float:left;" id="bcn_point_count_end_year_selector"><select id="bcn_pc_end_year">
+						<option value="all">All</option>
+					</select></div>
+					<br><br>
+					Select month range:<br>
+					<select id="bcn_pc_begin_month">
+						<option value="all">All</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select> to 
+					<select id="bcn_pc_end_month">
+						<option value="all">All</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+					</select>
+					
+					<br><br>
+					Habitat type:<br>
+					<select id="bcn_pc_habitat">
+						<option value="all">All</option>
+						<option value="grassland">Grassland</option>
+						<option value="shrubland">Shrubland</option>
+						<option value="woodland">Woodland & Savanna</option>
+						<option value="wetland">Wetland</option>
+						<option value="urban">Urban & Introduced</option>
+					</select>
+					<br>			
+					Conservation status:<br>
+					<select id="bcn_pc_status">
+						<option>All birds</option>
+						<option>Breeding Season Birds of Concern</option>
+						<option>Endangered in Illinois</option>
+						<option>Threatened in Illinois</option>
+					</select>
+					<br>
+					Bird species:<br>
+					<div id="bcn_point_count_species_selector">
+					<select><option>All</option></select></div>
+					<br>
+					<input type="radio" name="bcn_pc_area" onClick="bcn_pc_screen_view();" value="screen" checked="checked"> Load data in entire visible area<br>
+					<input type="radio" name="bcn_pc_area" onClick="bcn_pc_polygon_view();" value="polygon"> Draw a polygon and load data within it<br>
+					<br><div id="bcn_point_count_loading"></div><br><br>
+					Please note: loading large data sets will take a minute or two.  Please be patient.<br>
+					<button onClick="load_bcn_point_count_data();">Load data in map</button>
+					<button onClick="closeAllPanels();">Close this panel</button><br>
+					<button id="bcn_pc_draw_button" onClick="bcn_pc_draw_new();" disabled="disabled">Draw new polygon</button>
+					<br><br>
+					The BCN Survey concentrates data collection efforts during the breeding season, which is in June. Migratory and winter season data is far less complete at most sites.<br><br>
+					More information about the Bird Conservation Network can be found here:<br>
+					<a target="_blank" href="http://www.bcnbirds.org/">http://www.bcnbirds.org/</a>
+        		</div>
+        </div>
+ 
+ 		<div class="panel" id="frogPanel">
+        		<div class="panelContent">
+					<br><br><b>Calling Frog Survey</b><br><br>
+					<br><br>
+					<br><br>
+					Select year range:<br>
+					<div style="position:relative;float:left;" id="frog_begin_year_selector"><select id="frog_begin_year">
+						<option value="All">All</option>
+					</select></div><div style="position:relative;float:left;">&nbsp;to&nbsp;</div>
+					<div style="position:relative;float:left;" id="frog_end_year_selector"><select id="frog_end_year">
+						<option value="All">All</option>
+					</select></div>
+					<br><br><br><br>
+					Select species:<br>
+					<select id="frog_species">
+						<option value="All">All</option>
+						<option value="Wood Frog">Wood Frog</option>
+						<option value="Chorus Frog">Chorus Frog</option>
+						<option value="Spring Peeper">Spring Peeper</option>
+						<option value="N.Leopard Frog">N.Leopard Frog</option>
+						<option value="Plains Leopard Frog">Plains Leopard Frog</option>
+						<option value="Pickerel Frog">Pickerel Frog</option>
+						<option value="American Toad">American Toad</option>
+						<option value="E. Gray Treefrog">E. Gray Treefrog</option>
+						<option value="Copes Gray Treefrog">Copes Gray Treefrog</option>
+						<option value="Fowlers Toad">Fowlers Toad</option>
+						<option value="Cricket Frog">Cricket Frog</option>
+						<option value="Green Frog">Green Frog</option>
+						<option value="Bullfrog">Bullfrog</option>
+					</select>
+					<br><br>			
+					<br><div id="frog_loading"></div><br><br>
+					Please note:<br>
+					Data will be loaded for the visible map area. Loading data for large areas will take a minute or two. Zoom in or please be patient.
+					<br><br>
+					<button onClick="load_frog_data();">Load data in map</button>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br><br><br><br>
+					More information about the Chicago Wilderness Calling Frog Survey can be found here:<br>
+					<a target="_blank" href="http://www.habitatproject.org/frogsurvey/">http://www.habitatproject.org/frogsurvey/</a>
+        		</div>
+        </div>
+ 
+        <div class="panel" id="landAuditPanel">
+        		<div class="panelContent">
+					<br><br><b>Cook County Land Audit 2007-2008</b><br><br>
+					<br><br>
+					In 2007 and 2008, ninety monitors collected detailed vegetation data at 200 sample plots within the priority conservation lands of the Forest Preserve District of Cook County.  This map layer summarizes the results.  <br><br>
+					Each sample plot is represented on the map by a circle proportionately sized to the plot's mean weighted native FQI.<br>
+					<br>
+					The floristic quality of each sample plot is color coded:<br><br>
+					<span style="color:#00F014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- excellent</span><br>
+					<span style="color:#FFF014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- good</span><br>
+					<span style="color:#FF7814">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fair</span><br>
+					<span style="color:#FF0014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- poor</span><br>		
+					<br><div id="land_audit_loading"></div><br><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br><br><br><br>
+					More details from the 2007-2008 Cook County Land Audit can be found 
+					<a target="_blank" href="http://www.habitatproject.org/results/landaudits.html#CCLndAudit0708">here</a>.		
+        		</div>
+        </div> 
+        <div class="panel" id="landAudit2001Panel">
+        		<div class="panelContent">
+					<br><br><b>Cook County Land Audit 2001</b><br><br>
+					<br><br>
+					In the summer of 2001, eighty-nine monitors collected detailed vegetation data from 100 meter transects, each with 20 quadrats spaced 5-meters apart.  This map layer summarizes the results.  <br><br>
+					Each transect is represented on the map by a circle proportionately sized to the transect's mean quadrat native FQI.<br>
+					<br>
+					The floristic quality of each sample plot is color coded:<br><br>
+					<span style="color:#00F014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- excellent</span><br>
+					<span style="color:#FFF014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- good</span><br>
+					<span style="color:#FF7814">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fair</span><br>
+					<span style="color:#FF0014">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- poor</span><br>		
+					<br><div id="land_audit_2001_loading"></div><br><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br><br><br><br>
+					More details from the 2001 Cook County Land Audit can be found 
+					<a target="_blank" href="http://www.habitatproject.org/results/landaudits.html#CCLndAudit01">here</a>.		
+        		</div>
+        </div> 
+        
+        
+        <div class="panel" id="ws_display_data_panel">
+        		<div class="panelContent">
+					<br><br><b>Weed Scout Data</b><br><br>
+					<br><br>
+					
+					Show data by date range: <br>
+					<i>- leave blank to show all dates<br>
+					- mm/dd/yyyy</i><br>
+					<input type=text maxlength=2 size=2 id="ws_begin_month"> / <input type=text maxlength=2 size=2 id="ws_begin_day"> / <input type=text maxlength=4 size=4 id="ws_begin_year"> 
+					to <br>
+					<input type=text maxlength=2 size=2 id="ws_end_month"> / <input type=text maxlength=2 size=2 id="ws_end_day"> / <input type=text maxlength=4 size=4 id="ws_end_year"><br><br>
+					<br>
+					
+					Show data by weed:<br>
+					<select id="ws_weed_display">
+						<option value="All">All</option>
+						<option value="Birds foot trefoil">Birds foot trefoil</option>
+						<option value="Crown vetch">Crown vetch</option>
+						<option value="Garlic mustard">Garlic mustard</option>
+						<option value="Phragmites">Phragmites</option>
+						<option value="Purple loosestrife">Purple loosestrife</option>
+						<option value="Reed Canary Grass">Reed Canary Grass</option>
+						<option value="Sweet clover">Sweet clover</option>
+						<option value="Teasel">Teasel</option>
+						<option value="Wild parsnip">Wild parsnip</option>
+					</select>
+					<br><br>
+					Show data by abundance:<br>
+					<select id="ws_abundance_display">
+						<option value="All">All</option>
+						<option value="Sparse">Sparse</option>
+						<option value="Scattered">Scattered</option>
+						<option value="Dense">Dense</option>
+					</select>
+					<br><br>
+					<input type=text size=40 class="panelError" id="ws_display_error">
+					<br><div id="ws_display_loading"></div><br><br>
+					<button onClick="load_ws_data();">Load data in map</button>
+					<button onClick="zoom_to_ws_data();">Zoom to data</button><br>
+					<button onClick="download_ws_data_csv();">Download all data shown as CSV</button><br>
+					<button onClick="download_ws_data_kml();">Download all data shown as KML</button><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br><br>
+					<button onClick="show_ws_data_entry_panel();">Enter new weed scout data</button>
+					<br><br><br>
+					
+	
+        		</div>
+        </div>
+        <div class="panel" id="ws_data_entry_panel">
+        		<div class="panelContent">
+					<br><br><b>Weed Scout Data Entry</b><br><br>
+					<br>
+					Date weed was sighted: <br>
+					<input type=text maxlength=2 size=2 id="ws_month"> / <input type=text maxlength=2 size=2 id="ws_day"> / <input type=text maxlength=4 size=4 id="ws_year"> mm/dd/yyyy<br>
+					<br>
+					Weed:<br>
+					<select id="ws_weed">
+						<option value="0">Select weed</option>
+						<option value="Birds foot trefoil">Birds foot trefoil</option>
+						<option value="Crown vetch">Crown vetch</option>
+						<option value="Garlic mustard">Garlic mustard</option>
+						<option value="Phragmites">Phragmites</option>
+						<option value="Purple loosestrife">Purple loosestrife</option>
+						<option value="Reed Canary Grass">Reed Canary Grass</option>
+						<option value="Sweet clover">Sweet clover</option>
+						<option value="Teasel">Teasel</option>
+						<option value="Wild parsnip">Wild parsnip</option>
+					</select>
+					<br><br>
+					Abundance:<br>
+					<select id="ws_abundance">
+						<option value="0">Select abundance</option>
+						<option value="Sparse">Sparse</option>
+						<option value="Scattered">Scattered</option>
+						<option value="Dense">Dense</option>
+					</select>
+					<br><br>
+					Latitude: <br>
+					<input type=text maxlength=15 size=10 id="ws_latitude" onchange="update_ws_latitude(this.value)"><br>
+					Longitude: <br>
+					<input type=text maxlength=15 size=10 id="ws_longitude" onchange="update_ws_longitude(this.value)"><br>
+					<br><br>
+					Notes:<br> 
+					<textarea id="ws_notes" cols=20 rows=6></TEXTAREA><br><br>
+					Your name: <i>(optional)</i><br>
+					<input type=text maxlength=50 size=20 id="ws_name"><br>
+					<input type=text size=40 class="panelError" id="ws_error">
+					<br><div id="ws_loading"></div><br><br>
+					<button onClick="save_ws_data();">Save and enter another</button>
+					<button onClick="cancel_ws_data();">Done</button>
+					
+					
+				</div>
+        </div> 
+                  
+        
+    </body>
+</html>

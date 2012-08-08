@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+
+		<Style id="trail_style">
+			<LineStyle>
+				<color>ffffff00</color>
+				<width>3</width>
+			</LineStyle>
+		</Style>
+				
+		<Style id="soil_style">
+			<LineStyle>
+				<color>ff104e96</color>
+				<width>3</width>
+			</LineStyle>
+			<PolyStyle>
+				<fill>0</fill>
+			</PolyStyle>
+		</Style>
+		
+		<Folder>
+			<name>Trails</name>
+			<visibility>0</visibility>
+			<open>1</open>
+			<Style>
+				<ListStyle>
+					<listItemType>checkHideChildren</listItemType>
+					<bgColor>00ffffff</bgColor>
+					<maxSnippetLines>2</maxSnippetLines>
+				</ListStyle>
+			</Style>
+			<Placemark>
+				<name>Untitled Path</name>
+				<styleUrl>#trail_style</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						-87.82593294549645,42.1384688489898,0 -87.82607828512442,42.13848707381609,0 -87.82625221850536,42.13853320158074,0 -87.82644595320923,42.13856849608419,0 -87.82658563709798,42.13864086089642,0 -87.8266616004326,42.13873780434712,0 -87.82676625652277,42.13886149003009,0 -87.82689026472731,42.13896406298984,0 -87.82691440222374,42.13900286517872,0 -87.82693743156418,42.13905350696994,0 -87.82699641028597,42.13915296977094,0 -87.82701049647588,42.13919574992234,0 -87.82701589687494,42.13921810057141,0 -87.82708899284764,42.13929394479256,0 -87.82721812403847,42.13940118090176,0 -87.82724875448817,42.13940835397302,0 -87.82731537501419,42.13941320091852,0 -87.8274539687864,42.13942836842343,0 -87.82750003114072,42.13944070755808,0 -87.82752640708431,42.13947914259128,0 -87.82756452719059,42.13949900515149,0 -87.82762745936667,42.13951210166167,0 -87.82769282877906,42.13953701354619,0 -87.82780640607199,42.13964159070377,0 -87.82790513247342,42.13968082549918,0 -87.82804123491252,42.1396710926014,0 -87.82817532401523,42.13972350428196,0 -87.82832533318353,42.13978815567739,0 -87.82856512544413,42.1398122205356,0 -87.82873523809,42.13980170940106,0 -87.82885886804279,42.13980391336527,0 -87.82899196301331,42.13996411528279,0 -87.82905347491298,42.14004294861721,0 -87.82905832683902,42.14006094673309,0 -87.82905773496546,42.14006600661133,0 -87.8290437757048,42.14011656568161,0 -87.82901765517717,42.14020319455138,0 -87.82895802490475,42.14031547036836,0 -87.82886037291864,42.14044795231175,0 -87.82880670504005,42.14050995349942,0 -87.82877563285631,42.14060213974632,0 -87.82877781156968,42.14064170759011,0 -87.82883493024445,42.14071591708592,0 -87.82885372293171,42.14074767736062,0 -87.82884328824676,42.14080003457816,0 -87.828826269147,42.1408356933975,0 -87.82877014082136,42.14088373849755,0 -87.8287210677623,42.14092171953177,0 -87.828694792357,42.14106694804695,0 -87.82869459460596,42.14119230913646,0 -87.82871595866382,42.14125243566099,0 -87.82876823819672,42.1412870633327,0 -87.82883875168005,42.14130700616346,0 -87.82890173490279,42.14132667391395,0 -87.82896630837952,42.14135063247848,0 -87.82898922305104,42.14137272793536,0 -87.82900543394842,42.14143107862935,0 -87.82920784866106,42.14164464994544,0 -87.82953574637425,42.14177770901355,0 -87.82966545965876,42.14189657599763,0 -87.82992013113909,42.14214819724452,0 -87.82997201503336,42.14222704799352,0 -87.83008853786146,42.14231194636683,0 -87.83042836248531,42.14242149286709,0 -87.83069608754454,42.14242351843072,0 -87.83105422542513,42.14243519373658,0 -87.83101600871166,42.14229482581728,0 -87.83098663961682,42.14221141458233,0 -87.83092020783096,42.14211021761026,0 -87.83089196584322,42.14206404049774,0 -87.83090971914201,42.14196421660348,0 -87.83090220314065,42.14186396339524,0 -87.83087347282931,42.14179318807067,0 -87.83082783461712,42.14170127164831,0 -87.8308271161046,42.14160103346351,0 -87.83085163087247,42.14151635567764,0 -87.83092313189587,42.14144708575016,0 -87.83095267132704,42.14137375184347,0 -87.8309318927445,42.14128649655525,0 -87.83087566783,42.14123618483379,0 -87.83080264518794,42.14116402345174,0 -87.8307361940403,42.14112551095159,0 -87.83065920515111,42.14109836250179,0 -87.83061577075527,42.14102598588804,0 -87.83056825219987,42.14096786744663,0 -87.83056424565079,42.14086607032196,0 -87.83062049001836,42.14078857755739,0 -87.83064581295135,42.14069897813547,0 -87.83062640103391,42.14061370540613,0 -87.83063153146699,42.14054263122318,0 -87.83061199906338,42.14048790426848,0 -87.83060553222288,42.140407416134,0 -87.83060849754963,42.14033041781108,0 -87.83059911247163,42.14022489475203,0 -87.8305650584506,42.14016646814974,0 -87.83049576103286,42.14011381811066,0 -87.83042137480953,42.14007994147203,0 -87.83032433415434,42.14005449116921,0 -87.83024841447575,42.14008126594663,0 -87.83014652656873,42.14011153046521,0 -87.83003083966324,42.14016468267112,0 -87.82995198094412,42.14020628262372,0 -87.82987498612508,42.14023854821966,0 -87.829798549717,42.1402636750982,0 -87.82971379232332,42.14030535059396,0 -87.8296076347882,42.14030720614227,0 -87.82956630434636,42.14033401461573,0 -87.82950626118279,42.14035508815413,0 -87.82943758347227,42.14036611973015,0 -87.82936446491978,42.14033339217218,0 -87.82927682981303,42.1402881721765,0 -87.82920252470839,42.1402460081476,0 -87.82915964501326,42.14018417280255,0 -87.82910516784069,42.14011404388835,0 -87.82906017969286,42.14006122058307,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Untitled Path</name>
+				<styleUrl>#trail_style</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						-87.82886151720857,42.13980522201614,0 -87.82893187518566,42.13980612403054,0 -87.82897526209453,42.1397884949198,0 -87.82903493829727,42.13973965784658,0 -87.82906204716093,42.13970590983301,0 -87.82911519374522,42.13968953977265,0 -87.82915646353547,42.13966445085199,0 -87.82918781895812,42.1396450366482,0 -87.82921626527369,42.13959859946942,0 -87.82922306417613,42.13957824687544,0 -87.8292783458004,42.13954688653586,0 -87.82932358597321,42.1394921365083,0 -87.82931929099915,42.13943677239762,0 -87.82932985290346,42.13939333255531,0 -87.82935582323252,42.13934858947719,0 -87.82944128000946,42.13932198607956,0 -87.82952189369351,42.13932894272972,0 -87.82971001938282,42.13937160694656,0 -87.82978768916567,42.139370861048,0 -87.8300127578737,42.13939218733504,0 -87.83007423546897,42.13940690271496,0 -87.83009849057913,42.13945158535351,0 -87.8301227592885,42.13952424566613,0 -87.83017432358469,42.13961832419375,0 -87.83024359256578,42.13966766256699,0 -87.83033341364765,42.13975134642197,0 -87.8303604686478,42.13979426544003,0 -87.83039253159961,42.13983021715071,0 -87.83043822924597,42.13985837681528,0 -87.83049360311638,42.13987123608283,0 -87.83055385429198,42.13985970178204,0 -87.83061239518047,42.13982104860983,0 -87.830652828288,42.13977824370388,0 -87.83068538070242,42.13972475165561,0 -87.83075208726397,42.13965788030481,0 -87.83078770697034,42.13960979184714,0 -87.83080580367597,42.13956196604188,0 -87.83079347180528,42.13946901918465,0 -87.83078636645078,42.13941674367843,0 -87.83082108903068,42.13936845417211,0 -87.83091783243502,42.13930381221861,0 -87.83101591406268,42.13924609905146,0 -87.83114362796233,42.13922858989289,0 -87.83136181997823,42.13927198780058,0 -87.83141734990433,42.13931059909294,0 -87.83141943412484,42.13937314071819,0 -87.8314005001055,42.13944843972846,0 -87.83136221644185,42.13950073338975,0 -87.83131262306523,42.13960830712695,0 -87.83125612128023,42.13967525285911,0 -87.83120563706443,42.13972890199939,0 -87.8311860640555,42.13979102548053,0 -87.83115963374371,42.13986399879341,0 -87.83112979380337,42.13991235243907,0 -87.83111827901894,42.13992410856035,0 -87.83112926279023,42.13998861837759,0 -87.83114309444777,42.14002887238453,0 -87.83114916486707,42.14007260771252,0 -87.83120711645455,42.14016953728901,0 -87.83127827800163,42.14024378965907,0 -87.83138104532084,42.14033254434576,0 -87.83145602773445,42.14038014175263,0 -87.83150515113618,42.14040395584099,0 -87.83162879383303,42.1404355697626,0 -87.83178501536784,42.14050792751073,0 -87.83191971738694,42.14058308904997,0 -87.83203736554138,42.14067025826206,0 -87.83225648024622,42.14075391689359,0 -87.8323490963387,42.14079172922661,0 -87.83237348352941,42.14084271005576,0 -87.83237287201229,42.14088394221268,0 -87.83234374428748,42.14090321479711,0 -87.8323092487521,42.14091968855218,0 -87.83224204774272,42.14093782913437,0 -87.83216229312818,42.1409528069548,0 -87.83205388001493,42.14098025717092,0 -87.8319855288176,42.14099833120454,0 -87.83195974039396,42.14104310736023,0 -87.83198972796686,42.1410917672497,0 -87.83204250141345,42.14114626290255,0 -87.83209451670562,42.14117482221577,0 -87.83218329550593,42.141226628301,0 -87.83220507139974,42.14127307062382,0 -87.83221385888081,42.14134841522968,0 -87.83221617916348,42.14139737200384,0 -87.83220993773803,42.1414827329711,0 -87.83218765795777,42.14154032724035,0 -87.83215230048222,42.14162905770857,0 -87.83213278630079,42.14171218403373,0 -87.83211232492843,42.14175765500339,0 -87.83210607628385,42.14179701988412,0 -87.83209548602709,42.14186958053331,0 -87.83205710062066,42.141917926137,0 -87.83200318662405,42.14196241662805,0 -87.83194921768683,42.14202374990921,0 -87.83188684876336,42.14206297815046,0 -87.83182272213382,42.14212139071707,0 -87.83187093027342,42.14226170838596,0 -87.83192512441208,42.14229229132892,0 -87.83200151145275,42.1423273088957,0 -87.83221671584771,42.14241254370523,0 -87.83224691440392,42.14245798309194,0 -87.83230155328991,42.14253844332683,0 -87.8325177313133,42.14260064413536,0 -87.83261731374826,42.1427337949215,0 -87.83270053660857,42.14279849121307,0 -87.83270976374695,42.1428888668644,0 -87.83263789730114,42.14294575771533,0 -87.83260906469094,42.14300631975505,0 -87.83257336458813,42.14305354514759,0 -87.83250521651483,42.143078994862,0 -87.83245915950266,42.14312955503092,0 -87.83237966788431,42.14316626395176,0 -87.83230744222823,42.14320812146615,0 -87.8322471848537,42.14325632274109,0 -87.83215736278159,42.14327224668125,0 -87.83199726011318,42.14326492175973,0 -87.83190929285233,42.14324196631502,0 -87.8318311587381,42.14324648451684,0 -87.83174337003075,42.14325106211761,0 -87.8316580034888,42.14327099770515,0 -87.83158034314714,42.14327343846569,0 -87.83152347806158,42.14327511288627,0 -87.83148756524436,42.14327123845399,0 -87.83147380395269,42.14324341593203,0 -87.83146467601951,42.14320687053043,0 -87.83147005221731,42.14315159098745,0 -87.83147626998161,42.1431166669327,0 -87.8314899484197,42.14301052151163,0 -87.83148234507129,42.1429757259997,0 -87.83144068625025,42.14295048881605,0 -87.83138658828319,42.14293735190614,0 -87.83132680567618,42.14292346415821,0 -87.83129638942243,42.14290517108852,0 -87.83127034119627,42.14287145779614,0 -87.8312387733565,42.14285233745044,0 -87.83120728305934,42.14281757368268,0 -87.83117904118777,42.14279979142466,0 -87.8311069252688,42.14276373656399,0 -87.83107288317159,42.14272910668036,0 -87.83104530939353,42.14267788318257,0 -87.83104832488148,42.14255583153699,0 -87.83105365608989,42.14243560027461,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+		</Folder>
+		
+		<GroundOverlay>
+			<name>Management units</name>
+			<visibility>0</visibility>
+			<Icon>
+				<href>http://www.audio8.com/nbrp_gis/images/spg_management_units.png</href>
+				<viewBoundScale>0.75</viewBoundScale>
+			</Icon>
+			<LatLonBox>
+				<north>42.14646302135022</north>
+				<south>42.13632789875972</south>
+				<east>-87.82525914460118</east>
+				<west>-87.83675376837188</west>
+			</LatLonBox>
+		</GroundOverlay>
+		
+		<Folder>
+			<name>Soil types</name>
+			<visibility>0</visibility>
+			<Folder>
+				<name>Elliott silt loam, 2 to 4 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>Elliott silt loam, 2 to 4 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Elliott and similar soils: 90 percent 
+
+Description of Elliott
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Footslope, backslope 
+Landform position (three-dimensional): Interfluve 
+Down-slope shape: Convex 
+Across-slope shape: Convex 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 2 to 4 percent 
+Depth to restrictive feature: 20 to 45 inches to dense material 
+Drainage class: Somewhat poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 12 to 24 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 35 percent 
+Available water capacity: Moderate (about 6.3 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2e
+
+Typical profile
+0 to 9 inches: Silt loam 
+9 to 13 inches: Silty clay loam 
+13 to 17 inches: Silty clay loam 
+17 to 35 inches: Silty clay loam 
+35 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83479361278884,42.14447620529725,0 -87.83492455284193,42.14441357802637,0 -87.83504778828754,42.14436805291962,0 -87.83517095272239,42.1443281774622,0 -87.83527861003937,42.14425968388474,0 -87.8353632347073,42.14420834154947,0 -87.83543252240743,42.14411707349926,0 -87.83547871899432,42.14404862353544,0 -87.83549417408574,42.14395734759893,0 -87.83547118547865,42.14386035677695,0 -87.83540205892203,42.14369487463171,0 -87.83533310194096,42.14354084495099,0 -87.83521790529251,42.14340387857326,0 -87.83504098097578,42.1433410320647,0 -87.8348484835081,42.14334662330059,0 -87.83466364508655,42.14339784946327,0 -87.83448645857327,42.14344334132812,0 -87.83430119107216,42.14346012232706,0 -87.83417755801602,42.14340281685617,0 -87.83411595381757,42.14327743107525,0 -87.83411618557717,42.143157882569,0 -87.83414730778162,42.14300412532129,0 -87.8341934334031,42.14279345251221,0 -87.83418559511803,42.1426284662947,0 -87.8340467200704,42.14271411457797,0 -87.83394660611557,42.14281090312232,0 -87.83383122671968,42.1429132843794,0 -87.83380028685291,42.14304398085869,0 -87.83374647979065,42.14314050911471,0 -87.83366970693999,42.14321993701521,0 -87.83358534908713,42.14327092785366,0 -87.83343979555667,42.14332743841466,0 -87.83332501958563,42.1433896051519,0 -87.83321797719731,42.14348004475265,0 -87.83315680223126,42.14358752048802,0 -87.83314902534396,42.14370654582589,0 -87.8332023457606,42.14381450586352,0 -87.83337050336692,42.1438322085146,0 -87.83353897244756,42.14383295288423,0 -87.83373081301556,42.14383385399825,0 -87.83393837785992,42.14386318920237,0 -87.83406151996031,42.14393202021827,0 -87.83410767940167,42.14404043658782,0 -87.83406147596071,42.14414855506725,0 -87.83394595740486,42.14425623647824,0 -87.83382280570842,42.14432949580921,0 -87.83359232839261,42.1444648841552,0 -87.83479361278884,42.14447620529725,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+			<Folder>
+				<name>Ashkum silty clay loam, 0 to 2 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>232A—Ashkum silty clay loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Ashkum and similar soils: 90 percent 
+
+Description of Ashkum
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Toeslope 
+Landform position (three-dimensional): Talf 
+Down-slope shape: Linear
+Across-slope shape: Concave 
+Parent material: Colluvium and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: More than 80 inches 
+Drainage class: Poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately high (0.20 to 0.60 in/hr) 
+Depth to water table: About 0 to 12 inches 
+Frequency of flooding: None 
+Frequency of ponding: Frequent 
+Calcium carbonate, maximum content: 25 percent 
+Available water capacity: High (about 9.8 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 12 inches: Silty clay loam 
+12 to 29 inches: Silty clay 
+29 to 54 inches: Silty clay loam 
+54 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.8336140939407,42.14006181470046,0 -87.83317444752306,42.14003834278619,0 -87.83284088381301,42.1399734263395,0 -87.83260185806947,42.1399686509343,0 -87.83222256741972,42.14000725423146,0 -87.83205702791594,42.14010933127879,0 -87.83206603132086,42.14025871882981,0 -87.83215586872272,42.14032972427857,0 -87.83235438431323,42.14038330206611,0 -87.83265567477653,42.14033268574887,0 -87.8328928383048,42.14035479066878,0 -87.83306194159735,42.14041718581942,0 -87.83311381098579,42.14050678998979,0 -87.83311570218895,42.14061387570893,0 -87.8329900380224,42.14073873677863,0 -87.83273644816801,42.14088956600013,0 -87.83248396108098,42.1409521913849,0 -87.83204833852419,42.14093630623908,0 -87.83156862306052,42.14081779017831,0 -87.83118400112471,42.14082560914863,0 -87.8309574018183,42.14076375490434,0 -87.83018796705848,42.14075543519751,0 -87.82979988099243,42.14084289130747,0 -87.82958165753473,42.1409539688716,0 -87.82948754519489,42.14102891596022,0 -87.82947870624311,42.14129334710722,0 -87.82954717209657,42.14161811326368,0 -87.82964315455274,42.14180812042827,0 -87.82982070011559,42.14202653135535,0 -87.82995072044667,42.14216750818002,0 -87.83000888931959,42.1422894301289,0 -87.83008331890012,42.14240609146891,0 -87.83019325265261,42.14246560462983,0 -87.83029289511768,42.14243726728881,0 -87.83039706274249,42.14238918378554,0 -87.83037745846072,42.14236287234235,0 -87.83011765250802,42.14204945526516,0 -87.83001190433298,42.14174193873427,0 -87.83008094572267,42.14159982291449,0 -87.83026033362319,42.14141566814055,0 -87.83026449208606,42.14125203919504,0 -87.83032238821124,42.14105109889405,0 -87.83045844182526,42.14096381736,0 -87.83093235990675,42.14094359879208,0 -87.83124225961969,42.14097484128403,0 -87.83163134029424,42.14106363440688,0 -87.83187516503344,42.14117253822779,0 -87.83208597018077,42.1412023429212,0 -87.8322875836312,42.14119100873017,0 -87.83255192737255,42.14113176636509,0 -87.83285959039509,42.14099786276332,0 -87.83318989630129,42.14082234114506,0 -87.83330322970571,42.14077882826393,0 -87.8339416078714,42.14061091517196,0 -87.8336140939407,42.14006181470046,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>232A—Ashkum silty clay loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Ashkum and similar soils: 90 percent 
+
+Description of Ashkum
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Toeslope 
+Landform position (three-dimensional): Talf 
+Down-slope shape: Linear
+Across-slope shape: Concave 
+Parent material: Colluvium and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: More than 80 inches 
+Drainage class: Poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately high (0.20 to 0.60 in/hr) 
+Depth to water table: About 0 to 12 inches 
+Frequency of flooding: None 
+Frequency of ponding: Frequent 
+Calcium carbonate, maximum content: 25 percent 
+Available water capacity: High (about 9.8 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 12 inches: Silty clay loam 
+12 to 29 inches: Silty clay 
+29 to 54 inches: Silty clay loam 
+54 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.82779010763986,42.14083440820092,0 -87.82782996721508,42.1406855493147,0 -87.82798674419998,42.14057503489301,0 -87.82808215713669,42.14042730598065,0 -87.82809417289393,42.14027803078924,0 -87.82793452725799,42.1402698404588,0 -87.82778752734906,42.1402980149639,0 -87.82756264359128,42.1403659619936,0 -87.82734942486938,42.14049599190635,0 -87.82774971272697,42.14099877744352,0 -87.82779010763986,42.14083440820092,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>232A—Ashkum silty clay loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Ashkum and similar soils: 90 percent 
+
+Description of Ashkum
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Toeslope 
+Landform position (three-dimensional): Talf 
+Down-slope shape: Linear
+Across-slope shape: Concave 
+Parent material: Colluvium and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: More than 80 inches 
+Drainage class: Poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately high (0.20 to 0.60 in/hr) 
+Depth to water table: About 0 to 12 inches 
+Frequency of flooding: None 
+Frequency of ponding: Frequent 
+Calcium carbonate, maximum content: 25 percent 
+Available water capacity: High (about 9.8 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 12 inches: Silty clay loam 
+12 to 29 inches: Silty clay 
+29 to 54 inches: Silty clay loam 
+54 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83472490895301,42.14190547746327,0 -87.83435993864347,42.14248226475863,0 -87.83417794027507,42.14263570716649,0 -87.8341960470801,42.14272472241093,0 -87.83418380221357,42.14281160146115,0 -87.83411283168108,42.14314479300022,0 -87.83411395293086,42.1432780382038,0 -87.83417582288838,42.14340095834509,0 -87.83430214831937,42.14346111990803,0 -87.83448724320198,42.14344173052184,0 -87.83484821311933,42.14334593397476,0 -87.83503064660597,42.14334035104166,0 -87.83520907672974,42.14340099168777,0 -87.83533750727617,42.1435394735005,0 -87.8354653952421,42.14384132438838,0 -87.83549265446364,42.14395599864935,0 -87.8354762782528,42.14404980524395,0 -87.83560212549114,42.14397309913914,0 -87.83582759931062,42.14396995528943,0 -87.83600018688836,42.14406742037417,0 -87.8360345835048,42.14403710384126,0 -87.83472490895301,42.14190547746327,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+			<Folder>
+				<name>Beecher silt loam, 0 to 2 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>298A—Beecher silt loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition 
+Beecher and similar soils: 90 percent 
+
+Description of Beecher
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Summit, footslope 
+Landform position (three-dimensional): Interfluve
+Down-slope shape: Linear 
+Across-slope shape: Linear 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: 24 to 45 inches to dense material 
+Drainage class: Somewhat poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 6 to 24 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 35 percent 
+Available water capacity: Moderate (about 6.2 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 9 inches: Silt loam 
+9 to 21 inches: Silty clay loam 
+21 to 37 inches: Silty clay loam 
+37 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.82815307235772,42.14120742274435,0 -87.8284470406966,42.14094463464465,0 -87.82850982080592,42.14073438783901,0 -87.82841587378003,42.14042842093821,0 -87.82821210737477,42.14028542643847,0 -87.82809417289393,42.14027803078924,0 -87.82807520862764,42.14042717434116,0 -87.8279940442347,42.14056485890741,0 -87.82784404643849,42.14068065561142,0 -87.82773580320232,42.14099851926835,0 -87.82786073835915,42.14121241936877,0 -87.82815307235772,42.14120742274435,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>298A—Beecher silt loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition 
+Beecher and similar soils: 90 percent 
+
+Description of Beecher
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Summit, footslope 
+Landform position (three-dimensional): Interfluve
+Down-slope shape: Linear 
+Across-slope shape: Linear 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: 24 to 45 inches to dense material 
+Drainage class: Somewhat poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 6 to 24 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 35 percent 
+Available water capacity: Moderate (about 6.2 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 9 inches: Silt loam 
+9 to 21 inches: Silty clay loam 
+21 to 37 inches: Silty clay loam 
+37 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.82713258904764,42.13992510729939,0 -87.82725138256055,42.13970556082938,0 -87.82729265730575,42.13951553581843,0 -87.82730080338501,42.13927324730347,0 -87.82747234642781,42.13913713984482,0 -87.82772720107931,42.13900751478493,0 -87.82773714670546,42.13891987407594,0 -87.82729393910918,42.13863715049009,0 -87.82719334929286,42.13851602286139,0 -87.82715082837493,42.13832336785299,0 -87.82591322746123,42.13830219541845,0 -87.82579866921047,42.13839293167956,0 -87.82577411126661,42.13851667245027,0 -87.82700207203877,42.14007747584889,0 -87.82713258904764,42.13992510729939,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>298A—Beecher silt loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition 
+Beecher and similar soils: 90 percent 
+
+Description of Beecher
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Summit, footslope 
+Landform position (three-dimensional): Interfluve
+Down-slope shape: Linear 
+Across-slope shape: Linear 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: 24 to 45 inches to dense material 
+Drainage class: Somewhat poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 6 to 24 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 35 percent 
+Available water capacity: Moderate (about 6.2 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 9 inches: Silt loam 
+9 to 21 inches: Silty clay loam 
+21 to 37 inches: Silty clay loam 
+37 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83074120546567,42.14390502516894,0 -87.83093644362276,42.1438020996723,0 -87.83102521714567,42.14368427570157,0 -87.83102609897684,42.14354997655725,0 -87.8310302742659,42.14349454015709,0 -87.83090036491384,42.14337555448107,0 -87.8308404363774,42.14325432548669,0 -87.83081853199447,42.14310302265954,0 -87.83085301376667,42.142916432828,0 -87.83080066507304,42.1426805813217,0 -87.83040125499636,42.14237426146127,0 -87.83033701935125,42.14241961851452,0 -87.8302596823405,42.14244224957842,0 -87.83017580534798,42.14246191069682,0 -87.83009774653897,42.14241381555732,0 -87.83000643448047,42.14228281710057,0 -87.82995084409517,42.14217443640183,0 -87.82963971431593,42.14181137262383,0 -87.82956741961738,42.14167807823997,0 -87.82948791683604,42.1418010260403,0 -87.82930869084811,42.14196829500337,0 -87.82901770480171,42.14218074962948,0 -87.82880348568726,42.14226457888284,0 -87.82934477728341,42.14289541367647,0 -87.83007422709673,42.14360994405965,0 -87.83074120546567,42.14390502516894,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+			<Folder>
+				<name>Beecher silt loam, 2 to 4 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>298B—Beecher silt loam, 2 to 4 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Beecher and similar soils: 90 percent 
+
+Description of Beecher
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Backslope, footslope 
+Landform position (three-dimensional): Interfluve 
+Down-slope shape: Convex 
+Across-slope shape: Convex 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 2 to 4 percent 
+Depth to restrictive feature: 24 to 45 inches to dense material 
+Drainage class: Somewhat poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 6 to 24 inches
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 35 percent 
+Available water capacity: Low (about 5.7 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2e
+
+Typical profile
+0 to 7 inches: Silt loam 
+7 to 24 inches: Silty clay loam 
+24 to 36 inches: Silty clay loam 
+36 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83174214794096,42.13837604468733,0 -87.83161160590964,42.13846880593931,0 -87.83138871392832,42.13859150059501,0 -87.83119695046528,42.13864593176959,0 -87.83104980120048,42.13863290206012,0 -87.83089732870349,42.1385729824437,0 -87.8307178387559,42.13847566186889,0 -87.83059016851095,42.13851518444659,0 -87.83040539582534,42.13856878886244,0 -87.83033572755298,42.13854651393624,0 -87.83019012599846,42.13847570534879,0 -87.82999771612177,42.13838986287137,0 -87.82987833601251,42.13840891609058,0 -87.82977909568851,42.13844894350705,0 -87.8295320286179,42.13874148465148,0 -87.82944492718632,42.13885448298143,0 -87.82924805101055,42.13892392369645,0 -87.82899896936804,42.13894066633332,0 -87.8286698321331,42.13905410668354,0 -87.82853252084955,42.13926388611331,0 -87.82849442136106,42.13939246447242,0 -87.82860269254564,42.13945143263195,0 -87.82868518558026,42.13944269458038,0 -87.82902899190266,42.13926262481155,0 -87.82928864187225,42.13918955203215,0 -87.82950279497071,42.13926102094539,0 -87.82956797402906,42.13941798718185,0 -87.82961186241188,42.13959515532158,0 -87.82953157135243,42.13972312381735,0 -87.82938976084549,42.13981351353935,0 -87.82926885533109,42.13992987239742,0 -87.82911992248737,42.14009671304402,0 -87.82911712083467,42.14019464468749,0 -87.82921845321081,42.14026409593416,0 -87.82939177072925,42.14025250633967,0 -87.82953948770698,42.14016813529403,0 -87.82970504040956,42.14001599158246,0 -87.82983162649232,42.13973911910476,0 -87.82993306025456,42.13912863904627,0 -87.83001344289229,42.13901563729978,0 -87.83015546931937,42.13896106255871,0 -87.83084074909715,42.13902069248925,0 -87.83148309365826,42.13891208701899,0 -87.83213558694827,42.13868545916083,0 -87.83241914149433,42.13849058103915,0 -87.83248675582686,42.13838145312443,0 -87.83174214794096,42.13837604468733,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+			<Folder>
+				<name>Peotone silty clay loam, 0 to 2 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>330A—Peotone silty clay loam, 0 to 2 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 510 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Peotone and similar soils: 90 percent 
+
+Description of Peotone
+
+Setting
+Landform: Ground moraines 
+Landform position (two-dimensional): Toeslope 
+Landform position (three-dimensional): Dip 
+Down-slope shape: Concave 
+Across-slope shape: Concave 
+Parent material: Colluvium
+
+Properties and qualities
+Slope: 0 to 2 percent 
+Depth to restrictive feature: More than 80 inches 
+Drainage class: Very poorly drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately high (0.20 to 0.60 in/hr) 
+Depth to water table: About 0 to 12 inches 
+Frequency of flooding: None 
+Frequency of ponding: Frequent 
+Calcium carbonate, maximum content: 15 percent 
+Available water capacity: High (about 10.3 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2w
+
+Typical profile
+0 to 13 inches: Silty clay loam 
+13 to 50 inches: Silty clay
+50 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.8360902575494,42.14448103732866,0 -87.83606066097514,42.14433148024112,0 -87.83599937946629,42.14406423657459,0 -87.83590686334053,42.14401630797435,0 -87.8358250209284,42.14396892273409,0 -87.83560181322197,42.14397449050535,0 -87.83547703057599,42.14405255964631,0 -87.83536223890064,42.14421143456291,0 -87.83517307086166,42.14432812313385,0 -87.83503238326729,42.14437374365541,0 -87.83477821633049,42.14447619042952,0 -87.8360902575494,42.14448103732866,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+			<Folder>
+				<name>Markham silt loam, 2 to 4 percent slopes</name>
+				<visibility>0</visibility>
+				<open>1</open>
+				<Style>
+					<ListStyle>
+						<listItemType>checkHideChildren</listItemType>
+						<bgColor>00ffffff</bgColor>
+						<maxSnippetLines>2</maxSnippetLines>
+					</ListStyle>
+				</Style>
+				<Placemark>
+					<name>531B—Markham silt loam, 2 to 4 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Markham and similar soils: 90 percent 
+
+Description of Markham
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Backslope, summit 
+Landform position (three-dimensional): Interfluve 
+Down-slope shape: Convex 
+Across-slope shape: Convex 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 2 to 4 percent 
+Depth to restrictive feature: 20 to 55 inches to dense material 
+Drainage class: Moderately well drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 24 to 42 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 30 percent 
+Available water capacity: Low (about 5.5 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2e
+
+Typical profile
+0 to 8 inches: Silt loam 
+8 to 21 inches: Silty clay loam 
+21 to 32 inches: Silty clay loam 
+32 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83609172264524,42.14447929942454,0 -87.83630996560386,42.14447565766858,0 -87.8360315057095,42.14403522431875,0 -87.83600203323908,42.14406535449695,0 -87.83609172264524,42.14447929942454,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>531B—Markham silt loam, 2 to 4 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Markham and similar soils: 90 percent 
+
+Description of Markham
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Backslope, summit 
+Landform position (three-dimensional): Interfluve 
+Down-slope shape: Convex 
+Across-slope shape: Convex 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 2 to 4 percent 
+Depth to restrictive feature: 20 to 55 inches to dense material 
+Drainage class: Moderately well drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 24 to 42 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 30 percent 
+Available water capacity: Low (about 5.5 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2e
+
+Typical profile
+0 to 8 inches: Silt loam 
+8 to 21 inches: Silty clay loam 
+21 to 32 inches: Silty clay loam 
+32 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.83394173900814,42.14060712654788,0 -87.8334261535431,42.14073986301857,0 -87.83320408647762,42.14081648831974,0 -87.83290281600117,42.14097569505206,0 -87.83253684941617,42.14112960182203,0 -87.83228118869741,42.14119783935593,0 -87.83208845432019,42.14121060458368,0 -87.83187727523395,42.14117390573234,0 -87.83163310610747,42.1410617149729,0 -87.83123782284046,42.1409704507006,0 -87.83094847704439,42.14094147839675,0 -87.83046402113894,42.1409596534297,0 -87.83032043983744,42.14105453991738,0 -87.83026637632668,42.14125600398539,0 -87.83026359784603,42.14142053042212,0 -87.830086773253,42.14160452985514,0 -87.83000993442791,42.1417521260039,0 -87.8301223352574,42.14205453886829,0 -87.83039680602602,42.14237333009359,0 -87.83056579961396,42.14250319108807,0 -87.83080077596908,42.14268029944183,0 -87.83085652463133,42.14290854517078,0 -87.83082430564781,42.14312798361847,0 -87.83084471943971,42.14326774464465,0 -87.83090811934476,42.14338945697185,0 -87.83103144762032,42.14349727232877,0 -87.83102761231781,42.14368651798607,0 -87.83093308897379,42.14380507268847,0 -87.83073448702433,42.14390807097919,0 -87.83188205904325,42.1444571507465,0 -87.83359568959925,42.14445773815855,0 -87.8339358641026,42.14426497361229,0 -87.8340635365647,42.14414983079396,0 -87.83410605591064,42.14404919051035,0 -87.83409137785354,42.14399450991671,0 -87.83406043234407,42.14393324675711,0 -87.8339524362388,42.14386765158268,0 -87.83374211625588,42.14382793439167,0 -87.83340453200337,42.1438326679618,0 -87.83319973703451,42.14381263619968,0 -87.83314909052976,42.14370634275451,0 -87.83315766833168,42.14359344175717,0 -87.83321115352101,42.14348994539422,0 -87.83328630243419,42.14341308775703,0 -87.83344453071555,42.14332640374234,0 -87.83362864307897,42.14324707133493,0 -87.83370669277789,42.14317454775156,0 -87.83380036326103,42.14306361602675,0 -87.83383761265416,42.14290254587976,0 -87.83402907556423,42.14273195749792,0 -87.8341840981051,42.14263793397222,0 -87.8343648186554,42.14247548944444,0 -87.83472204299736,42.14191012142391,0 -87.83394173900814,42.14060712654788,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+				<Placemark>
+					<name>531B—Markham silt loam, 2 to 4 percent slopes</name>
+					<description>Map Unit Setting
+Elevation: 540 to 930 feet 
+Mean annual precipitation: 28 to 40 inches 
+Mean annual air temperature: 45 to 52 degrees F 
+Frost-free period: 140 to 180 days
+
+Map Unit Composition
+Markham and similar soils: 90 percent 
+
+Description of Markham
+
+Setting
+Landform: Ground moraines, end moraines 
+Landform position (two-dimensional): Backslope, summit 
+Landform position (three-dimensional): Interfluve 
+Down-slope shape: Convex 
+Across-slope shape: Convex 
+Parent material: Thin mantle of loess or other silty material and in the underlying till
+
+Properties and qualities
+Slope: 2 to 4 percent 
+Depth to restrictive feature: 20 to 55 inches to dense material 
+Drainage class: Moderately well drained 
+Capacity of the most limiting layer to transmit water (Ksat): Moderately low to moderately high (0.06 to 0.20 in/hr) 
+Depth to water table: About 24 to 42 inches 
+Frequency of flooding: None 
+Frequency of ponding: None 
+Calcium carbonate, maximum content: 30 percent 
+Available water capacity: Low (about 5.5 inches)
+
+Interpretive groups
+Land capability (nonirrigated): 2e
+
+Typical profile
+0 to 8 inches: Silt loam 
+8 to 21 inches: Silty clay loam 
+21 to 32 inches: Silty clay loam 
+32 to 60 inches: Silty clay loam</description>
+					<styleUrl>#soil_style</styleUrl>
+					<Polygon>
+						<tessellate>1</tessellate>
+						<outerBoundaryIs>
+							<LinearRing>
+								<coordinates>
+									-87.82880737982435,42.1422652230174,0 -87.82900800492489,42.14218507747638,0 -87.82922417749218,42.14203379819494,0 -87.82941217162686,42.1418723454146,0 -87.82948909993058,42.14180179630499,0 -87.82956179218289,42.14167845756565,0 -87.82951652712909,42.14146133354903,0 -87.82947193628344,42.14128953385077,0 -87.82949132380907,42.14103109109072,0 -87.82957767832767,42.14095378045122,0 -87.82979096564145,42.14084556304131,0 -87.83017687124058,42.14075972047512,0 -87.8309523981861,42.14076836159432,0 -87.83119317271922,42.14081982913851,0 -87.83155528203183,42.14081971221464,0 -87.83203655823918,42.14092963212073,0 -87.83249662706794,42.14094595454777,0 -87.83274614711671,42.14088088164183,0 -87.83299617969605,42.14073152085742,0 -87.83311442109549,42.14061668960508,0 -87.83311616889425,42.14050430088817,0 -87.83305910363259,42.14041786879596,0 -87.83289901492397,42.14035082500191,0 -87.83266306556141,42.14032959757021,0 -87.83234713939248,42.14038213973413,0 -87.83215795415511,42.14033088770438,0 -87.83206532673984,42.14025822346176,0 -87.83206246038817,42.140107871569,0 -87.83221380360665,42.14000752012576,0 -87.83259314650132,42.13997572476645,0 -87.8328395855537,42.13996841925963,0 -87.83314801039084,42.14004035112063,0 -87.83361507915482,42.14006616013085,0 -87.83263799388304,42.13838500352733,0 -87.83249022515827,42.13837989771492,0 -87.83241990700333,42.1384889241854,0 -87.83212761368367,42.13869071695756,0 -87.83147877434089,42.13891825883107,0 -87.83083410773651,42.13902654743702,0 -87.8301443486945,42.13896194600466,0 -87.83002699990072,42.13900635320954,0 -87.82994010005311,42.13912871744984,0 -87.82983471314387,42.13975141620902,0 -87.82969978168907,42.14003124641317,0 -87.8294091796616,42.14025240999674,0 -87.82922096469139,42.140269763242,0 -87.82912142036702,42.14020067779779,0 -87.82912686425759,42.14008964291284,0 -87.82928293633425,42.13990370616872,0 -87.82955143893989,42.13970249477771,0 -87.82961278091504,42.13959639513565,0 -87.82956238412551,42.13939837983265,0 -87.82949635965859,42.13925787443196,0 -87.82929888483545,42.13918770206818,0 -87.82902225453414,42.13926195799689,0 -87.82870365595704,42.13943638546617,0 -87.82860586677941,42.13945198521459,0 -87.82849294331767,42.13938727724189,0 -87.8285516813057,42.13923006213957,0 -87.82866772693511,42.13905581845666,0 -87.82899427952492,42.13894143208885,0 -87.82926082157807,42.1389212016735,0 -87.82943781880134,42.13885882821573,0 -87.82965787817461,42.13859882861608,0 -87.82977911958025,42.13844889267927,0 -87.82988760938272,42.13840485017395,0 -87.83000396368648,42.13838873549179,0 -87.83029587079679,42.13853148712558,0 -87.8304023961535,42.13856677648,0 -87.83057316500182,42.13851889935788,0 -87.83071904317828,42.1384758970669,0 -87.83089666413457,42.13857226659796,0 -87.83104181508344,42.13862857035073,0 -87.83119140087969,42.1386487689905,0 -87.83139141022988,42.13859200481983,0 -87.83156236073492,42.13849701620804,0 -87.83174205726658,42.13837884516308,0 -87.82715042468851,42.13832548147217,0 -87.82719260285754,42.1385133819432,0 -87.82731342378,42.13865100745865,0 -87.82758563975892,42.13882923839665,0 -87.8277393297188,42.13892043200369,0 -87.82772882605462,42.13900877741707,0 -87.8275029434599,42.13911758567562,0 -87.82730099422226,42.13927743535083,0 -87.82730193670163,42.13945666438051,0 -87.82726202225365,42.13969465143644,0 -87.82709379710737,42.139977283391,0 -87.8269950273374,42.14007731160354,0 -87.82735005656085,42.14050300869823,0 -87.82759872378068,42.14034679338349,0 -87.82792879781586,42.14026678717882,0 -87.82820621434306,42.14028676773346,0 -87.82841959104991,42.1404244868796,0 -87.82851440269329,42.14073954429699,0 -87.82845167376209,42.14093894248888,0 -87.82820119725763,42.14116130324501,0 -87.82814653531867,42.14121510823373,0 -87.82880737982435,42.1422652230174,0 
+								</coordinates>
+							</LinearRing>
+						</outerBoundaryIs>
+					</Polygon>
+				</Placemark>
+			</Folder>
+		</Folder>
+
+	<NetworkLink>
+		<name>Photo Data 2009 - &lt;a href=&apos;http://spreadsheets.google.com/ccc?key=rQhYaVLXexShb0FIDsvjHAg&apos;&gt;Spreadsheet&lt;/a&gt;</name>
+		<visibility>0</visibility>
+		<flyToView>1</flyToView>
+		<Link>
+			<href>http://spreadsheets.google.com/pub?key=rQhYaVLXexShb0FIDsvjHAg&amp;output=txt&amp;gid=0&amp;range=kml_output</href>
+		</Link>
+		<atom:author><atom:name>Northwestern University <![CDATA[&]]> North Branch Restoration Project</atom:name></atom:author><atom:link href="http://www.sommepreserve.org/"></atom:link><atom:generator url="http://spreadsheets.google.com/pub?key=rQhYaVLXexShb0FIDsvjHAg&amp;output=txt&amp;gid=1&amp;range=kml_output" version="">Google Earth Outreach - Spreadsheet Mapper 2.0 - http://earth.google.com/outreach/tutorial_mapper.html</atom:generator>
+	</NetworkLink>
+	
+	
+		<Style id="oak_style">
+		<IconStyle>
+			<color>FF14F0AA</color>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pal4/icon61.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0.5</scale>
+		</LabelStyle>
+	</Style>
+	
+	<Style id="hazel_style">
+		<IconStyle>
+			<color>FF143CFF</color>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pal4/icon61.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0.5</scale>
+		</LabelStyle>
+	</Style>
+	
+	<Folder>
+	<name>Caged plants</name>
+	<open>0</open>
+	<visibility>0</visibility>
+	
+		<Folder>
+		<open>0</open>
+		<visibility>0</visibility>
+			<name>Bur oaks - 3/2011</name>
+
+			<Placemark>
+				<name>Oak 001</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.826734,42.138924,205.600647</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 002</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.826798,42.139012,209.273743</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 003</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.827074,42.139544,211.65181</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 004</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.827108,42.139535,211.896729</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 005</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.827573,42.139546,212.621292</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 006</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829267,42.140079,207.260956</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 007</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.82914599999999,42.140241,206.637589</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 008</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829168,42.140264,204.256317</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 009</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829373,42.140518,205.225464</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 010</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829685,42.140437,204.594528</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 011</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829604,42.140298,205.400146</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 012</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.82965,42.140294,205.105011</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 013</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.82800899999999,42.14088,208.151428</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 014</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83007000000001,42.140337,205.437515</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 015</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830493,42.140391,206.789688</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 016</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83067,42.140463,206.567291</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 017</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830488,42.140553,207.849915</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 018</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83063300000001,42.140691,206.909225</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 019</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831031,42.14147,211.636597</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 020</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830855,42.1416,209.531418</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 021</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831605,42.141491,209.574677</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 022</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831631,42.141464,209.571762</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 023</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831593,42.141451,209.168854</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 024</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83154399999999,42.141447,209.346024</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 025</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83185,42.141563,209.350311</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 026</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831509,42.14241,204.227432</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 027</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831579,42.144052,201.509186</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 028</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831512,42.144096,201.309616</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 029</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83159999999999,42.144111,201.506226</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 030</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830214,42.139566,211.193893</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 031</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83009300000001,42.139407,202.295181</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 032</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830575,42.139729,200.696167</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 033</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83045300000001,42.13996,202.694351</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 034</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83071099999999,42.139786,202.920776</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 035</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83075599999999,42.139682,202.125534</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 036</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83113299999999,42.139672,207.121323</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 037</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83113,42.139662,206.868134</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 038</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.829116,42.140685,209.02594</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 039</name>
+								<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830597,42.138861,203.418335</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 040</name>
+				
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.830555,42.13886,202.944611</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 041</name>
+				
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831292,42.139547,198.574554</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 042</name>
+				
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.832076,42.140891,202.357254</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 043</name>
+				
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.832131,42.140893,201.774796</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 044</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.831514,42.140444,201.06218</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 045</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.832228,42.140807,199.837463</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Oak 046</name>
+				<styleUrl>#oak_style</styleUrl>
+				<Point>
+					<coordinates>-87.83117900000001,42.140113,195.698593</coordinates>
+				</Point>
+			</Placemark>
+						
+		</Folder>
+		<Folder>
+		<open>0</open>
+		<visibility>0</visibility>
+			<name>Hazel - 3/2011</name>
+			
+			<Placemark>
+				<name>Hazel 001</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.832888,42.142421,201.456116</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 002</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.832819,42.142415,205.546509</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 003</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.83214700000001,42.142441,206.575562</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 004</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.832064,42.142433,205.32254</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 005</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.832004,42.142416,204.983459</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 006</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.831982,42.142396,204.972778</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 007</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.831772,42.142442,205.669785</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 008</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.831532,42.142413,205.645935</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 009</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.83069500000001,42.142428,210.128296</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 010</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.830611,42.142004,153.784851</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 011</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.83091899999999,42.141662,208.641525</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 012</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.831416,42.140181,203.132187</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 013</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.831137,42.139428,201.407532</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 014</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.83072900000001,42.139426,202.281479</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 015</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.83021100000001,42.139647,202.673782</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 016</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.830191,42.139635,203.264038</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 017</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.830669,42.14059,198.587097</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 018</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.829436,42.140806,198.696976</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hazel 019</name>
+				<styleUrl>#hazel_style</styleUrl>
+				<Point>
+					<coordinates>-87.829419,42.140864,198.84082</coordinates>
+				</Point>
+			</Placemark>
+			
+		</Folder>
+	</Folder>
+
+
+</Document>	
+</kml>

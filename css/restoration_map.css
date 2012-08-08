@@ -1,0 +1,190 @@
+
+body {
+	padding: 0; 
+	margin: 0; 
+	border: 0; 
+	overflow: hidden;
+}
+#adminMenu {
+	visibility:hidden;
+}
+#unsupported_browser {
+	visibility:hidden;
+}
+#activity_loading {
+	z-index:100; 
+	//background-color:#BBBBBB; 
+	position:absolute; 
+	//left:117px;
+	right:2px; 
+	top:3px; 
+	border:0; 
+	padding-left:00px; 
+	padding-top:0px;
+}
+#buttonpanel {
+	background-color:#BBBBBB; 
+	position:absolute; 
+	left:0px; 
+	top:36px; 
+	height:36px; 
+	width:300px; 
+	border:0; 
+	padding-left:10px; 
+	padding-top:10px;
+}
+#refreshButton {
+	width:70px; 
+	font-family:Arial; 
+	float:left;
+}
+#deleteButton {
+	width:70px; 
+	font-family:Arial; 
+	float:left;
+}
+#editButton {
+	width:70px; 
+	font-family:Arial; 
+	float:left;
+}
+#downloadButton {
+	width:70px; 
+	font-family:Arial; 
+	float:left;
+}
+#treeborder {
+	background-color:#DDDDDD; 
+	position:absolute; 
+	left:0px; 
+	bottom:0px; 
+	overflow:hidden; 
+	width:10px; 
+	margin:0; 
+	border:0; 
+	padding:0;
+}
+#tree {
+	background-color:#DDDDDD; 
+	position:absolute; 
+	left:10px; 
+	bottom:0px; 
+	overflow:auto; 
+	width:290px; 
+	margin:0; 
+	border:0; 
+	padding:0;
+}
+#map3d {
+	position:absolute; 
+	right:0; 
+	bottom:0; 
+	padding:0; 
+	margin:0; 
+	border:0;
+}
+#saveTitle {
+	font-family:Arial; 
+	font-size:12px;
+	font-weight: bold;
+	border:none; 
+	background:transparent;
+}
+.panelError {
+	border:none; 
+	color:red; 
+	background:transparent;
+	// position:relative;
+	// left:20px;
+}
+#displayArea {
+	border:none; 
+	//color:#262626; 
+	background:transparent;
+	font-size:12px; 
+	font-weight:bold;
+}
+#displayDistance {
+	border:none; 
+	//color:#262626; 
+	background:transparent;
+	font-size:12px; 
+	font-weight:bold;
+}
+.panelTitle {
+	color: #AAAAAA;
+}
+.panel {
+	visibility:hidden; 
+	background-color: #262626;
+    filter:alpha(opacity=00); 
+    -moz-opacity: 0.00; 
+    opacity: 0.00;
+	position:absolute; 
+	left:0px; 
+	top:36px; 
+	width:280px; 
+	border:0; 
+	padding-left:10px; 
+	padding-right:10px;
+	padding-top:10px;
+	overflow:auto;
+	z-index:-10; 
+}
+.panelContent a {
+	color: #3BB9FF;
+}
+.panelContent {
+	color: #AAAAAA;
+	font-family:Arial; 
+	font-size:12px; 
+	float:left;
+}
+#color {
+	pickerFaceColor:transparent;
+	pickerFace:3;
+	pickerBorder:0;
+	pickerInsetColor:black;
+}
+#noScript {
+	position:absolute; 
+	left:250px; 
+	top:100px; 
+	color:red; 
+	font-family:Arial; 
+	font-size:16px; 
+}
+.siteSelector {
+	// position:relative;
+	// left:20px;
+}
+#kml_upload_target {
+	display: none;
+	width:0;
+	height:0;
+	border:1px solid red;
+}
+#nat_comm_opacity_div {
+	visibility:hidden; 
+    filter:alpha(opacity=00); 
+    -moz-opacity: 0.00; 
+    opacity: 0.00;
+}
+#sl_new_shape_div {
+	visibility:hidden; 
+    filter:alpha(opacity=00); 
+    -moz-opacity: 0.00; 
+    opacity: 0.00;
+}
+#sl_edited_shape_div {
+	visibility:hidden; 
+    filter:alpha(opacity=00); 
+    -moz-opacity: 0.00; 
+    opacity: 0.00;
+}
+#sl_new_landmark_div {
+	visibility:hidden; 
+    filter:alpha(opacity=00); 
+    -moz-opacity: 0.00; 
+    opacity: 0.00;
+}
