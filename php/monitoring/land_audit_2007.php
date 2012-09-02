@@ -4,12 +4,12 @@ session_start();
 require('../restorationmap_config.php');
 
 // Opens a connection to a MySQL server.
-$connection = mysql_connect ($db_server, 'land_audit', 'fq1fq1', true);
+$connection = mysql_connect ($db_server, 'habitaw0_landaud', 'fq1fq1', true);
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
 // Sets the active MySQL database.
-$db_selected = mysql_select_db('audubon_land_audit', $connection);
+$db_selected = mysql_select_db('habitaw0_land_audit', $connection);
 if (!$db_selected) 
   die ('Can\'t use db : ' . mysql_error());
   

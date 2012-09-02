@@ -5,12 +5,12 @@ require('../restorationmap_config.php');
 require('spring_creek_2011_bird_blitz_boundaries.php');
 
 // Opens a connection to a MySQL server.
-$connection = mysql_connect ($db_server, 'sc_2011', 'b0b0l1nk');
+$connection = mysql_connect ($db_server, 'habitaw0_sc2011', 'b0b0l1nk');
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
 // Sets the active MySQL database.
-$db_selected = mysql_select_db('audubon_sc_2011_bird_blitz', $connection);
+$db_selected = mysql_select_db('habitaw0_sc2011birdblitz', $connection);
 if (!$db_selected) 
   die ('Can\'t use db : ' . mysql_error());
  
