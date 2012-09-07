@@ -85,13 +85,26 @@ while ($row = @mysql_fetch_assoc($result))
 		$kml[] = ' <Placemark id="brush-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
 		$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
 		$km[] = '   <visibility>0</visibility>';  
-		$kml[] = '   <description>' . $row['description'] . '</description>';  	
+		$kml[] = '   <description><![CDATA[' . $row['description'];  	
 		
-		// check if we are displyaing a polygon or a point
 		$coordinates = trim($row['coordinates']);
 		$points = explode(' ', $coordinates);
 		$number_of_points = count($points);
+
+  		// display coordinates for simple polygons
+  		if ($number_of_points < 10) {
+  			$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+  			if ($number_of_points == 1)
+  				$number_of_points = 2;
+  			for($i = 0; $i < $number_of_points - 1; ++$i) {
+			    $this_point = explode(',', $points[$i]);
+			    $kml[] = $this_point[1] . ', ' . $this_point[0] . '<br>';
+			}
+  		} 
   		
+  		$kml[] = ']]></description>';
+  		
+  		// check if we are displyaing a polygon or a point
 		if ($number_of_points < 3) {
 			// display a point
 			$kml[] = ' <Style><IconStyle><color>FF14F000</color>';
