@@ -35,6 +35,7 @@
 				<ul class="transparent">
 					<li><a target="_blank" href="http://restorationmap.org">Help</a></li>
 					<li><a href="javascript:startMeasuring()">Measure</a></li>
+					<li><a href="javascript:loggedIn('showMultiGeo()', 'notLoggedInMessage()')">Upload MultiGeometry KML</a></li>
 					<li><a href="javascript:loggedIn('beginChangePassword()', 'notLoggedInMessage()')">User Info</a></li>
 					<li><a href="javascript:showAboutPanel()">About Restoration Map</a></li>
 				</ul>
@@ -308,6 +309,42 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 				<button onClick="closeAllPanels();">Cancel</button>
         		</div>
         </div>
+
+        <div class="panel" id="multiGeoPanel">
+        		<div class="panelContent">
+					<b>Upload MultiGeometry KML</b><br><br>
+					
+					<br><input type=text size=30 class="panelError" id="uploadError"><br>
+					Upload KML file: <br>
+					<form action="php/upload_multigeo.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="start_multigeo_upload();">
+						<input type="file" name="upload_file" id="upload_file"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					
+					
+					<div class="siteSelector" id="multiGeoSiteSelector">
+						<select><option>Select Site</option></select>
+					</div><br>
+					
+					Date: <br>
+					<input type=text maxlength=2 size=2 id="multiGeoDateMonth"> / <input type=text maxlength=2 size=2 id="multiGeoDateDay"> / <input type=text maxlength=4 size=4 id="multiGeoDateYear"> mm/dd/yyyy<br><br>
+					Name:<br>
+					<input type=text size=10 id="multiGeoTitle"><br><br>
+
+					Description:<br> 
+					<textarea id="multiGeoDescription" cols=20 rows=6></TEXTAREA><br><br>
+
+					<input type=text size=40 class="panelError" id="uploadMultiGeoError"><br>
+					
+					<button id="saveButton"  onClick="saveNewShape();">Save</button>
+					<button id="clearButton"  onClick="mapShape.clear(); mapShape.draw();">Clear</button>
+					<button id="cancelButton"  onClick="closeAllPanels();">Cancel</button><br>
+					
+					
+					
+        		</div>
+        </div>
+
 		<form id="downloadKmlForm" method="post" action="php/downloadString.php">
 			<input type="hidden" id="downloadString" name="string" />
 		</form>

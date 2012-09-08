@@ -728,6 +728,52 @@ function stopKmlLandmarkUpload( msg ){
 	} 
 }
 
+function showMultiGeo() {
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	closeAllPanels();
+	getStewardshipSites('multiGeoSiteSelector', 'finishShowMultiGeo()');
+}
+
+function finishShowMultiGeo() {
+	clearNewShapeForm();
+
+
+	mapShape = new MapShape(ge, gex, "FF7800F0");
+	mapShape.table = "weed";
+	mapShape.draw();
+	fade("savePanel");
+	$('#activity_loading').activity(false);
+}
+
+function start_multigeo_upload() {
+	document.getElementById('uploadMultiGeoError').value = "Uploading...";
+	return true;
+}
+function stop_multigeo_upload( msg ){	
+	if ( msg.indexOf("Error:") != -1 )
+	{
+		document.getElementById('uploadMultiGeoError').value = msg;
+	} else
+	{
+		mapLine.endEdit();
+		document.getElementById('uploadMultiGeoError').value = "";
+		// create a new placemark from the kml
+		
+		// will need to move through each geo and parseKml one by one
+		var thePlace = ge.parseKml(msg);
+		thePlace.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
+		// get the style from selected and set it to the new placemark
+		var theStyle = mapLine.targetShape.getStyleSelector();
+		thePlace.setStyleSelector( theStyle );
+		// clear the old targetShape and set the new placemark to the mapShape
+		mapLine.clear();	
+		mapLine.targetShape = thePlace;
+		// add new placemark to ge
+		ge.getFeatures().appendChild( mapLine.targetShape );
+	} 
+}
+
+
 /**
  * ---------------------------------------------------------
  * functions for brush, burn, seed, etc shapes
@@ -1753,6 +1799,3 @@ function deauthorizeUser(listDiv) {
 	}
 	document.getElementById( listDiv ).innerHTML = users_list_html;
 }
-
-
-
