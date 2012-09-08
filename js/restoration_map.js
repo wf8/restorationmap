@@ -470,7 +470,11 @@ function finishEditSelectedShape() {
 	document.getElementById("editDateMonth").value = shapeMonth;
 	document.getElementById("editDateYear").value = shapeYear;
 	document.getElementById("editTitle").value = shapeTitle;
-	document.getElementById("editDescription").value = selected.getDescription();
+	var description = selected.getDescription();
+	if ( description.indexOf("</br>") != -1) 
+		document.getElementById("editDescription").value = description.substring(0, description.indexOf("</br>"));
+	else 
+		document.getElementById("editDescription").value = description;
 	document.getElementById('editShapeError').value = "";
 	document.getElementById("siteList").value = site_id;
 	fade("editPanel");
@@ -509,7 +513,11 @@ function finishEditSelectedLandmark() {
 	// set form values
 	document.getElementById('landmarkError').value = "";
 	document.getElementById("landmarkTitle").value = selected.getName();
-	document.getElementById("landmarkDescription").value = selected.getDescription();	
+	var description = selected.getDescription();
+	if ( description.indexOf("</br>") != -1) 
+		document.getElementById("landmarkDescription").value = description.substring(0, description.indexOf("</br>"));
+	else 
+		document.getElementById("landmarkDescription").value = description;
 	mapShape = new MapShape(ge, gex, null);
 	mapShape.table = "landmark";				
 	// check if 'selected' is a point or a multigeometry
