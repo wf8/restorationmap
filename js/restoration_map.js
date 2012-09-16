@@ -728,52 +728,111 @@ function stopKmlLandmarkUpload( msg ){
 	} 
 }
 
+var multigeoKml = null;
+var multigeoKmlCounter = 0;
+var multigeoKmlTotalNumber = 0;
+
 function showMultiGeo() {
 	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
 	closeAllPanels();
 	getStewardshipSites('multiGeoSiteSelector', 'finishShowMultiGeo()');
+	document.getElementById('viewMultiGeo').value = "";
+	document.getElementById('uploadMultiGeoError').value = "";
 }
-
 function finishShowMultiGeo() {
-	clearNewShapeForm();
-
-
-	mapShape = new MapShape(ge, gex, "FF7800F0");
-	mapShape.table = "weed";
-	mapShape.draw();
-	fade("savePanel");
+	mapShape = new MapShape(ge, gex, "FFFFFFFF");
+	fade("multiGeoPanel");
 	$('#activity_loading').activity(false);
 }
-
-function start_multigeo_upload() {
+function startMultigeoUpload() {
 	document.getElementById('uploadMultiGeoError').value = "Uploading...";
+	
 	return true;
 }
-function stop_multigeo_upload( msg ){	
+function stopMultigeoUpload( msg ){	
 	if ( msg.indexOf("Error:") != -1 )
 	{
 		document.getElementById('uploadMultiGeoError').value = msg;
 	} else
 	{
-		mapLine.endEdit();
 		document.getElementById('uploadMultiGeoError').value = "";
-		// create a new placemark from the kml
-		
-		// will need to move through each geo and parseKml one by one
-		var thePlace = ge.parseKml(msg);
-		thePlace.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
-		// get the style from selected and set it to the new placemark
-		var theStyle = mapLine.targetShape.getStyleSelector();
-		thePlace.setStyleSelector( theStyle );
-		// clear the old targetShape and set the new placemark to the mapShape
-		mapLine.clear();	
-		mapLine.targetShape = thePlace;
-		// add new placemark to ge
-		ge.getFeatures().appendChild( mapLine.targetShape );
+		multigeoKml = msg;
+		// count the number of polygons
+		multigeoKmlTotalNumber = 0;
+		placemarkBegin = multigeoKml.indexOf('<Placemark>');
+		while (placemarkBegin != -1) {
+			multigeoKmlTotalNumber++;
+			oldPlacemarkBegin = placemarkBegin + 10;
+			placemarkBegin = multigeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
+		}
+		// view the first shape
+		multigeoKmlCounter = 1;
+		viewMultigeoKml(multigeoKmlCounter);
+		// enable buttons and selector
+		document.getElementById('saveMultiGeoButton').disabled = false;
+		document.getElementById('skiptMultiGeoButton').disabled = false;
+		document.getElementById('multiGeoShapeType').disabled = false;
 	} 
 }
+function viewMultigeoKml( geoNumber ) {
+	var counter = 0;
+	// will need to move through each placemark and parseKml the correct one
+	var placemarkBegin = multigeoKml.indexOf('<Placemark>');
+	while(placemarkBegin != -1 && counter < multigeoKmlCounter) {
+		counter++;
+		if (counter == multigeoKmlCounter ) {
+			var placemarkEnd = multigeoKml.indexOf('</Placemark>' + 12, placemarkBegin);
+			var thisKml = multigeoKml.substring(placemarkBegin, placemarkEnd);
+			var thisGeo = ge.parseKml(thisKml);
+			thisGeo.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
+			// clear the old targetShape and set the new placemark to the mapShape
+			mapShape.clear();	
+			mapShape.targetShape = thisGeo;
+			// add new placemark to ge
+			ge.getFeatures().appendChild( mapShape.targetShape );
+			// zoom to the new shape
+			mapShape.targetShape.getAbstractView();
+			ge.getView().setAbstractView(sc2011view);
+			// update message
+			document.getElementById('viewMultiGeo').value = "Viewing shape #" . geoNumber . " out of " . multigeoKmlTotalNumber . ".";
+		}
+		var oldPlacemarkBegin = placemarkBegin + 10;
+		placemarkBegin = multigeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
+	}
+}
+function saveMultigeoKml() {
 
+	// check date, title, site, shape type
+	
+	// save
+	
+	// view the next geometry
+	if (multigeoKmlCounter < multigeoKmlTotalNumber) {
+		multigeoKmlCounter++;
+		viewMultigeoKml(multigeoKmlCounter);
+	} else {
+		// close panel
+		closeAllPanels();
+	}
+}
+function skipMultigeoKml() {
+	// view the next geometry
+	if (multigeoKmlCounter < multigeoKmlTotalNumber) {
+		multigeoKmlCounter++;
+		viewMultigeoKml(multigeoKmlCounter);
+	} else {
+		// close panel
+		closeAllPanels();
+	}
+}
+function multiGeoUpdateShape() {
+	// if shape is a trail, we need to view it as a line
+	
+	// if shape is not a trail, make sure it is a polygon
+	
+	// change color of shape
 
+}
 /**
  * ---------------------------------------------------------
  * functions for brush, burn, seed, etc shapes

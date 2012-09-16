@@ -314,18 +314,29 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
         		<div class="panelContent">
 					<b>Upload MultiGeometry KML</b><br><br>
 					
-					<br><input type=text size=30 class="panelError" id="uploadError"><br>
+					<br><input type=text size=30 class="panelError" id="uploadMultiGeoError"><br>
 					Upload KML file: <br>
-					<form action="php/upload_multigeo.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="start_multigeo_upload();">
+					<form action="php/upload_multigeo.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="startMultigeoUpload();">
 						<input type="file" name="upload_file" id="upload_file"><br>
 						<input type="submit" name="submit" value="Upload">
 					</form>
 					
-					
+					<br><input type=text size=30 class="panelError" id="viewMultiGeo"><br>
 					<div class="siteSelector" id="multiGeoSiteSelector">
 						<select><option>Select Site</option></select>
 					</div><br>
 					
+					<select id='multiGeoShapeType' onchange='multiGeoUpdateShape();' disabled='disabled'>
+						<option>Select shape type</option>
+						<option value="trails">Trail</option>
+						<option>Geographic feature / Landmark</option>
+						<option>Brush and tree removal</option>
+						<option>Prescribed burn</option>
+						<option>Seed collection and planting</option>
+						<option>Weed control</option>
+						<option>Planning and other</option>
+					</select>
+					<br><br>
 					Date: <br>
 					<input type=text maxlength=2 size=2 id="multiGeoDateMonth"> / <input type=text maxlength=2 size=2 id="multiGeoDateDay"> / <input type=text maxlength=4 size=4 id="multiGeoDateYear"> mm/dd/yyyy<br><br>
 					Name:<br>
@@ -334,11 +345,11 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 					Description:<br> 
 					<textarea id="multiGeoDescription" cols=20 rows=6></TEXTAREA><br><br>
 
-					<input type=text size=40 class="panelError" id="uploadMultiGeoError"><br>
+					<input type=text size=40 class="panelError" id="viewMultiGeo"><br>
 					
-					<button id="saveButton"  onClick="saveNewShape();">Save</button>
-					<button id="clearButton"  onClick="mapShape.clear(); mapShape.draw();">Clear</button>
-					<button id="cancelButton"  onClick="closeAllPanels();">Cancel</button><br>
+					<button id="saveMultiGeoButton" onClick="saveMultiGeoKml();" disabled="disabled">Save this shape and view the next shape</button><br>
+					<button id="skiptMultiGeoButton" onClick="skipMultiGeoKml();" disabled="disabled">Skip this shape and view the next shape</button><br>
+					<button id="cancelButton" onClick="closeAllPanels();">Quit</button><br>
 					
 					
 					
