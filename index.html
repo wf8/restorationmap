@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<title>Restoration Map</title>
-		
+		<meta name="description" content="Restoration Map: a tool to help plan, implement, and asses ecological restoration projects within Chicago Wilderness natural areas" />
 		<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAq3j6zPxcfxAT4Hao04lqQRQIiJXqB2mejyaFpE8JghMz468hFhRhruBsaPcRLc21Y3qEGbnR2P9jdQ"></script>
 		<!-- earth-api-utility-library dependencies -->
 		<script src="js/geo-0.2.js"></script>
@@ -35,7 +35,8 @@
 				<ul class="transparent">
 					<li><a target="_blank" href="http://restorationmap.org">Help</a></li>
 					<li><a href="javascript:startMeasuring()">Measure</a></li>
-					<li><a href="javascript:loggedIn('showMultiGeo()', 'notLoggedInMessage()')">Upload MultiGeometry KML</a></li>
+					<li><a href="javascript:loggedIn('showMultiGeo()', 'notLoggedInMessage()')">Upload Multi-Geometry KML</a></li>
+					<li><a href="javascript:loggedIn('beginGeneratingReports()', 'notLoggedInMessage()')">Generate Reports</a></li>
 					<li><a href="javascript:loggedIn('beginChangePassword()', 'notLoggedInMessage()')">User Info</a></li>
 					<li><a href="javascript:showAboutPanel()">About Restoration Map</a></li>
 				</ul>
@@ -237,7 +238,23 @@
 					<br><br><br>
 					<button onClick="measureChangeUnits();">Change Units</button><button id="doneMeasuringButton" onClick="doneMeasuring();">Done</button>
         		</div>
-        </div>        
+        </div> 
+
+ 		<div class="panel" id="reportsPanel">
+        		<div class="panelContent">
+					<br><br><br>
+					Generate a report of all work entered into Restoration Map at a certain site:<br>
+					<div class="siteSelector" id="generateReportsSiteSelector">
+					<select><option>Select Site</option></select>
+					</div>
+					<button onClick="generateSiteReport();">Generate Site Report</button><br><br>
+					<br><br><br>
+					Generate a report of all work you have entered into Restoration Map at all sites:<br>
+					<button onClick="generateUserReport();">Generate User Report</button><br><br>
+					<br><br><br>
+					<button onClick="doneGeneratingReports();">Done</button><br><br>
+        		</div>
+        </div>         
         
         <div class="panel" id="loginPanel">
         		<div class="panelContent">

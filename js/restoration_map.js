@@ -14,7 +14,7 @@ var tree = null;
 var selected = null;
 var lastSelected = null;
 var TimeToFade = 300.0;
-var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel' ];
+var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -297,6 +297,22 @@ function getStewardshipSites(pulldownDiv, callback) {
 	ajaxRequest.send(null);
 }
 
+function getAllStewardshipSites(pulldownDiv, callback) {	
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			document.getElementById( pulldownDiv ).innerHTML = ajaxRequest.responseText;
+			eval(callback);
+		}
+	}
+	// construct URL				
+	var url = "php/get_all_stewardship_sites.php";	
+	// send the new request		
+	ajaxRequest.open("GET", url, true);
+	ajaxRequest.send(null);
+}
+
 function validSteward( siteId ) {	
 	//setup new AJAX request 
 	var ajaxRequest  = new XMLHttpRequest();	
@@ -470,7 +486,11 @@ function finishEditSelectedShape() {
 	document.getElementById("editDateMonth").value = shapeMonth;
 	document.getElementById("editDateYear").value = shapeYear;
 	document.getElementById("editTitle").value = shapeTitle;
-	document.getElementById("editDescription").value = selected.getDescription();
+	var description = selected.getDescription();
+	if ( description.indexOf("</br>") != -1) 
+		document.getElementById("editDescription").value = description.substring(0, description.indexOf("</br>"));
+	else 
+		document.getElementById("editDescription").value = description;
 	document.getElementById('editShapeError').value = "";
 	document.getElementById("siteList").value = site_id;
 	fade("editPanel");
@@ -509,7 +529,11 @@ function finishEditSelectedLandmark() {
 	// set form values
 	document.getElementById('landmarkError').value = "";
 	document.getElementById("landmarkTitle").value = selected.getName();
-	document.getElementById("landmarkDescription").value = selected.getDescription();	
+	var description = selected.getDescription();
+	if ( description.indexOf("</br>") != -1) 
+		document.getElementById("landmarkDescription").value = description.substring(0, description.indexOf("</br>"));
+	else 
+		document.getElementById("landmarkDescription").value = description;
 	mapShape = new MapShape(ge, gex, null);
 	mapShape.table = "landmark";				
 	// check if 'selected' is a point or a multigeometry
@@ -1858,3 +1882,38 @@ function deauthorizeUser(listDiv) {
 	}
 	document.getElementById( listDiv ).innerHTML = users_list_html;
 }
+
+/**
+ * ---------------------------------------------------------
+ *
+ * functions to generate reports
+ *
+ * ---------------------------------------------------------
+ */
+function beginGeneratingReports() {
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	closeAllPanels();
+	getAllStewardshipSites('generateReportsSiteSelector', 'showGeneratingReports()');
+}
+function showGeneratingReports() {
+	$('#activity_loading').activity(false);
+	fade("reportsPanel");
+}
+function doneGeneratingReports() {
+	fade("reportsPanel");
+}
+function generateSiteReport() {
+	var siteSelected = document.getElementById("siteList").value;
+	if (siteSelected == "Select Site") {
+		alert("Please select a site."); 
+		return false;
+	} else {
+		var theUrl = "http://" + window.location.host + window.location.pathname + "php/generate_reports.php?report=" + siteSelected;
+		window.open(theUrl);
+	}
+}
+function generateUserReport() {
+	var theUrl = "http://" + window.location.host + window.location.pathname + "php/generate_reports.php?report=user";
+	window.open(theUrl);
+}
+
