@@ -204,10 +204,15 @@ MapShape.prototype.save = function() {
 		var params = "table=" + this.table + "&id=" + dbId + "&site=" + this.site + "&coordinates=" + coordinates;
 	
 	} else if (this.table == 'landmark') {
-		// construct POST params for border
+		// construct POST params for landmarks
 		var params = "table=" + this.table + "&name=" + this.name + "&id=" + dbId + "&color=" + this.color;
 		params = params + "&description=" + this.description + "&site=" + this.site + auth_users_param + "&coordinates=" + coordinates;
 		
+	} else if (this.table == 'trails') {
+		// construct POST params for trails
+		// hack for saving multi-shape geo
+		var params = "table=" + this.table + "&name=" + this.name + "&id=" + dbId;
+		params = params + "&site=" + this.site + auth_users_param + "&coordinates=" + coordinates;
 	} else {
 		// get shapes date and title
 		var shapeName = this.name;

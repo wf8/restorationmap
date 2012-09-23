@@ -14,7 +14,7 @@ var tree = null;
 var selected = null;
 var lastSelected = null;
 var TimeToFade = 300.0;
-var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel' ];
+var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel', 'multiGeoPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -536,11 +536,11 @@ function finishEditSelectedLandmark() {
 		document.getElementById("landmarkDescription").value = description;
 	mapShape = new MapShape(ge, gex, null);
 	mapShape.table = "landmark";				
-	// check if 'selected' is a point or a multigeometry
+	// check if 'selected' is a point or a multiGeometry
 	if ( selected.getGeometry().getType() == 'KmlPoint' )
 		var thePolygon = selected.getGeometry();
 	else
-		// we have a multigeometry, so get the polygon
+		// we have a multiGeometry, so get the polygon
 		var thePolygon = selected.getGeometry().getGeometries().getLastChild();
 	// get the style
 	var theStyle = selected.getStyleSelector();
@@ -752,61 +752,66 @@ function stopKmlLandmarkUpload( msg ){
 	} 
 }
 
-var multigeoKml = null;
-var multigeoKmlCounter = 0;
-var multigeoKmlTotalNumber = 0;
+var multiGeoKml = null;
+var multiGeoKmlCounter = 0;
+var multiGeoKmlTotalNumber = 0;
 
 function showMultiGeo() {
 	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
-	closeAllPanels();
-	getStewardshipSites('multiGeoSiteSelector', 'finishShowMultiGeo()');
+	closeAllPanels();	
 	document.getElementById('viewMultiGeo').value = "";
-	document.getElementById('uploadMultiGeoError').value = "";
+	document.getElementById('multiGeoError').value = "";
+	document.getElementById("multiGeoDateMonth").value = "";
+	document.getElementById("multiGeoDateDay").value = "";
+	document.getElementById("multiGeoDateYear").value = "";
+	document.getElementById("multiGeoTitle").value = "";
+	document.getElementById("multiGeoDescription").value = "";
+	getStewardshipSites('multiGeoSiteSelector', 'finishShowMultiGeo()');
 }
 function finishShowMultiGeo() {
-	mapShape = new MapShape(ge, gex, "FFFFFFFF");
+	mapShape = null;
 	fade("multiGeoPanel");
 	$('#activity_loading').activity(false);
 }
 function startMultigeoUpload() {
-	document.getElementById('uploadMultiGeoError').value = "Uploading...";
-	
+	document.getElementById('viewMultiGeo').value = "Uploading...";
 	return true;
 }
 function stopMultigeoUpload( msg ){	
 	if ( msg.indexOf("Error:") != -1 )
 	{
-		document.getElementById('uploadMultiGeoError').value = msg;
+		document.getElementById('viewMultiGeo').value = msg;
 	} else
 	{
-		document.getElementById('uploadMultiGeoError').value = "";
-		multigeoKml = msg;
+		document.getElementById('viewMultiGeo').value = "";
+		multiGeoKml = msg;
 		// count the number of polygons
-		multigeoKmlTotalNumber = 0;
-		placemarkBegin = multigeoKml.indexOf('<Placemark>');
+		multiGeoKmlTotalNumber = 0;
+		placemarkBegin = multiGeoKml.indexOf('<Placemark>');
 		while (placemarkBegin != -1) {
-			multigeoKmlTotalNumber++;
+			multiGeoKmlTotalNumber++;
 			oldPlacemarkBegin = placemarkBegin + 10;
-			placemarkBegin = multigeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
+			placemarkBegin = multiGeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
 		}
 		// view the first shape
-		multigeoKmlCounter = 1;
-		viewMultigeoKml(multigeoKmlCounter);
+		mapShape = new MapShape(ge, gex, "FFFFFFFF");
+		multiGeoKmlCounter = 1;
+		viewMultiGeoKml(multiGeoKmlCounter);
 		// enable buttons and selector
 		document.getElementById('saveMultiGeoButton').disabled = false;
-		document.getElementById('skiptMultiGeoButton').disabled = false;
+		document.getElementById('skipMultiGeoButton').disabled = false;
 		document.getElementById('multiGeoShapeType').disabled = false;
 	} 
 }
-function viewMultigeoKml( geoNumber ) {
+function viewMultiGeoKml( geoNumber ) {
 	var counter = 0;
 	// will need to move through each placemark and parseKml the correct one
-	var placemarkBegin = multigeoKml.indexOf('<Placemark>');
-	while(placemarkBegin != -1 && counter < multigeoKmlCounter) {
+	var placemarkBegin = multiGeoKml.indexOf('<Placemark>');
+	while(placemarkBegin != -1 && counter < multiGeoKmlCounter) {
 		counter++;
-		if (counter == multigeoKmlCounter ) {
-			var placemarkEnd = multigeoKml.indexOf('</Placemark>' + 12, placemarkBegin);
-			var thisKml = multigeoKml.substring(placemarkBegin, placemarkEnd);
+		if (counter == multiGeoKmlCounter ) {
+			var placemarkEnd = multiGeoKml.indexOf('</Placemark>', placemarkBegin) + 12;
+			var thisKml = multiGeoKml.substring(placemarkBegin, placemarkEnd);	
 			var thisGeo = ge.parseKml(thisKml);
 			thisGeo.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
 			// clear the old targetShape and set the new placemark to the mapShape
@@ -815,39 +820,111 @@ function viewMultigeoKml( geoNumber ) {
 			// add new placemark to ge
 			ge.getFeatures().appendChild( mapShape.targetShape );
 			// zoom to the new shape
-			mapShape.targetShape.getAbstractView();
-			ge.getView().setAbstractView(sc2011view);
+			var bounds = gex.dom.computeBounds(mapShape.targetShape);
+			gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
 			// update message
-			document.getElementById('viewMultiGeo').value = "Viewing shape #" . geoNumber . " out of " . multigeoKmlTotalNumber . ".";
+			document.getElementById('viewMultiGeo').value = "Viewing shape #" + geoNumber + " out of " + multiGeoKmlTotalNumber + ".";
 		}
 		var oldPlacemarkBegin = placemarkBegin + 10;
-		placemarkBegin = multigeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
+		placemarkBegin = multiGeoKml.indexOf('<Placemark>', oldPlacemarkBegin);	
 	}
 }
-function saveMultigeoKml() {
-
-	// check date, title, site, shape type
-	
+function saveMultiGeoKml() {
+	document.getElementById('multiGeoError').value = "";
+	// get coordinates
+	var theKml = mapShape.targetShape.getKml();
+	var begin = theKml.indexOf("<coordinates>") + 13;
+	var end = theKml.indexOf("</coordinates>");
+	var coordinates = $.trim(theKml.slice(begin,end));	
+	if (coordinates == '') {
+		document.getElementById('newShapeError').value = "Click on the map to draw."; 
+		return false;
+	}
+	// get date from form
+	var shapeDateMonth = document.getElementById("multiGeoDateMonth").value.trim();
+	var shapeDateDay = document.getElementById("multiGeoDateDay").value.trim();
+	var shapeDateYear = document.getElementById("multiGeoDateYear").value.trim();
+	// check if month or day is blank
+	if (shapeDateMonth == '')
+		shapeDateMonth = 0;
+	if (shapeDateDay == '')
+		shapeDateDay = 0;
+	// check that the date is valid, display error if not
+	if (!validDate(shapeDateMonth, shapeDateDay, shapeDateYear)) {
+		document.getElementById('multiGeoError').value = "Invalid date. Please correct."; 
+		return false;
+	}
+	// make single digit month and date into double digit
+	shapeDateMonth = pad2(parseInt(shapeDateMonth, 10));
+	shapeDateDay = pad2(parseInt(shapeDateDay));
+	// construct date string
+	var shapeDate = shapeDateMonth + "/" + shapeDateDay + "/" + shapeDateYear;
+	// check that site is selected
+	var siteSelected = document.getElementById("siteList").value;
+	if (siteSelected == "Select Site") {
+		document.getElementById('multiGeoError').value = "Please select a site."; 
+		return false;
+	}
+	mapShape.site = siteSelected;	
+	// check that shape type is selected
+	var shapeType = document.getElementById("multiGeoShapeType").value;
+	if (shapeType == "Select shape type") {
+		document.getElementById('multiGeoError').value = "Please select a shape type."; 
+		return false;
+	}
+	mapShape.table = shapeType;
+	// save shape name and description
+	// dont include date if trail or landmark
+	if (shapeType == 'trails' || shapeType == 'landmark')
+		mapShape.name = document.getElementById("multiGeoTitle").value;
+	else
+		mapShape.name = shapeDate + " " + document.getElementById("multiGeoTitle").value;
+	mapShape.description = document.getElementById("multiGeoDescription").value;
 	// save
-	
+	mapShape.save();
 	// view the next geometry
-	if (multigeoKmlCounter < multigeoKmlTotalNumber) {
-		multigeoKmlCounter++;
-		viewMultigeoKml(multigeoKmlCounter);
+	if (multiGeoKmlCounter < multiGeoKmlTotalNumber) {
+		multiGeoKmlCounter++;
+		viewMultiGeoKml(multiGeoKmlCounter);
 	} else {
+		document.getElementById('viewMultiGeo').value = "";
+		document.getElementById('multiGeoError').value = "";
 		// close panel
 		closeAllPanels();
+		// clear any newly drawn shapes 
+		if (mapShape != null)
+			mapShape.clear();
+		// reload kmltree 
+		tree.refresh(); 
 	}
 }
-function skipMultigeoKml() {
+function skipMultiGeoKml() {
 	// view the next geometry
-	if (multigeoKmlCounter < multigeoKmlTotalNumber) {
-		multigeoKmlCounter++;
-		viewMultigeoKml(multigeoKmlCounter);
+	if (multiGeoKmlCounter < multiGeoKmlTotalNumber) {
+		multiGeoKmlCounter++;
+		viewMultiGeoKml(multiGeoKmlCounter);
 	} else {
+		document.getElementById('viewMultiGeo').value = "";
+		document.getElementById('multiGeoError').value = "";
 		// close panel
 		closeAllPanels();
+		// clear any newly drawn shapes 
+		if (mapShape != null)
+			mapShape.clear();
+		// reload kmltree 
+		tree.refresh(); 
 	}
+}
+function quitMultiGeoKML() {
+	document.getElementById('viewMultiGeo').value = "";
+	document.getElementById('multiGeoError').value = "";
+	// close panel
+	closeAllPanels();
+	// clear any newly drawn shapes 
+	if (mapShape != null)
+		mapShape.clear();
+	// reload kmltree 
+	tree.refresh(); 
 }
 function multiGeoUpdateShape() {
 	// if shape is a trail, we need to view it as a line

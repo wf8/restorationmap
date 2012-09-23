@@ -47,13 +47,31 @@ else if ( checkFileType() || checkFileExtension() )
    			if (!$begin_coordinates)
    				$result = "Error: No geometry found in KML file.";
    			else {
-				while($begin_coordinates) {
-					$kml[] = '<Placemark>';
-					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+   				$old_begin_coordinates = -1;
+				while($begin_coordinates > $old_begin_coordinates) {
+					
 					$end_coordinates = strpos($uploaded_file, '</coordinates>', $begin_coordinates);
-					$coordinates = substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates);
-					$kml[] = $coordinates;
-					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+					$coordinates = trim(substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates));				
+					$points = explode(' ', $coordinates);
+					$number_of_points = count($points);		
+					
+					// check if we are displyaing a polygon or a point
+					if ($number_of_points < 3) {
+						// display a point
+						$kml[] = '<Placemark>';
+						$kml[] = ' <Style><IconStyle><color>ffffffff</color>';
+						$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+						$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+						$kml[] = $coordinates;
+						$kml[] = ' </coordinates></Point></Placemark>';
+					} else {
+						// display a polygon
+						$kml[] = '<Placemark>';
+						$kml[] = '   <Style><LineStyle><width>4</width><color>ffffffff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>';
+						$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';		
+						$kml[] = $coordinates;
+						$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+					}
 					$old_begin_coordinates = $begin_coordinates;
 					$begin_coordinates = strpos($uploaded_file, '<coordinates>', $old_begin_coordinates) + 13;
 				}
