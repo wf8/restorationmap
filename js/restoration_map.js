@@ -14,7 +14,7 @@ var tree = null;
 var selected = null;
 var lastSelected = null;
 var TimeToFade = 300.0;
-var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel' ];
+var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -1762,5 +1762,26 @@ function deauthorizeUser(listDiv) {
 	document.getElementById( listDiv ).innerHTML = users_list_html;
 }
 
-
-
+/**
+ * ---------------------------------------------------------
+ *
+ * functions to generate reports
+ *
+ * ---------------------------------------------------------
+ */
+function beginGeneratingReports() {
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	closeAllPanels();
+	getStewardshipSites('generateReportsSiteSelector', 'showGeneratingReports()');
+}
+function showGeneratingReports() {
+	$('#activity_loading').activity(false);
+	fade("reportsPanel");
+}
+function doneGeneratingReports() {
+	fade("reportsPanel");
+}
+function generateSiteReport() {
+}
+function generateUserReport() {
+}
