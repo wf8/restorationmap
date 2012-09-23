@@ -297,6 +297,22 @@ function getStewardshipSites(pulldownDiv, callback) {
 	ajaxRequest.send(null);
 }
 
+function getAllStewardshipSites(pulldownDiv, callback) {	
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			document.getElementById( pulldownDiv ).innerHTML = ajaxRequest.responseText;
+			eval(callback);
+		}
+	}
+	// construct URL				
+	var url = "php/get_all_stewardship_sites.php";	
+	// send the new request		
+	ajaxRequest.open("GET", url, true);
+	ajaxRequest.send(null);
+}
+
 function validSteward( siteId ) {	
 	//setup new AJAX request 
 	var ajaxRequest  = new XMLHttpRequest();	
@@ -1772,7 +1788,7 @@ function deauthorizeUser(listDiv) {
 function beginGeneratingReports() {
 	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
 	closeAllPanels();
-	getStewardshipSites('generateReportsSiteSelector', 'showGeneratingReports()');
+	getAllStewardshipSites('generateReportsSiteSelector', 'showGeneratingReports()');
 }
 function showGeneratingReports() {
 	$('#activity_loading').activity(false);
@@ -1782,6 +1798,16 @@ function doneGeneratingReports() {
 	fade("reportsPanel");
 }
 function generateSiteReport() {
+	var siteSelected = document.getElementById("siteList").value;
+	if (siteSelected == "Select Site") {
+		alert("Please select a site."); 
+		return false;
+	} else {
+		var theUrl = "http://" + window.location.host + window.location.pathname + "php/generate_reports.php?report=" + siteSelected;
+		window.open(theUrl);
+	}
 }
 function generateUserReport() {
+	var theUrl = "http://" + window.location.host + window.location.pathname + "php/generate_reports.php?report=user";
+	window.open(theUrl);
 }
