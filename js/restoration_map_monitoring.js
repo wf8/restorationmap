@@ -5,7 +5,7 @@
  * ---------------------------------------------------------
  */
  
- var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel' ];
+ var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -1113,3 +1113,11 @@ function save_ws_data() {
 	ajaxRequest.open("GET", la_url, true);
 	ajaxRequest.send();	
 }
+
+/**
+ * ---------------------------------------------------------
+ *
+ * Shrub Survey
+ *
+ * ---------------------------------------------------------
+ */
