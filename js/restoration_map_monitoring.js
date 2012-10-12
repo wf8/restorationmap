@@ -48,6 +48,10 @@ function initMonitoringLayers() {
 		if (tree.lookup(node).getName() == "Weed Scouts") {
 			open_ws_panel();
 		}
+		if (tree.lookup(node).getName() == "Shrub Survey") {
+			zoom_to_shrub_survey_data();
+			open_shrub_survey_panel();
+		}
 	});	
 	// detect when networklinks are loaded
 	$(tree).bind('networklinkload', function(event, node, kmlObject){
@@ -139,6 +143,15 @@ function initMonitoringLayers() {
 			if (ws_kml_object != null) 
 				ge.getFeatures().removeChild(ws_kml_object);
 		}
+		if (tree.lookup(node).getName() == "Somme Shrub Survey" && tree.lookup(node).getVisibility()) {
+			if (shrub_survey_kml_object != null) 
+				ge.getFeatures().appendChild(shrub_survey_kml_object);
+			open_shrub_survey_panel();
+		}
+		if (tree.lookup(node).getName() == "Somme Shrub Survey" && !tree.lookup(node).getVisibility()) {
+			if (shrub_survey_kml_object != null) 
+				ge.getFeatures().removeChild(shrub_survey_kml_object);
+		}
 	});
 	// make sure monitoring layers are null to start
 	sc2011KmlObject = null;
@@ -150,6 +163,7 @@ function initMonitoringLayers() {
 	nat_comm_kml_object = null;
 	management_units_kml_object = null;
 	ws_kml_object = null;
+	shrub_survey_kml_object = null;
 }
 
 function resizeMonitorPanels(windowHeight) {
@@ -1121,3 +1135,86 @@ function save_ws_data() {
  *
  * ---------------------------------------------------------
  */
+ 
+var shrub_survey_kml_object = null; 
+
+function open_shrub_survey_panel() {
+	closeAllPanels();
+	
+	// load year range options
+	var d=new Date();
+	var year = d.getFullYear();
+	//var year_options = "<option value='All'>All</option>";
+	var year_options = "";
+	while (year >= 2009) {
+		year_options = year_options + "<option>" + year + "</option>";
+		year--;
+	}
+	year_options = year_options + "</select>";
+	document.getElementById('shrub_survey_year_selector').innerHTML = "<select id='shrub_survey_year'>" + year_options;
+	
+	fade("shrubSurveyPanel");
+}
+
+function open_shrub_survey_upload_panel() {
+	closeAllPanels();
+	fade("shrubSurveyUploadPanel");
+}
+function start_shrub_survey_upload() {
+	document.getElementById('uploadShrubSurveyError').value = "Uploading...";
+	return true;
+}
+function stop_shrub_survey_upload( msg ){	
+	if ( msg.indexOf("Error:") != -1 )
+	{
+		document.getElementById('uploadShrubSurveyError').value = msg;
+	} else
+	{
+		document.getElementById('uploadShrubSurveyError').value = "Data successfully uploaded.";
+	} 
+}
+
+function zoom_to_shrub_survey_data() {
+	if (shrub_survey_kml_object != null) {
+		var bounds = gex.dom.computeBounds(shrub_survey_kml_object);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
+	}
+}
+
+function load_shrub_survey_data() {
+	// show activity monitor
+	$('#shrub_survey_display_loading').activity({segments: 12, align: 'left', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	// clear any error message
+	document.getElementById('shrub_survey_display_error').value = ""; 
+
+	// get year and data type
+	var data_type = document.getElementById("shrub_survey_data_type").value;
+	var year = document.getElementById("shrub_survey_year").value;
+	
+	//construct url
+	parameters = "data_type=" + data_type + "&year=" + year;
+	var la_url = "php/monitoring/shrub_survey_display.php?" + parameters;
+
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			// remove the old kmlObject
+			if (shrub_survey_kml_object != null) {
+				ge.getFeatures().removeChild(shrub_survey_kml_object);
+				shrub_survey_kml_object.release();
+			}
+			shrub_survey_kml_object = null;
+			//get the new kmlObject from response
+			shrub_survey_kml_object = ge.parseKml(ajaxRequest.responseText);
+			// add the new kmlObject to globe
+			ge.getFeatures().appendChild(shrub_survey_kml_object);
+			
+			// turn off activity monitor
+			$('#shrub_survey_display_loading').activity(false);
+		}
+	}
+	// send the new request		
+	ajaxRequest.open("GET", la_url, true);
+	ajaxRequest.send();
+}

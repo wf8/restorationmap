@@ -820,16 +820,66 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
         </div> 
         <div class="panel" id="shrubSurveyPanel">
         		<div class="panelContent">
-					<br><br><b>Shrub Survey</b><br><br>
+					<br><br><b>Somme Nature Preserve Shrub Survey</b><br><br>
 					<br><br>	
-					
-					
+					Choose which year:<br>
+					<div style="position:relative;float:left;" id="shrub_survey_year_selector"><select id="shrub_survey_year">
+					</select></div>
+					<br><br><br>
+					Choose which data to view:<br>
+					<input type="radio" name="shrub_survey_data_type" value="1" checked="checked"> Habitat suitability for Bobolinks & Savanna Sparrows based on woody cover<br>
+					<input type="radio" name="shrub_survey_data_type" value="2"> Habitat suitability for Meadowlarks based on woody cover<br>
+					<input type="radio" name="shrub_survey_data_type" value="3"> Habitat suitability for Grasshopper Sparrows based on woody cover<br>
+					<input type="radio" name="shrub_survey_data_type" value="4"> Habitat suitability for all 4 focal species based on grass:forb ratio<br>
+					<input type="radio" name="shrub_survey_data_type" value="5"> Total % woody plant cover<br>
+					<input type=text size=40 class="panelError" id="shrub_survey_display_error">
+					<br><div id="shrub_survey_display_loading"></div>
+					<br><br>
+					<button onClick="load_shrub_survey_data();">Load data in map</button>
+					<button onClick="zoom_to_shrub_survey_data();">Zoom to data</button><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<button onClick="javascript:loggedIn('open_shrub_survey_upload_panel()', 'notLoggedInMessage()')">Upload new data</button>
+					<br><br><br>
+					Click on the map data points to view a bar graph of the overall trend. All data were collected within 1m^2 circular plots. <br><br>
+					For Bobolinks and Savanna Sparrows, suitable habitat is grassland with no woody cover. Marginally suitable habitat contains woody cover up to 5%. Unsuitable habitat contains woody cover greater than 5%.<br><br>
+					For Eastern Meadowlarks, suitable habitat is grassland with 0-5% woody cover. Marginally suitable habitat contains either 5-30% woody cover or no wood cover. Unsuitable habitat contains woody cover greater than 30%.<br><br>
+					For Grasshopper Sparrows, suitable habitat is grassland with no woody cover. Marginally suitable habitat contains woody cover up to 30%. Unsuitable habitat contains woody cover greater than 30%.<br><br>
+					From Sample, D.W. and M.J. Mossman. 1997. Managing Habitat for Grassland Birds: A Guide for Wisconsin. Wisconsin Department of Natural Resources, Madison, WI.<br><br>
+					<br>
         		</div>
         </div> 
         <div class="panel" id="shrubSurveyUploadPanel">
         		<div class="panelContent">
 					<br><br><b>Upload Shrub Survey Data</b><br><br>
 					<br><br>
+					Upload tab delimited file: <br>
+					<form action="php/monitoring/shrub_import.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="start_shrub_survey_upload();">
+						<input type="file" name="upload_file" id="upload_file"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br>
+					<input type=text size=40 class="panelError" id="uploadShrubSurveyError">
+					<br><br>
+					Each plot can have 1 observation per year, extra data will be ignored. The file should contain no column titles. The columns should be tab delimited and organized as such:<br><br>
+					1) Location/Plot ID<br>
+					2) % Grass<br>
+					3) % Forbs<br>	
+					4) Grass:Forb<br>	
+					5) % Rosa<br>
+					6) % Woody < knee<br>	
+					7) % Woody knee-waist<br>	
+					8) % Woody < ~ 1m tall<br>
+					9) % Woody waist-head<br>
+					10) % Woody > head<br>
+					11) % Woody total<br>
+					12) Bobolink & Savanna Sparrow Habitat Suitability - Woody<br>
+					13) Meadowlark Habitat Suitability - Woody<br>
+					14) Grasshopper Sparrow Habitat Suitability - Woody<br>
+					15) All 4 Focal Species Habitat Suitability - Grass:Forb<br>
+					16) Comments<br>
+					17) Date recorded<br>
+					18) Year<br>
 
         </div> 
                   

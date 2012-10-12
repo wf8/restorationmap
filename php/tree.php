@@ -106,6 +106,13 @@ $kml[] = '				<open>0</open>';
 $kml[] = '				<visibility>0</visibility>';
 $kml[] = '			</GroundOverlay>';
 			
+$kml[] = '			<GroundOverlay id="shrub_survey">';
+$kml[] = '				<flyToView>0</flyToView>	';
+$kml[] = '				<name>Somme Shrub Survey</name>';
+$kml[] = '				<open>0</open>';
+$kml[] = '				<visibility>0</visibility>';
+$kml[] = '			</GroundOverlay>';
+			
 $kml[] = '			<GroundOverlay id="sc_2011_blitz">';
 $kml[] = '				<flyToView>0</flyToView>	';
 $kml[] = '				<name>Spring Creek 2011 Bird Blitz</name>';
