@@ -6,12 +6,12 @@ require('../restorationmap_config.php');
 set_time_limit(0);
 
  // Opens a connection to a MySQL server.
-$connection = mysql_connect($db_server, "nat_comm", "n6tur6l");
+$connection = mysql_connect($db_server, "habitaw0_natcomm", "n6tur6l");
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
 // Sets the active MySQL database.
-$db_selected = mysql_select_db("fpdcc_natural_communities", $connection);
+$db_selected = mysql_select_db("habitaw0_fpdccnaturalcommunities", $connection);
 if (!$db_selected) 
   die ('Can\'t use db : ' . mysql_error());
 
