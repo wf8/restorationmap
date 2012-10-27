@@ -1158,6 +1158,7 @@ function open_shrub_survey_panel() {
 
 function open_shrub_survey_upload_panel() {
 	closeAllPanels();
+	document.getElementById('uploadShrubSurveyError').value = "";
 	fade("shrubSurveyUploadPanel");
 }
 function start_shrub_survey_upload() {
@@ -1188,7 +1189,12 @@ function load_shrub_survey_data() {
 	document.getElementById('shrub_survey_display_error').value = ""; 
 
 	// get year and data type
-	var data_type = document.getElementById("shrub_survey_data_type").value;
+	//for (var i=0; i < document.getElementById("shrub_survey_data_type").length; i++) {
+	//	if (document.getElementById("shrub_survey_data_type")[i].checked) 
+	//		var data_type = document.getElementById("shrub_survey_data_type")[i].value;
+	//}
+	var data_type = $('input:radio[name=shrub_survey_data_type]:checked').val();
+	//var data_type = document.getElementById("shrub_survey_data_type").value;
 	var year = document.getElementById("shrub_survey_year").value;
 	
 	//construct url
