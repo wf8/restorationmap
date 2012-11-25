@@ -3,12 +3,6 @@ session_start();
 
 require('restorationmap_config.php');
 
-//if the user is not logged in
-if(!$_SESSION['valid'])
-{
-    echo "not logged in";
-    die();
-} 
 
 // Opens a connection to a MySQL server.
 $connection = mysql_connect ($db_server, $db_username, $db_password);

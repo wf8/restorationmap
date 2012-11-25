@@ -14,7 +14,7 @@ var tree = null;
 var selected = null;
 var lastSelected = null;
 var TimeToFade = 300.0;
-var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel', 'multiGeoPanel' ];
+var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel', 'multiGeoPanel', 'downloadSiteKML' ];
 
 /**
  * ---------------------------------------------------------
@@ -666,6 +666,48 @@ function endShpDownload() {
 	document.getElementById('downloadShpForm').submit();
 }
 
+function showDownloadSiteKML() {
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	closeAllPanels();
+	document.getElementById('downloadSiteKMLError').value = "";
+	getAllStewardshipSites('downloadSiteKMLSiteSelector', 'finishShowDownloadSiteKML()');
+}
+
+function finishShowDownloadSiteKML() {
+	fade("downloadSiteKML");
+	$('#activity_loading').activity(false);
+}
+
+function startDownloadSiteKML() {
+	// check that site is selected
+	var siteSelected = document.getElementById("siteList").value;
+	if (siteSelected == "Select Site") {
+		document.getElementById('downloadSiteKMLError').value = "Please select a site."; 
+		return false;
+	}
+	document.getElementById('downloadSiteKMLError').value = "Generating KML...";
+	$('#downloadingSiteKMLMonitor').activity({segments: 12, align: 'left', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	var params = "site=" + siteSelected;
+	var url = "php/generateSiteKML.php";
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			document.getElementById('downloadString').value = ajaxRequest.responseText;
+			$('#downloadingSiteKMLMonitor').activity(false);
+			document.getElementById('downloadSiteKMLError').value = "";
+			fade("downloadSiteKML");
+			// fade does not work while submitting form, so delay form submission
+			setTimeout("document.getElementById('downloadKmlForm').submit()", 300);
+		}
+	}		
+	ajaxRequest.open("POST", url, true);				
+	// Send the proper header information along with the request 
+	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// send the new request 
+	ajaxRequest.send(params);	
+}
+
 /**
  * ---------------------------------------------------------
  * upload functions
@@ -926,14 +968,7 @@ function quitMultiGeoKML() {
 	// reload kmltree 
 	tree.refresh(); 
 }
-function multiGeoUpdateShape() {
-	// if shape is a trail, we need to view it as a line
-	
-	// if shape is not a trail, make sure it is a polygon
-	
-	// change color of shape
 
-}
 /**
  * ---------------------------------------------------------
  * functions for brush, burn, seed, etc shapes
