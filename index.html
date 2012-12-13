@@ -90,6 +90,7 @@
 					<input type="radio" name="sl_new_shape" onClick="sl_new_shape_show_div();" value="public" checked="checked"> public: visible to anyone on the web.<br>
 					<input type="radio" name="sl_new_shape" onClick="sl_new_shape_show_div();" value="private"> private: visible to you and anyone you authorize (scroll down to authorize other users).<br><br>
 					<input type=text size=40 class="panelError" id="newShapeError"><br>
+					<button id="textCoordinatesButton"  onClick="showTextCoordinatesPanel();">Enter Coordinates as Text</button><br>
 					<button id="saveButton"  onClick="saveNewShape();">Save</button>
 					<button id="clearButton"  onClick="mapShape.clear(); mapShape.draw();">Clear</button>
 					<button id="cancelButton"  onClick="closeAllPanels();">Cancel</button><br>
@@ -167,6 +168,7 @@
 					<input type="radio" name="sl_new_landmark" onClick="sl_new_landmark_show_div();" value="public" checked="checked"> public: visible to anyone on the web.<br>
 					<input type="radio" name="sl_new_landmark" onClick="sl_new_landmark_show_div();" value="private"> private: visible to you and anyone you authorize (scroll down to authorize other users).<br><br>
 					<input type=text size=40 class="panelError" id="landmarkError"><br>
+					<button id="textCoordinatesButton"  onClick="showTextCoordinatesPanel();">Enter Coordinates as Text</button><br>
 					<button onClick="saveLandmark();">Save</button>
 					<button onClick="mapShape.clear(); mapShape.draw();">Clear</button>
 					<button onClick="closeAllPanels();">Cancel</button>
@@ -228,6 +230,19 @@
         		</div>
         </div>
         
+		<div class="panel" id="textCoordinatesPanel">
+        		<div class="panelContent">
+					<br><br>
+					<b>Enter Text Coordinates</b><br><br><br>
+					Enter the coordinates latitude/longitude in decimal degrees. Use commas to separate latitude and longitude, and 
+					a space to separate each point.<br><br>For example:<br>42.000,-87.000 43.100,-88.100<br><br>
+					<textarea id="textCoordinates" cols=20 rows=6></TEXTAREA><br><br>
+					<input type=text size=40 class="panelError" id="textCoordinatesError"><br>
+					<button onClick="loadTextCoordinates();">Load Coordinates</button>
+					<button onClick="cancelTextCoordinatesPanel();">Cancel</button>
+        		</div>
+        </div>
+
         <div class="panel" id="measurePanel">
         		<div class="panelContent">
 					<br><br><br>

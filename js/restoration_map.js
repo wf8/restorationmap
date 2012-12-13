@@ -14,7 +14,7 @@ var tree = null;
 var selected = null;
 var lastSelected = null;
 var TimeToFade = 300.0;
-var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel', 'multiGeoPanel', 'downloadSiteKML' ];
+var panelList = ['savePanel', 'editPanel', 'trailPanel', 'measurePanel', 'borderPanel', 'loginPanel', 'userPanel', 'aboutPanel', 'landmarkPanel', 'downloadPanel', 'reportsPanel', 'multiGeoPanel', 'downloadSiteKML', 'textCoordinatesPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -2029,3 +2029,77 @@ function generateUserReport() {
 	window.open(theUrl);
 }
 
+/**
+ * ---------------------------------------------------------
+ *
+ * functions to enter coordinates as text
+ *
+ * ---------------------------------------------------------
+ */
+function showTextCoordinatesPanel() {
+	document.getElementById("textCoordinates").value = "";
+	document.getElementById("textCoordinatesError").value = "";
+	fade("textCoordinatesPanel");
+}
+function cancelTextCoordinatesPanel() {
+	document.getElementById("textCoordinates").value = "";
+	document.getElementById("textCoordinatesError").value = "";
+	fade("textCoordinatesPanel");
+}
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+function trim(str) {
+	return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+function loadTextCoordinates() {
+	document.getElementById("textCoordinatesError").value = "";
+	coordinates = document.getElementById("textCoordinates").value;
+	coordinates = trim(coordinates);
+	if (coordinates == "") {
+		document.getElementById("textCoordinatesError").value = "No coordinates entered.";
+		return false;
+	}
+	// parse coordinates
+	var parsedCoordinates = "";
+	var coordinateArray = coordinates.split(" ");
+	for (var i = 0; i < coordinateArray.length; i++) {
+		var point = coordinateArray[i].split(",");
+		if (!isNumber(point[0]) || !isNumber(point[1]) || point.length < 2) {
+			document.getElementById("textCoordinatesError").value = "Invalid coordinates.";
+			return false;
+		}
+		parsedCoordinates = parsedCoordinates + point[1] + "," + point[0] + ",0 ";
+	}
+	// if only 2 points, repeat the first so the line displays correctly
+	if (coordinateArray.length == 2) {
+		var point = coordinateArray[0].split(",");
+		parsedCoordinates = parsedCoordinates + point[1] + "," + point[0] + ",0 ";
+	}
+	// create kml for new placemark
+	if (coordinateArray.length > 1) {
+		// make a polygon
+		var theKml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Placemark><Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+		theKml = theKml + parsedCoordinates;
+		theKml = theKml + '</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
+	} else {
+		// make a point
+		var theKml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Placemark><Style><IconStyle><scale>0.8</scale><Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon></IconStyle></Style><Point><coordinates>';
+		theKml = theKml + parsedCoordinates;
+		theKml = theKml + '</coordinates></Point></Placemark></kml>';
+	}
+	// create a new placemark from the kml
+	var thePlace = ge.parseKml(theKml);
+	thePlace.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
+	// get the style from selected and set it to the new placemark
+	mapShape.endEdit();
+	var theStyle = mapShape.targetShape.getStyleSelector();
+	thePlace.setStyleSelector( theStyle );
+	// clear the old targetShape and set the new placemark to the mapShape
+	mapShape.clear();	
+	mapShape.targetShape = thePlace;
+	// add new placemark to ge
+	ge.getFeatures().appendChild( mapShape.targetShape );
+	document.getElementById("textCoordinates").value = "";
+	fade("textCoordinatesPanel");
+}
