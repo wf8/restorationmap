@@ -98,7 +98,7 @@ while ($row = @mysql_fetch_assoc($result))
   				$number_of_points = 2;
   			for($i = 0; $i < $number_of_points - 1; ++$i) {
 			    $this_point = explode(',', $points[$i]);
-			    $kml[] = $this_point[1] . ', ' . $this_point[0] . '<br>';
+			    $kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
 			}
   		} 
   		
