@@ -4,20 +4,20 @@ session_start();
 require('../restorationmap_config.php');
 
 // Opens a connection to a MySQL server.
-$connection = mysql_connect ($db_server, 'habitaw0_bcn', 'b0b0l1nk', true);
+$connection = mysql_connect ($db_server, $bcn_db_username, $bcn_db_password, true);
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
 // Sets the active MySQL database.
-$db_selected = mysql_select_db('habitaw0_bcn', $connection);
+$db_selected = mysql_select_db($bcn_db_database, $connection);
 if (!$db_selected) 
   die ('Can\'t use db : ' . mysql_error());
   
 // also connect to sc bird blitz db to get bird species list
-$connection2 = mysql_connect($db_server, 'habitaw0_sc2011', 'b0b0l1nk', true);
+$connection2 = mysql_connect($db_server, $sc2011_db_username, $sc2011_db_password, true);
 if (!$connection2) 
   die('Not connected : ' . mysql_error());
-$db_selected2 = mysql_select_db('habitaw0_sc2011birdblitz', $connection2);
+$db_selected2 = mysql_select_db($sc2011_db_database, $connection2);
 if (!$db_selected2) 
   die ('Can\'t use db : ' . mysql_error());  
  
