@@ -55,10 +55,12 @@ while ($row = @mysql_fetch_assoc($result))
 				$this_easement = @mysql_fetch_assoc($easement_result);
 				
 				// check if the easement is password protected
-				// C2, C3, L15
+				// C2, C3, L15,  D2, K3, L5, L7, L13
 				$ease_name = $this_easement['name'];
 				$authorized = true;
-				if ($ease_name == "C2" || $ease_name == "C3" || $ease_name == "L15") {		
+				if ($ease_name == "C2" || $ease_name == "C3" || $ease_name == "L15"
+					|| $ease_name == "D2" || $ease_name == "K3" || $ease_name == "L05"
+					|| $ease_name == "L07" || $ease_name == "L13") {		
 					if ($user_id == '14' || $user_id == '17' || $user_id == '28' || $user_id == '37')
 						$authorized = true;
 					else
