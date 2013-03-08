@@ -644,7 +644,7 @@ $function = $_GET['function'];
 				Generate User Report:<br>
 				<form action="admin.php?function=generate_report" method="post">
 					<?php	
-					$query_users = "SELECT * FROM users";
+					$query_users = "SELECT * FROM users ORDER BY last_name";
 					$result_users = mysql_query($query_users);
 					if (!$result_users) 
 						die('Invalid query: ' . mysql_error());
@@ -654,7 +654,12 @@ $function = $_GET['function'];
 					{
 						$userId = $row['id'];
 						$userEmail = $row['email'];
-						echo '<option value="' . $userId . '">' . $userEmail . '</option>';
+						
+						$last_name = $row['last_name'];
+						$first_name = $row['first_name'];
+						$full_name = $last_name . ', ' . $first_name;
+						if ($last_name !== 'guest')
+							echo '<option value="' . $userId . '">' . $full_name . '</option>';
 					}
 					echo "</select>";
 					?>	
@@ -665,7 +670,7 @@ $function = $_GET['function'];
 				Generate Site Report:<br>
 				<form action="admin.php?function=generate_report" method="post">
 					<?php	
-					$query_sites = "SELECT * FROM stewardship_site";
+					$query_sites = "SELECT * FROM stewardship_site ORDER BY name";
 					$result_sites = mysql_query($query_sites);
 					if (!$result_sites) 
 						die('Invalid query: ' . mysql_error());
@@ -833,17 +838,28 @@ $function = $_GET['function'];
 						//retrieve our data from POST
 						$site_id = $_POST['site_list'];
 						
-						echo 'Click <a href="download_site_report.php?site_id='.$site_id.'">here</a> to download this data as a spreadsheet file.<br><br>';
+						// get user info
+						$query_users = "SELECT * FROM users ORDER BY id";
+						$result_users = mysql_query($query_users);
+						if (!$result_users) 
+							die('Invalid query: ' . mysql_error());
 						
-						echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td></tr>';
+						$usersArray = array();
+						while ($row = @mysql_fetch_assoc($result_users)) {
+							$usersArray[$row['id']] = array($row['last_name'], $row['first_name'], $row['email']);
+						}						
+						
+						echo 'Click <a href="download_site_report_admin.php?site_id='.$site_id.'">here</a> to download this data as a spreadsheet file.<br><br>';
+						
+						echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td><td><b>User Last Name</b></td><td><b>User First Name</b></td><td><b>User Email</b></td></tr>';
 						
 						
 						$query = "SELECT * FROM brush WHERE stewardshipsite_id = '$site_id' ORDER BY date";
 						$results = mysql_query($query);
-						if ($results)  
-						{	
-							while ($row = @mysql_fetch_assoc($results)) 
-							{
+						if ($results)  {	
+							while ($row = @mysql_fetch_assoc($results)) {								
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';				
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -851,7 +867,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Bush and tree removal</td><td>';
-								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 						
@@ -861,6 +877,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -868,7 +886,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Geographic feature / Landmark</td><td>';
-								echo 'N/A</td><td>' . $row['name'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo 'N/A</td><td>' . $row['name'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 						
@@ -879,6 +897,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';											
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -886,7 +906,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Planning and other</td><td>';
-								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 						
@@ -897,6 +917,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';				
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -904,7 +926,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Prescribed burn</td><td>';
-								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 						
@@ -915,6 +937,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';											
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -922,7 +946,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Seed collection and planting</td><td>';
-								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 						
@@ -933,6 +957,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';				
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
@@ -940,7 +966,7 @@ $function = $_GET['function'];
 									die('Invalid query: ' . mysql_error());
 								$row2 = @mysql_fetch_assoc($result2);
 								echo '<tr><td>' . $row2['name'] . '</td><td>Weed control</td><td>';
-								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
+								echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td>'.$userInfo.'</tr>';
 							}
 						}
 					
@@ -950,6 +976,8 @@ $function = $_GET['function'];
 						{	
 							while ($row = @mysql_fetch_assoc($results)) 
 							{
+								$user_id = $row['user_id'];
+								$userInfo = '<td>' . $usersArray[$user_id][0] . '</td><td>' . $usersArray[$user_id][1] . '</td><td>' . $usersArray[$user_id][2] . '</td>';											
 								$thisSiteId = $row['stewardshipsite_id'];
 								$query2 = "SELECT * FROM stewardship_site WHERE id='$thisSiteId'";
 								$result2 = mysql_query($query2);
