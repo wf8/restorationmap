@@ -18,8 +18,15 @@ if (!$db_selected)
  	die('Invalid query: ' . mysql_error());
 
 // pass the user_id as URL parameter
-$user_id = mysql_real_escape_string($_GET[user_id]);
+$user_id = mysql_real_escape_string($_GET['user_id']);
 $user_id_param = '&amp;user_id=' . $user_id;
+
+// we also need to pass the opacity as a URL parameter.
+// first get the opacity from the database (it may have been updated)
+$opacity_query = "SELECT opacity FROM users WHERE id = '$user_id'";
+$opacity_result = mysql_query($opacity_query);
+$userData = mysql_fetch_assoc($opacity_result);
+$opacity_param = '&amp;opacity=' . $userData['opacity'];
 
 
 // Creates an array of strings to hold the lines of the KML file.
@@ -118,7 +125,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Geographic features / Landmarks</name>'; 
 						$kml[] = '	<visibility>0</visibility>'; 
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>'; 
-						$kml[] = '		<href>../php/landmark-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/landmark-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';	
 					}
@@ -131,7 +138,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Brush and tree removal</name>'; 
 						$kml[] = '	<visibility>0</visibility>'; 
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>'; 
-						$kml[] = '		<href>../php/brush-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/brush-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';		
 					}		
@@ -144,7 +151,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Prescribed burns</name>';
 						$kml[] = '	<visibility>0</visibility>';
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-						$kml[] = '		<href>../php/burns-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/burns-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';
 					}
@@ -157,7 +164,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Seed collection and planting</name>';
 						$kml[] = '	<visibility>0</visibility>';
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-						$kml[] = '		<href>../php/seed-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/seed-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';
 					}
@@ -170,7 +177,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Weed control</name>';
 						$kml[] = '	<visibility>0</visibility>';
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-						$kml[] = '		<href>../php/weed-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/weed-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';
 					}
@@ -183,7 +190,7 @@ while ($row = @mysql_fetch_assoc($result))
 						$kml[] = '	<name>Planning and other</name>';
 						$kml[] = '	<visibility>0</visibility>';
 						$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-						$kml[] = '		<href>../php/other-kml.php?id=' . $easement_id . $user_id_param . '</href>';
+						$kml[] = '		<href>../php/other-kml.php?id=' . $easement_id . $user_id_param . $opacity_param . '</href>';
 						$kml[] = '	</Link>';
 						$kml[] = '</NetworkLink>';
 					}
@@ -248,7 +255,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Geographic features / Landmarks</name>'; 
 			$kml[] = '	<visibility>0</visibility>'; 
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>'; 
-			$kml[] = '		<href>../php/landmark-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/landmark-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';	
 		}
@@ -261,7 +268,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Brush and tree removal</name>'; 
 			$kml[] = '	<visibility>0</visibility>'; 
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>'; 
-			$kml[] = '		<href>../php/brush-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/brush-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';		
 		}		
@@ -274,7 +281,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Prescribed burns</name>';
 			$kml[] = '	<visibility>0</visibility>';
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-			$kml[] = '		<href>../php/burns-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/burns-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';
 		}
@@ -287,7 +294,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Seed collection and planting</name>';
 			$kml[] = '	<visibility>0</visibility>';
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-			$kml[] = '		<href>../php/seed-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/seed-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';
 		}
@@ -300,7 +307,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Weed control</name>';
 			$kml[] = '	<visibility>0</visibility>';
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-			$kml[] = '		<href>../php/weed-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/weed-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';
 		}
@@ -313,7 +320,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '	<name>Planning and other</name>';
 			$kml[] = '	<visibility>0</visibility>';
 			$kml[] = '	<Link><viewRefreshMode>onRequest</viewRefreshMode>';
-			$kml[] = '		<href>../php/other-kml.php?id=' . $row['id'] . $user_id_param . '</href>';
+			$kml[] = '		<href>../php/other-kml.php?id=' . $row['id'] . $user_id_param . $opacity_param . '</href>';
 			$kml[] = '	</Link>';
 			$kml[] = '</NetworkLink>';
 		}

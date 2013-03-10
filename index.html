@@ -38,7 +38,7 @@
 					<li><a href="javascript:loggedIn('showMultiGeo()', 'notLoggedInMessage()')">Upload multi-geometry KML</a></li>
 					<li><a href="javascript:loggedIn('beginGeneratingReports()', 'notLoggedInMessage()')">Generate reports</a></li>
 					<li><a href="javascript:showDownloadSiteKML()">Download all KML for site</a></li>
-					<li><a href="javascript:loggedIn('beginChangePassword()', 'notLoggedInMessage()')">User info</a></li>
+					<li><a href="javascript:loggedIn('showUserInfo()', 'notLoggedInMessage()')">User info</a></li>
 					<li><a href="javascript:showAboutPanel()">About Restoration Map</a></li>
 				</ul>
 			</li>
@@ -290,10 +290,14 @@
         <div class="panel" id="userPanel">
         		<div class="panelContent">
         			<br>
-					<b>User Info</b><br><br>
+					<b>User Info:</b><br><br>
 					<span id="userInfo"></span><br>
-					<button onClick="closeAllPanels();">OK</button><br><br>
-					<b>Change Password</b><br>
+					<button onClick="closeAllPanels();">Close this panel</button><br><br><br>
+					<b>Change Polygon Opacity:</b><br><br>
+					<span id="userOpacitySelector"></span><br><br>
+					<button onClick="changeUserOpacity();">Change Opacity</button>
+					<button onClick="closeAllPanels();">Done</button><br><br><br>
+					<b>Change Password:</b><br>
 					<input type=text size=40 class="panelError" id="userError"><br>
 					old password: <br>
 					<input type=password size=20 id="oldPassword"><br><br>
@@ -302,8 +306,8 @@
 					new password again: <br>
 					<input type=password size=20 id="newPassword2"><br><br><br>
 					<button onClick="closeAllPanels();">Cancel</button>
-					<button onClick="changePassword();">Change</button><br>
-        		    <br><br>   
+					<button onClick="changePassword();">Change Password</button><br>
+        		    <br><br>  
         		</div>
         </div>
         

@@ -63,6 +63,7 @@ else
     	$_SESSION['admin'] = $userData['admin'];
     	$_SESSION['first_name'] = $userData['first_name'];
     	$_SESSION['last_name'] = $userData['last_name'];
+    	$_SESSION['opacity'] = $userData['opacity'];
 	}
 	echo "success login:" . $userData['id'];
 	exit;

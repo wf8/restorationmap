@@ -11,10 +11,41 @@ $db_selected = mysql_select_db($db_database, $connection);
 if (!$db_selected) 
 	die ('Can\'t use db : ' . mysql_error());
 
-$site_id = mysql_real_escape_string($_GET[id]);
+$site_id = mysql_real_escape_string($_GET['id']);
 
 // get user id
-$user_id = mysql_real_escape_string($_GET[user_id]);
+$user_id = mysql_real_escape_string($_GET['user_id']);
+
+// get opacity
+$opacity = mysql_real_escape_string($_GET['opacity']);
+
+if ($opacity == 0) {
+	$fill = 0;
+	$polygon_color = '001f00ff';
+} else
+	$fill = 1;
+if ($opacity == 100) {
+	$polygon_color = 'ff1f00ff';
+} else if ($opacity == 90) {
+	$polygon_color = 'ee1f00ff';
+} else if ($opacity == 80) {
+	$polygon_color = 'dd1f00ff';
+} else if ($opacity == 70) {
+	$polygon_color = 'cc1f00ff';
+} else if ($opacity == 60) {
+	$polygon_color = 'aa1f00ff';
+} else if ($opacity == 50) {
+	$polygon_color = '881f00ff';
+} else if ($opacity == 40) {
+	$polygon_color = '771f00ff';
+} else if ($opacity == 30) {
+	$polygon_color = '551f00ff';
+} else if ($opacity == 20) {
+	$polygon_color = '331f00ff';
+} else if ($opacity == 10) {
+	$polygon_color = '111f00ff';
+} 
+
 
 // select all the private map layers for this shape type
 $query = "SELECT * FROM authorized_users WHERE layer_type='burns'";
@@ -113,7 +144,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = ' </coordinates></Point></Placemark>';
 		} else {
 			// display a polygon
-			$kml[] = '   <Style><LineStyle><color>ff1f00ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>';
+			$kml[] = '   <Style><LineStyle><color>ff1f00ff</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
 			$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
 			$kml[] = $coordinates;
 			$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';

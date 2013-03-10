@@ -1586,14 +1586,26 @@ function notLoggedInMessage() {
  * ---------------------------------------------------------
  */
  
-function beginChangePassword() {
+function showUserInfo() {
 	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
 	closeAllPanels();
 	document.getElementById("userError").value = "";
 	document.getElementById('oldPassword').value = "";
 	document.getElementById('newPassword1').value = "";
 	document.getElementById('newPassword2').value = "";
-	//setup new AJAX request 
+	//setup new AJAX request to get user opacity
+	var opacityAjaxRequest  = new XMLHttpRequest();
+	opacityAjaxRequest.onreadystatechange=function() {
+		if (opacityAjaxRequest.readyState==4 && opacityAjaxRequest.status==200) 
+			document.getElementById("userOpacitySelector").innerHTML = opacityAjaxRequest.responseText;
+	}
+	// send the ajax request 
+	var url = "php/get_user_opacity.php";			
+	opacityAjaxRequest.open("POST", url, true);				
+	// Send the proper header information along with the request 
+	opacityAjaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	opacityAjaxRequest.send('');
+	//setup another AJAX request to get the other user info
 	var ajaxRequest  = new XMLHttpRequest();
 	ajaxRequest.onreadystatechange=function() {
 		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
@@ -1603,12 +1615,34 @@ function beginChangePassword() {
 			$('#activity_loading').activity(false);
 		}
 	}
-	// send the new request 
+	// send the ajax request 
 	var url = "php/get_user_info.php";			
 	ajaxRequest.open("POST", url, true);				
 	// Send the proper header information along with the request 
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajaxRequest.send('');
+}
+
+function changeUserOpacity() {
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			// turn off activity monitor
+			$('#activity_loading').activity(false);
+			tree.refresh();
+		}
+	}
+	// prepare POST parameters
+	var params = "newOpacity=" + document.getElementById('user_polygon_opacity').value;
+	// send the new request 
+	var url = "php/change_opacity.php";			
+	ajaxRequest.open("POST", url, true);				
+	// Send the proper header information along with the request 
+	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajaxRequest.send(params);
+	
 }
 
 function changePassword() {
