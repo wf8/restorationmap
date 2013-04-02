@@ -33,7 +33,6 @@ else if ( checkFileType() || checkFileExtension() )
 		$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 		$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
 		$kml[] = '<Placemark>';
-		$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
 
    		$uploaded_file = file_get_contents($_FILES['upload_file']['tmp_name']);
 
@@ -43,6 +42,7 @@ else if ( checkFileType() || checkFileExtension() )
 
    		if ($file_extension == "gpx")
    		{
+   			$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
    			$pos_lat = 0;
    			$pos_lon = 0;
    			$pos_lat_old = 0;
@@ -71,15 +71,25 @@ else if ( checkFileType() || checkFileExtension() )
 				
 				
    			}
+   			$kml[] = $coordinates;
+	   		$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
    		}
    		if ($file_extension == "kml")
    		{
    			$begin_coordinates = strpos($uploaded_file, '<coordinates>') + 13;
    			$end_coordinates = strpos($uploaded_file, '</coordinates>');
    			$coordinates = substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates);
+   			// check if we have uploaded a point or a polygon
+   			if (count(explode(" ", trim($coordinates))) == 1) {
+   				$kml[] = '   <Point><coordinates>';
+   				$kml[] = trim($coordinates);
+		   		$kml[] = ' </coordinates></Point></Placemark></kml>';
+		   	} else {
+		   		$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+   				$kml[] = trim($coordinates);
+		   		$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
+		   	}
    		}
-   		$kml[] = $coordinates;
-   		$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
    		$result = join("\n", $kml);
 		//header('Content-type: application/vnd.google-earth.kml+xml');
 	}

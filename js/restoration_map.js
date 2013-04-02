@@ -739,6 +739,9 @@ function stopKmlUpload( msg ){
 		mapShape.targetShape = thePlace;
 		// add new placemark to ge
 		ge.getFeatures().appendChild( mapShape.targetShape );
+		// zoom to the new shape
+		var bounds = gex.dom.computeBounds(mapShape.targetShape);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
 	} 
 }
 function startKmlTrailUpload() {
@@ -765,6 +768,9 @@ function stopKmlTrailUpload( msg ){
 		mapLine.targetShape = thePlace;
 		// add new placemark to ge
 		ge.getFeatures().appendChild( mapLine.targetShape );
+		// zoom to the new shape
+		var bounds = gex.dom.computeBounds(mapLine.targetShape);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
 	} 
 }
 function startKmlLandmarkUpload() {
@@ -791,6 +797,9 @@ function stopKmlLandmarkUpload( msg ){
 		mapShape.targetShape = thePlace;
 		// add new placemark to ge
 		ge.getFeatures().appendChild( mapShape.targetShape );
+		// zoom to the new shape
+		var bounds = gex.dom.computeBounds(mapShape.targetShape);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
 	} 
 }
 
