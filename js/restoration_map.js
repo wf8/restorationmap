@@ -727,7 +727,21 @@ function stopKmlUpload( msg ){
 	{
 		mapShape.endEdit();
 		document.getElementById('uploadError').value = "";
-		document.getElementById('editUploadedButton').disabled = false;
+		document.getElementById('editUploadedButton').disabled = false;	
+		// if 'force polygon to be closed' is checked
+		if (document.getElementById('close_uploaded_checkbox').checked) {
+			var begin = msg.indexOf("<coordinates>") + 13;
+			var end = msg.indexOf("</coordinates>");
+			var coordinates = msg.slice(begin,end).trim();
+			var coordinateArray = coordinates.split(" ");
+			if ( coordinateArray.length > 2 ) {
+				// if not already closed, close polygon
+				if (coordinateArray[0] != coordinateArray[coordinateArray.length-1]) {
+					coordinateArray.push(coordinateArray[0]);
+					msg = msg.slice(0, begin) + coordinateArray.join(' ') + msg.slice(end, msg.length);
+				}
+			}
+		}
 		// create a new placemark from the kml
 		var thePlace = ge.parseKml(msg);
 		thePlace.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
@@ -786,6 +800,20 @@ function stopKmlLandmarkUpload( msg ){
 		mapShape.endEdit();
 		document.getElementById('uploadLandmarkError').value = "";
 		document.getElementById('editUploadedLandmarkButton').disabled = false;
+		// if 'force polygon to be closed' is checked
+		if (document.getElementById('close_uploaded_landmark_checkbox').checked) {
+			var begin = msg.indexOf("<coordinates>") + 13;
+			var end = msg.indexOf("</coordinates>");
+			var coordinates = msg.slice(begin,end).trim();
+			var coordinateArray = coordinates.split(" ");
+			if ( coordinateArray.length > 2 ) {
+				// if not already closed, close polygon
+				if (coordinateArray[0] != coordinateArray[coordinateArray.length-1]) {
+					coordinateArray.push(coordinateArray[0]);
+					msg = msg.slice(0, begin) + coordinateArray.join(' ') + msg.slice(end, msg.length);
+				}
+			}
+		}
 		// create a new placemark from the kml
 		var thePlace = ge.parseKml(msg);
 		thePlace.getGeometry().setAltitudeMode(ge.ALTITUDE_CLAMP_TO_GROUND);
@@ -886,7 +914,7 @@ function saveMultiGeoKml() {
 	var theKml = mapShape.targetShape.getKml();
 	var begin = theKml.indexOf("<coordinates>") + 13;
 	var end = theKml.indexOf("</coordinates>");
-	var coordinates = $.trim(theKml.slice(begin,end));	
+	var coordinates = theKml.slice(begin,end).trim();	
 	if (coordinates == '') {
 		document.getElementById('newShapeError').value = "Click on the map to draw."; 
 		return false;
@@ -1108,7 +1136,7 @@ function saveNewShape() {
 	var theKml = mapShape.targetShape.getKml();
 	var begin = theKml.indexOf("<coordinates>") + 13;
 	var end = theKml.indexOf("</coordinates>");
-	var coordinates = $.trim(theKml.slice(begin,end));	
+	var coordinates = theKml.slice(begin,end).trim();	
 	if (coordinates == '') {
 		document.getElementById('newShapeError').value = "Click on the map to draw."; 
 		return false;
@@ -1353,7 +1381,7 @@ function saveTrail() {
 	var theKml = mapLine.targetShape.getKml();
 	var begin = theKml.indexOf("<coordinates>") + 13;
 	var end = theKml.indexOf("</coordinates>");
-	var coordinates = $.trim(theKml.slice(begin,end));	
+	var coordinates = theKml.slice(begin,end).trim();	
 	if (coordinates == '') {
 		document.getElementById('trailError').value = "Click on the map to draw."; 
 		return false;
@@ -1426,7 +1454,7 @@ function saveLandmark() {
 	var theKml = mapShape.targetShape.getKml();
 	var begin = theKml.indexOf("<coordinates>") + 13;
 	var end = theKml.indexOf("</coordinates>");
-	var coordinates = $.trim(theKml.slice(begin,end));	
+	var coordinates = theKml.slice(begin,end).trim();	
 	if (coordinates == '') {
 		document.getElementById('landmarkError').value = "Click on the map to draw."; 
 		return false;
