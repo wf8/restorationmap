@@ -57,14 +57,19 @@ $function = $_GET['function'];
 	<tr>
 		<td valign='top' align='left' style='width:300px'>
 			<a href="admin.php?function=">System Status</a><br>
+			<a href="admin.php?function=generate_report">Generate Reports</a><br>
 			<a href="admin.php?function=database_structure">View Database Structure</a><br>
+			<a href="admin.php?function=upload_bcn">Upload BCN Data</a><br>
+			<br>
+			<a href="admin.php?function=get_user_info">Get User Info</a><br>
 			<a href="admin.php?function=register_new_user">Register New User</a><br>
 			<a href="admin.php?function=reset_password">Reset User Password</a><br>
-			<a href="admin.php?function=get_user_info">Get User Info</a><br>
-			<a href="admin.php?function=generate_report">Generate Reports</a><br>
+			<br>
+			<a href="admin.php?function=register_new_site">Register New Site</a><br>
 			<a href="admin.php?function=add_user_to_site">Add User to Site</a><br>
 			<a href="admin.php?function=remove_user_from_site">Remove User from Site</a><br>
-			<a href="admin.php?function=register_new_site">Register New Site</a><br>
+			
+			
 		</td>
 		<td valign='top' align='left'>
 			
@@ -113,6 +118,31 @@ $function = $_GET['function'];
 			if ($function == 'database_structure') {
 			?>	
 				<img src="../images/database_structure.png">
+			<?php
+			}
+			?>
+			
+			
+			<?php
+			if ($function == 'upload_bcn') {
+			?>	
+			
+				<font face="verdana, helvetica" size="1">
+				Upload BCN Data:<br>
+				<br>
+				This will update Restoration Map's BCN database for a single year's worth of point count 
+				data by parsing an uploaded 
+tab-separated values (tsv/csv) file. The uploaded file should be a BCN file edited to include 
+only the single year (and only point count data) that 
+needs updating; otherwise the file will be too large to upload. This should be done once a year.<br><br>
+<b>This will take a few minutes after 
+clicking 'upload', please wait!</b><br>
+				<form action="bcn_import.php" method="post" enctype="multipart/form-data">
+			    	Year: <input type="text" name="year" maxlength="4" /><br>
+					BCN tsv/csv file: <input type="file" name="file" id="file"><br>
+					<br>
+			    	<input type="submit" name="submit" value="Upload" />
+				</form><br>
 			<?php
 			}
 			?>
