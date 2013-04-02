@@ -329,6 +329,8 @@ $report = $_GET['report'];
 				return 0;
 			if (trim($points[0]) != trim(end($points)))
 				return 0;
+			if (trim($points[0]) == trim(end($points)) && $number_of_points == 3)
+				return 0;
 			$counter = 0;
 			$sum = 0;
 			while ($counter < $number_of_points - 1) {		
