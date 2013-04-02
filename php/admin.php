@@ -1033,9 +1033,11 @@ clicking 'upload', please wait!</b><br>
 			function calculate_acreage($these_coordinates) {
 				// first project longitude and latitude as x and y, then calculate area according to this formula:
 				// A = (1/2)(x1*y2 - x2*y1 + x2*y3 - x3*y2 + x3y4 - x4y3 + x4*y5 - x5*y4 + x5*y1 - x1*y5)
-				$points = explode(' ', $these_coordinates);
+				$points = explode(' ', trim($these_coordinates));
 				$number_of_points = count($points);
 				if ($number_of_points < 3)
+					return 0;
+				if (trim($points[0]) != trim(end($points)))
 					return 0;
 				$counter = 0;
 				$sum = 0;
