@@ -603,6 +603,28 @@ clicking 'upload', please wait!</b><br>
 				<form action="admin.php?function=register_new_site" method="post">
 			    	Name: <input type="text" name="site_name" maxlength="50" /><br>
 			    	Border coordinates: <input type="text" name="coordinates" length="100" /><br>
+			    	County: 
+			    	<select name="county">
+			    		<option>Select county</option>
+  						<option>Boone, IL</option>
+  						<option>Cook, IL</option>
+  						<option>DuPage, IL</option>
+  						<option>Jasper, IN</option>
+  						<option>Kane, IL</option>
+  						<option>Kendall, IL</option>
+  						<option>Kenosha, WI</option>
+  						<option>Lake, IL</option>
+  						<option>Lake, IN</option>
+  						<option>LaPorte, IN</option>
+  						<option>Lee, IL</option>
+  						<option>McHenry, IL</option>
+  						<option>Newton, IN</option>
+  						<option>Porter, IN</option>
+  						<option>Racine, WI</option>
+  						<option>Will, IL</option>
+  						<option>Winnebago, IL</option>
+					</select><br>
+			    	
 			    	<input type="hidden" name="form" value="register_new_site" />
 			    	<input type="submit" value="Register" />
 				</form><br>
@@ -614,6 +636,13 @@ clicking 'upload', please wait!</b><br>
 						//retrieve our data from POST
 						$site_name = $_POST['site_name'];
 						$coordinates = $_POST['coordinates'];
+						$county = $_POST['county'];
+						
+						// check that a county has been selected
+							if($county == "Select county") {
+							    echo "Please select the site's county. Site not added.";
+							    exit;
+						}
 						
 						// check coordinates
 						if(strlen($coordinates) < 2) 
@@ -634,7 +663,7 @@ clicking 'upload', please wait!</b><br>
 					    			echo "Site already exists.";
 					    		else
 					    		{	    		
-									$query = "INSERT INTO stewardship_site (name) VALUES ('$site_name')";
+									$query = "INSERT INTO stewardship_site (name, county) VALUES ('$site_name', '$county')";
 									$result = mysql_query($query, $connection);
 									if (!$result) 
 								  		echo 'Error: ' . mysql_error();
