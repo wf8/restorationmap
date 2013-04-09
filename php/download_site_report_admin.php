@@ -85,7 +85,7 @@ while ($row = @mysql_fetch_assoc($result_users)) {
 $site_id = $_GET['site_id'];
 
 $array = array(
-		array("Stewardship Site", "Type", "Date", "Name", "Description", "Acreage", "User Last Name", "User First Name", "User Email"));
+		array("Stewardship Site", "County", "Type", "Date", "Name", "Description", "Acreage", "User Last Name", "User First Name", "User Email"));
 
 
 $query = "SELECT * FROM brush WHERE stewardshipsite_id = '$site_id' ORDER BY date";
@@ -101,7 +101,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Bush and tree removal", $row['date'], $row['title'], $row['description'], calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Bush and tree removal", $row['date'], $row['title'], $row['description'], calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -118,7 +118,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Geographic feature / Landmark", "N/A", $row['name'], $row['description'], calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Geographic feature / Landmark", "N/A", $row['name'], $row['description'], calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -135,7 +135,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Planning and other", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Planning and other", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -153,7 +153,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Prescribed burn", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Prescribed burn", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -171,7 +171,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Seed collection and planting", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Seed collection and planting", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -189,7 +189,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Weed control", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
+			array($row2['name'], $row2['county'], "Weed control", $row['date'], str_replace('"','',$row['title']), str_replace('"','',$row['description']), calculate_acreage($row['coordinates']),$usersArray[$row['user_id']][0],$usersArray[$row['user_id']][1],$usersArray[$row['user_id']][2]));
 	}
 }
 
@@ -206,7 +206,7 @@ if ($results)
 			die('Invalid query: ' . mysql_error());
 		$row2 = @mysql_fetch_assoc($result2);
 		array_push($array, 
-			array($row2['name'], "Trails", "N/A", str_replace('"','',$row['name']), "N/A", "N/A"));
+			array($row2['name'], $row2['county'], "Trails", "N/A", str_replace('"','',$row['name']), "N/A", "N/A"));
 	}
 }
 

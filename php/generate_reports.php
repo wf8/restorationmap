@@ -48,7 +48,7 @@ $report = $_GET['report'];
 			
 			echo 'Click <a href="download_user_report.php?user_id='.$user_id.'">here</a> to download this data as a spreadsheet file.<br><br>';
 			
-			echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td></tr>';
+			echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>County</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td></tr>';
 			
 			
 			$query = "SELECT * FROM brush WHERE user_id = '$user_id' ORDER BY date";
@@ -63,7 +63,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Bush and tree removal</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Bush and tree removal</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -80,7 +80,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Geographic feature / Landmark</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Geographic feature / Landmark</td><td>';
 					echo 'N/A</td><td>' . $row['name'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -98,7 +98,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Planning and other</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Planning and other</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -116,7 +116,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Prescribed burn</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Prescribed burn</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -134,7 +134,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Seed collection and planting</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Seed collection and planting</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -152,7 +152,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Weed control</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Weed control</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -169,7 +169,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Trails</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Trails</td><td>';
 					echo 'N/A</td><td>' . $row['name'] . '</td><td>N/A</td><td>N/A</td></tr>';
 				}
 			}
@@ -186,7 +186,7 @@ $report = $_GET['report'];
 			
 			echo 'Click <a href="download_site_report.php?site_id='.$site_id.'">here</a> to download this data as a spreadsheet file.<br><br>';
 			
-			echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td></tr>';
+			echo '<table border="1"><tr><td><b>Stewardship Site</b></td><td><b>County</b></td><td><b>Type</b></td><td><b>Date</b></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Acreage</b></td></tr>';
 			
 			
 			$query = "SELECT * FROM brush WHERE stewardshipsite_id = '$site_id' ORDER BY date";
@@ -201,7 +201,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Bush and tree removal</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Bush and tree removal</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -218,7 +218,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Geographic feature / Landmark</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Geographic feature / Landmark</td><td>';
 					echo 'N/A</td><td>' . $row['name'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -236,7 +236,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Planning and other</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Planning and other</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -254,7 +254,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Prescribed burn</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Prescribed burn</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -272,7 +272,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Seed collection and planting</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Seed collection and planting</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -290,7 +290,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Weed control</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Weed control</td><td>';
 					echo $row['date'] . '</td><td>' . $row['title'] . '</td><td>' . $row['description'] . '</td><td>'.calculate_acreage($row['coordinates']).'</td></tr>';
 				}
 			}
@@ -307,7 +307,7 @@ $report = $_GET['report'];
 					if (!$result2) 
 						die('Invalid query: ' . mysql_error());
 					$row2 = @mysql_fetch_assoc($result2);
-					echo '<tr><td>' . $row2['name'] . '</td><td>Trails</td><td>';
+					echo '<tr><td>' . $row2['name'] . '</td><td>' . $row2['county'] . '</td><td>Trails</td><td>';
 					echo 'N/A</td><td>' . $row['name'] . '</td><td>N/A</td><td>N/A</td></tr>';
 				}
 			}
