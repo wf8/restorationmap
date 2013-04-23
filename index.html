@@ -921,7 +921,44 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 					16) Comments<br>
 					17) Date recorded<br>
 					18) Year<br>
+        </div> 
+		<div class="panel" id="visual_report_panel">
+        		<div class="panelContent">
+					<br><br><b>RM Visual Report</b><br><br>
+					<br><br>	
+					Choose which year:<br>
+					<div style="position:relative;float:left;" id="visual_report_year_selector"><select id="visual_report_year">
+					</select></div>
+					<br><br><br>
+					Select which county:<br>
+					<select id="visual_report_county">
+						<option value="0">All</option>
+						<option value="Cook, IL">Cook, IL</option>
+						<option value="Cook, IL">Cook, IL</option>
+						<option value="Cook, IL">Cook, IL</option>
+						<option value="Cook, IL">Cook, IL</option>
+					</select>
+					<br><br><br>
+					Choose which type of data to view:<br>
+					<input type="radio" name="visual_report_data_type" value="all" checked="checked"> All<br>
+					<input type="radio" name="visual_report_data_type" value="trails"> Trail<br>
+					<input type="radio" name="visual_report_data_type" value="landmark"> Geographic feature / Landmark<br>
+					<input type="radio" name="visual_report_data_type" value="brush"> Brush and tree removal<br>
+					<input type="radio" name="visual_report_data_type" value="burns"> Prescribed burn<br>
+					<input type="radio" name="visual_report_data_type" value="seed"> Seed collection and planting<br>
+					<input type="radio" name="visual_report_data_type" value="weed"> Weed control<br>
+					<input type="radio" name="visual_report_data_type" value="other"> Planning and other<br>
 
+
+					<input type=text size=40 class="panelError" id="visual_report_display_error">
+					<br><div id="visual_report_display_loading"></div>
+					<br><br>
+					<button onClick="load_visual_report_data();">Load data in map</button>
+					<button onClick="zoom_to_visual_report_data();">Zoom to data</button><br>
+					<button onClick="download_visual_report_data();">Download data in spreadsheet</button>
+					<button onClick="closeAllPanels();">Close this panel</button>
+
+        		</div>
         </div> 
                   
         
