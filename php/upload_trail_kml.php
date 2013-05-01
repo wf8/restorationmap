@@ -33,7 +33,6 @@ else if ( checkFileType() || checkFileExtension() )
 		$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 		$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
 		$kml[] = '<Placemark>';
-		$kml[] = '   <LineString><tessellate>1</tessellate><coordinates>';
 
    		$uploaded_file = file_get_contents($_FILES['upload_file']['tmp_name']);
 
@@ -67,16 +66,43 @@ else if ( checkFileType() || checkFileExtension() )
 
 				$coordinates = $coordinates . $lon . ',' . $lat . ',0 ';
    			}
+   			$kml[] = '<LineString><tessellate>1</tessellate><coordinates>';
+   			$kml[] = $coordinates;
+   			$kml[] = '</coordinates></LineString></Placemark></kml>';
    		}
    		if ($file_extension == "kml")
    		{
    			$begin_coordinates = strpos($uploaded_file, '<coordinates>') + 13;
    			$end_coordinates = strpos($uploaded_file, '</coordinates>');
-   			$coordinates = substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates);
+   			// check if we are uploading a path
+   			if (strpos($uploaded_file, '<coordinates>') === false) {
+   				$pos = 0;
+   				while (strpos($uploaded_file, '<gx:coord>', $pos) !== false) {
+   					$begin_coordinate = strpos($uploaded_file, '<gx:coord>', $pos) + 10;
+   					$end_coordinate = strpos($uploaded_file, '</gx:coord>', $pos);
+   					$coordinate = trim(substr($uploaded_file, $begin_coordinate, $end_coordinate - $begin_coordinate));
+   					$coordinate = str_replace(' ', ',', $coordinate);
+   					$coordinates = $coordinates . $coordinate . ' ';
+   					$pos = $end_coordinate + 10;
+   				}
+   				$kml[] = '<LineString><tessellate>1</tessellate><coordinates>';
+				$kml[] = trim($coordinates);
+   				$kml[] = '</coordinates></LineString></Placemark></kml>';
+   			} else {
+				$coordinates = substr($uploaded_file, $begin_coordinates, $end_coordinates - $begin_coordinates);
+				// check if we have uploaded a point or a polygon
+				if (count(explode(" ", trim($coordinates))) == 1) {
+					$kml[] = '<Point><coordinates>';
+					$kml[] = trim($coordinates);
+					$kml[] = '</coordinates></Point></Placemark></kml>';
+				} else {
+					$kml[] = '<LineString><tessellate>1</tessellate><coordinates>';
+					$kml[] = trim($coordinates);
+					$kml[] = '</coordinates></LineString></Placemark></kml>';
+				}
+		   	}
    		}
-   		$kml[] = $coordinates;
-   		$kml[] = ' </coordinates></LineString></Placemark></kml>';
-   		$result = join("\n", $kml);
+		$result = join("\n", $kml);
 		//header('Content-type: application/vnd.google-earth.kml+xml');
 	}
 } else
