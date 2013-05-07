@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 require('../restorationmap_config.php');
 
  // Opens a connection to a MySQL server.
@@ -84,10 +85,15 @@ if ($data_type == 'burns' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='burns'";
 	$private_layers = mysql_query($query);
 		
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM burns WHERE 1 ORDER BY date ASC";
-	 $result = mysql_query($query);
-	 if (!$result) 
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM burns WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM burns WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}
+	$result = mysql_query($query);
+	if (!$result) 
 		die('Invalid query: ' . mysql_error());
 	
 	// set variables for while loop
@@ -218,12 +224,14 @@ if ($data_type == 'brush' || $data_type == 'all') {
 	// select all the private map layers for this shape type
 	$query = "SELECT * FROM authorized_users WHERE layer_type='brush'";
 	$private_layers = mysql_query($query);
-		
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM brush WHERE 1 ORDER BY date ASC";
-	 $result = mysql_query($query);
-	 if (!$result) 
-		die('Invalid query: ' . mysql_error());
+			
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM brush WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM brush WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}		
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -353,11 +361,13 @@ if ($data_type == 'landmark' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='landmark'";
 	$private_layers = mysql_query($query);
 		
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM landmark WHERE 1";
-	 $result = mysql_query($query);
-	 if (!$result) 
-		die('Invalid query: ' . mysql_error());
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM landmark WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM landmark WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}
 	
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
@@ -477,11 +487,13 @@ if ($data_type == 'seed' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='seed'";
 	$private_layers = mysql_query($query);
 		
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM seed WHERE 1 ORDER BY date ASC";
-	 $result = mysql_query($query);
-	 if (!$result) 
-		die('Invalid query: ' . mysql_error());
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM seed WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM seed WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -611,11 +623,13 @@ if ($data_type == 'weed' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='weed'";
 	$private_layers = mysql_query($query);
 	
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM weed WHERE 1 ORDER BY date ASC";
-	 $result = mysql_query($query);
-	 if (!$result) 
-		die('Invalid query: ' . mysql_error());
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM weed WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM weed WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -745,11 +759,13 @@ if ($data_type == 'other' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='other'";
 	$private_layers = mysql_query($query);
 		
-	 // Selects all the rows in the table for this site
-	 $query = "SELECT * FROM other WHERE 1 ORDER BY date ASC";
-	 $result = mysql_query($query);
-	 if (!$result) 
-		die('Invalid query: ' . mysql_error());
+	// Selects all the rows in the table for the year of interest
+	if ($year == 'All')
+		$query = "SELECT * FROM other WHERE 1 ORDER BY date ASC";
+	else {
+		$date_wildcard = $year . '-%';
+		$query = "SELECT * FROM other WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
+	}
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -851,7 +867,6 @@ if ($data_type == 'other' || $data_type == 'all') {
 $kml[] = ' </Document>';
 $kml[] = '</kml>';
 $kmlOutput = join("\n", $kml);
-//error_log($kmlOutput);
 header('Content-type: application/vnd.google-earth.kml+xml');
 echo $kmlOutput;
 ?>
