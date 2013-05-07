@@ -127,6 +127,13 @@ $kml[] = '				<open>0</open>';
 $kml[] = '				<visibility>0</visibility>';
 $kml[] = '			</GroundOverlay>';
 
+$kml[] = '			<GroundOverlay id="visual_report">';
+$kml[] = '				<flyToView>0</flyToView>	';
+$kml[] = '				<name>Visual Reports</name>';
+$kml[] = '				<open>0</open>';
+$kml[] = '				<visibility>0</visibility>';
+$kml[] = '			</GroundOverlay>';
+
 $kml[] = '			<GroundOverlay id="weed_scouts">';
 $kml[] = '				<flyToView>0</flyToView>	';
 $kml[] = '				<name>Weed Scouts</name>';

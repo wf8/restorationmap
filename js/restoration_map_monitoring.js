@@ -5,7 +5,7 @@
  * ---------------------------------------------------------
  */
  
- var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel' ];
+ var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel', 'visual_report_panel' ];
 
 /**
  * ---------------------------------------------------------
@@ -51,6 +51,10 @@ function initMonitoringLayers() {
 		if (tree.lookup(node).getName() == "Shrub Survey") {
 			zoom_to_shrub_survey_data();
 			open_shrub_survey_panel();
+		}
+		if (tree.lookup(node).getName() == "Visual Reports") {
+			zoom_to_visual_report();
+			open_visual_report_panel();
 		}
 	});	
 	// detect when networklinks are loaded
@@ -152,6 +156,15 @@ function initMonitoringLayers() {
 			if (shrub_survey_kml_object != null) 
 				ge.getFeatures().removeChild(shrub_survey_kml_object);
 		}
+		if (tree.lookup(node).getName() == "Visual Reports" && tree.lookup(node).getVisibility()) {
+			if (visual_report_kml_object != null) 
+				ge.getFeatures().appendChild(visual_report_kml_object);
+			open_visual_report_panel();
+		}
+		if (tree.lookup(node).getName() == "Visual Reports" && !tree.lookup(node).getVisibility()) {
+			if (visual_report_kml_object != null) 
+				ge.getFeatures().removeChild(visual_report_kml_object);
+		}
 	});
 	// make sure monitoring layers are null to start
 	sc2011KmlObject = null;
@@ -164,6 +177,7 @@ function initMonitoringLayers() {
 	management_units_kml_object = null;
 	ws_kml_object = null;
 	shrub_survey_kml_object = null;
+	visual_report_kml_object = null;
 }
 
 function resizeMonitorPanels(windowHeight) {
@@ -1217,4 +1231,81 @@ function load_shrub_survey_data() {
 	// send the new request		
 	ajaxRequest.open("GET", la_url, true);
 	ajaxRequest.send();
+}
+
+/**
+ * ---------------------------------------------------------
+ *
+ * visual reports functions
+ *
+ * ---------------------------------------------------------
+ */
+ 
+var visual_report_kml_object = null; 
+
+function open_visual_report_panel() {
+	closeAllPanels();
+	// clear any error message
+	document.getElementById('visual_report_display_error').value = ""; 
+	// load year range options
+	var d=new Date();
+	var year = d.getFullYear();
+	var year_options = "<option value='All'>All</option>";
+	//var year_options = "";
+	while (year > 1999) {
+		year_options = year_options + "<option>" + year + "</option>";
+		year--;
+	}
+	year_options = year_options + "</select>";
+	document.getElementById('visual_report_year_selector').innerHTML = "<select id='visual_report_year'>" + year_options;
+	fade("visual_report_panel");
+}
+
+function zoom_to_visual_report() {
+	if (visual_report_kml_object != null) {
+		var bounds = gex.dom.computeBounds(visual_report_kml_object);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
+	}
+}
+
+function load_visual_report_data() {
+	// show activity monitor
+	$('#visual_report_display_loading').activity({segments: 12, align: 'left', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	// clear any error message
+	document.getElementById('visual_report_display_error').value = ""; 
+	var data_type = $('input:radio[name=visual_report_data_type]:checked').val();
+	var year = document.getElementById("visual_report_year").value;
+	var county = document.getElementById("visual_report_county").value;
+	//construct url
+	parameters = "data_type=" + data_type + "&year=" + year + "&county=" + county;
+	var la_url = "php/monitoring/visual_report_display.php?" + parameters;
+
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			// remove the old kmlObject
+			if (visual_report_kml_object != null) {
+				ge.getFeatures().removeChild(visual_report_kml_object);
+				visual_report_kml_object.release();
+			}
+			visual_report_kml_object = null;
+			//get the new kmlObject from response
+			visual_report_kml_object = ge.parseKml(ajaxRequest.responseText);
+			// add the new kmlObject to globe
+			ge.getFeatures().appendChild(visual_report_kml_object);
+			
+			// turn off activity monitor
+			$('#visual_report_display_loading').activity(false);
+		}
+	}
+	// send the new request		
+	ajaxRequest.open("GET", la_url, true);
+	ajaxRequest.send();
+}
+
+function download_visual_report_data() {
+	document.getElementById('downloadString').value = visual_report_kml_object.getKml();
+	// fade does not work while submitting form, so delay form submission
+	setTimeout("document.getElementById('downloadKmlForm').submit()", 300);
 }
