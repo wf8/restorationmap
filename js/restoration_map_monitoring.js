@@ -1305,13 +1305,7 @@ function load_visual_report_data() {
 }
 
 function download_visual_report_data() {
-	// get parameters
-	var data_type = $('input:radio[name=visual_report_data_type]:checked').val();
-	var year = document.getElementById("visual_report_year").value;
-	var county = document.getElementById("visual_report_county").value;
-	// construct url
-	var parameters = "data_type=" + data_type + "&year=" + year + "&county=" + county;
-	var php_url = "php/monitoring/download_visual_report.php?" + parameters;
-	var theUrl = "http://" + window.location.host + window.location.pathname + php_url;
-	window.open(theUrl);
+	document.getElementById('downloadString').value = visual_report_kml_object.getKml();
+	// fade does not work while submitting form, so delay form submission
+	setTimeout("document.getElementById('downloadKmlForm').submit()", 300);
 }
