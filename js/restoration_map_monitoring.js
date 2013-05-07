@@ -5,7 +5,7 @@
  * ---------------------------------------------------------
  */
  
- var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel', 'visual_report' ];
+ var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel', 'visual_report_panel' ];
 
 /**
  * ---------------------------------------------------------
@@ -1244,8 +1244,6 @@ function load_shrub_survey_data() {
 var visual_report_kml_object = null; 
 
 function open_visual_report_panel() {
-	// show activity monitor
-	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
 	closeAllPanels();
 	// clear any error message
 	document.getElementById('visual_report_display_error').value = ""; 
@@ -1254,7 +1252,7 @@ function open_visual_report_panel() {
 	var year = d.getFullYear();
 	var year_options = "<option value='All'>All</option>";
 	//var year_options = "";
-	while (year >= 2000) {
+	while (year > 1999) {
 		year_options = year_options + "<option>" + year + "</option>";
 		year--;
 	}
@@ -1265,8 +1263,8 @@ function open_visual_report_panel() {
 
 function zoom_to_visual_report() {
 	if (visual_report_kml_object != null) {
-		var view = visual_report_kml_object.getAbstractView();
-		ge.getView().setAbstractView(view);
+		var bounds = gex.dom.computeBounds(visual_report_kml_object);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
 	}
 }
 
