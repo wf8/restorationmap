@@ -19,13 +19,16 @@ $county = mysql_real_escape_string($_GET['county']);
 $user_id = $_SESSION['user_id'];
 $opacity = $_SESSION['opacity'];
 
+// get all the stewardship sites with the right county
+if ($county !== 'All') {
+	$sites_query = "SELECT * FROM stewardship_site WHERE county='$county'";
+	$sites_results = mysql_query($sites_query);
+}
+
 // Creates an array of strings to hold the lines of the KML file.
 $kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 $kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
 $kml[] = ' <Document>';
-
-
-// still need to deal with year and county specific searches
 
 // get kml for trails
 if ($data_type == 'trails' || $data_type == 'all') {
@@ -38,15 +41,30 @@ if ($data_type == 'trails' || $data_type == 'all') {
 	
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
-	{	
-		// add the placemark
-		$kml[] = ' <Placemark id="trails-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-		$kml[] = ' <name>' . $row['name'] . '</name>'; 
-		$km[] = '   <visibility>1</visibility>';  
-		$kml[] = '   <Style><LineStyle><color>ffffff00</color><width>2</width></LineStyle></Style>';
-		$kml[] = '   <LineString><tessellate>1</tessellate><coordinates>';
-		$kml[] = $row['coordinates'];
-		$kml[] = ' </coordinates></LineString></Placemark>';
+	{
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
+				}
+			}
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			// add the placemark
+			$kml[] = ' <Placemark id="trails-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+			$kml[] = ' <name>' . $row['name'] . '</name>'; 
+			$km[] = '   <visibility>1</visibility>';  
+			$kml[] = '   <Style><LineStyle><color>ffffff00</color><width>2</width></LineStyle></Style>';
+			$kml[] = '   <LineString><tessellate>1</tessellate><coordinates>';
+			$kml[] = $row['coordinates'];
+			$kml[] = ' </coordinates></LineString></Placemark>';
+		}
 	} 
 }
 
@@ -103,88 +121,104 @@ if ($data_type == 'burns' || $data_type == 'all') {
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
 	{
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id'])
-					// user is authorized
-					$user_is_authorized = true;
-			}
-		}		
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {		
-			// get the year month date out of the sql date
-			$theDate = $row['date'];
-			list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
-			// check to see if we need to create a new year folder
-			if ($thisYear != $lastYear) 
-			{
-				// if this is not the first folder we need to close the last folder
-				if ($firstFolder)
-					$firstFolder = false;
-				else
-					$kml[] = ' </Folder>';
-				// create the new folder
-				$kml[] = ' <Folder>';
-				$kml[] = ' <name>' . $thisYear . '</name>'; 
-				$kml[] = ' <visibility>1</visibility>';
-				
-			}		
-			
-			// remove 00/00 from dates
-			$betterDate = $thisYear;
-			if ( $thisDay == '00' ) {
-				if ( $thisMonth != '00' ) 
-					$betterDate = $thisMonth . '/' . $betterDate;
-			} else
-				$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
-			
-			// add the placemark
-			$kml[] = ' <Placemark id="burns-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>ff1f00ff</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				$kml[] = '   <Style><LineStyle><color>ff1f00ff</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
-				$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
 			}
-			
-			$lastYear = $thisYear;
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+		
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
+			{
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id'])
+						// user is authorized
+						$user_is_authorized = true;
+				}
+			}		
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {		
+				// get the year month date out of the sql date
+				$theDate = $row['date'];
+				list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
+				// check to see if we need to create a new year folder
+				if ($thisYear != $lastYear) 
+				{
+					// if this is not the first folder we need to close the last folder
+					if ($firstFolder)
+						$firstFolder = false;
+					else
+						$kml[] = ' </Folder>';
+					// create the new folder
+					$kml[] = ' <Folder>';
+					$kml[] = ' <name>' . $thisYear . '</name>'; 
+					$kml[] = ' <visibility>1</visibility>';
+					
+				}		
+				
+				// remove 00/00 from dates
+				$betterDate = $thisYear;
+				if ( $thisDay == '00' ) {
+					if ( $thisMonth != '00' ) 
+						$betterDate = $thisMonth . '/' . $betterDate;
+				} else
+					$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
+				
+				// add the placemark
+				$kml[] = ' <Placemark id="burns-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>ff1f00ff</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					$kml[] = '   <Style><LineStyle><color>ff1f00ff</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
+					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+				}
+				
+				$lastYear = $thisYear;
+			}
 		}
 	} 
 	if (!$firstFolder)
@@ -231,7 +265,8 @@ if ($data_type == 'brush' || $data_type == 'all') {
 	else {
 		$date_wildcard = $year . '-%';
 		$query = "SELECT * FROM brush WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
-	}		
+	}	
+	$result = mysql_query($query);	
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -239,89 +274,104 @@ if ($data_type == 'brush' || $data_type == 'all') {
 	
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
-	{
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id']) {			
-					// user is authorized
-					$user_is_authorized = true;
+	{	
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
 				}
 			}
-		}	
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {			
-			// get the year month date out of the sql date
-			$theDate = $row['date'];
-			list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
-			// check to see if we need to create a new year folder
-			if ($thisYear != $lastYear) 
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
 			{
-				// if this is not the first folder we need to close the last folder
-				if ($firstFolder)
-					$firstFolder = false;
-				else
-					$kml[] = ' </Folder>';
-				// create the new folder
-				$kml[] = ' <Folder>';
-				$kml[] = ' <name>' . $thisYear . '</name>'; 
-				$kml[] = ' <visibility>1</visibility>';
-				
-			}		
-			
-			// remove 00/00 from dates
-			$betterDate = $thisYear;
-			if ( $thisDay == '00' ) {
-				if ( $thisMonth != '00' ) 
-					$betterDate = $thisMonth . '/' . $betterDate;
-			} else
-				$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
-			
-			// add the placemark
-			$kml[] = ' <Placemark id="brush-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id']) {			
+						// user is authorized
+						$user_is_authorized = true;
+					}
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>FF14F000</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				$kml[] = '   <Style><LineStyle><color>FF14F000</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
-				$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+			}	
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {			
+				// get the year month date out of the sql date
+				$theDate = $row['date'];
+				list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
+				// check to see if we need to create a new year folder
+				if ($thisYear != $lastYear) 
+				{
+					// if this is not the first folder we need to close the last folder
+					if ($firstFolder)
+						$firstFolder = false;
+					else
+						$kml[] = ' </Folder>';
+					// create the new folder
+					$kml[] = ' <Folder>';
+					$kml[] = ' <name>' . $thisYear . '</name>'; 
+					$kml[] = ' <visibility>1</visibility>';
+					
+				}		
+				
+				// remove 00/00 from dates
+				$betterDate = $thisYear;
+				if ( $thisDay == '00' ) {
+					if ( $thisMonth != '00' ) 
+						$betterDate = $thisMonth . '/' . $betterDate;
+				} else
+					$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
+				
+				// add the placemark
+				$kml[] = ' <Placemark id="brush-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>FF14F000</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					$kml[] = '   <Style><LineStyle><color>FF14F000</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
+					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+				}
+				$lastYear = $thisYear;
 			}
-			$lastYear = $thisYear;
 		}
 	} 
 	if (!$firstFolder)
@@ -361,95 +411,106 @@ if ($data_type == 'landmark' || $data_type == 'all') {
 	$query = "SELECT * FROM authorized_users WHERE layer_type='landmark'";
 	$private_layers = mysql_query($query);
 		
-	// Selects all the rows in the table for the year of interest
-	if ($year == 'All')
-		$query = "SELECT * FROM landmark WHERE 1 ORDER BY date ASC";
-	else {
-		$date_wildcard = $year . '-%';
-		$query = "SELECT * FROM landmark WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
-	}
+	// Selects all the rows in the table (landmarks don't have years)
+	$query = "SELECT * FROM landmark WHERE 1";
+	$result = mysql_query($query);
 	
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
 	{	
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id'])
-					// user is authorized
-					$user_is_authorized = true;
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
+				}
 			}
-		}		
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {		
-				
-			// add the placemark
-			$kml[] = ' <Placemark id="landmark-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $row['name'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
+			{
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id'])
+						// user is authorized
+						$user_is_authorized = true;
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>' . $row['color'] . '</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0.8</scale><color>' . $row['color'] . '</color></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				// get the coordinates so we can place the label
-				$shape_coordinates = $row['coordinates'];
-				$points = explode(' ', $shape_coordinates);
-				// find the sum of all points
-				$number_of_points = count($points) - 1;
-				$counter = 0;
-				$sum_lat = 0;
-				$sum_lon = 0;
-				while ($counter < $number_of_points) {
-					$thisCoordinate = explode(',', $points[$counter]);
-					$sum_lat = $sum_lat + $thisCoordinate[0];
-					$sum_lon = $sum_lon + $thisCoordinate[1];
-					$counter++;
-				}
-				// now find the average point in between these
-				if ($counter == 0)
-					$counter = 1;
-				$lat = $sum_lat / ($counter);
-				$lon = $sum_lon / ($counter);
-				// kml for the polygon
-				$kml[] = '<Style><LineStyle><color>' . $row['color'] . '</color></LineStyle>';
-				$kml[] = '<PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.substr($row['color'],2).'</color></PolyStyle><LabelStyle><scale>0.8</scale><color>' . $row['color'] . '</color>';
-				$kml[] = '</LabelStyle><IconStyle><scale>0</scale></IconStyle></Style><MultiGeometry><Point><coordinates>';
-				$kml[] = $lat . ',' . $lon;
-				$kml[] = '</coordinates></Point><Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $shape_coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry></Placemark>';
 			}		
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {		
+					
+				// add the placemark
+				$kml[] = ' <Placemark id="landmark-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $row['name'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>' . $row['color'] . '</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0.8</scale><color>' . $row['color'] . '</color></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					// get the coordinates so we can place the label
+					$shape_coordinates = $row['coordinates'];
+					$points = explode(' ', $shape_coordinates);
+					// find the sum of all points
+					$number_of_points = count($points) - 1;
+					$counter = 0;
+					$sum_lat = 0;
+					$sum_lon = 0;
+					while ($counter < $number_of_points) {
+						$thisCoordinate = explode(',', $points[$counter]);
+						$sum_lat = $sum_lat + $thisCoordinate[0];
+						$sum_lon = $sum_lon + $thisCoordinate[1];
+						$counter++;
+					}
+					// now find the average point in between these
+					if ($counter == 0)
+						$counter = 1;
+					$lat = $sum_lat / ($counter);
+					$lon = $sum_lon / ($counter);
+					// kml for the polygon
+					$kml[] = '<Style><LineStyle><color>' . $row['color'] . '</color></LineStyle>';
+					$kml[] = '<PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.substr($row['color'],2).'</color></PolyStyle><LabelStyle><scale>0.8</scale><color>' . $row['color'] . '</color>';
+					$kml[] = '</LabelStyle><IconStyle><scale>0</scale></IconStyle></Style><MultiGeometry><Point><coordinates>';
+					$kml[] = $lat . ',' . $lon;
+					$kml[] = '</coordinates></Point><Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $shape_coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry></Placemark>';
+				}	
+			}	
 		}
 	} 
 }
@@ -494,6 +555,7 @@ if ($data_type == 'seed' || $data_type == 'all') {
 		$date_wildcard = $year . '-%';
 		$query = "SELECT * FROM seed WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
 	}
+	$result = mysql_query($query);
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -502,88 +564,103 @@ if ($data_type == 'seed' || $data_type == 'all') {
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
 	{
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id'])
-					// user is authorized
-					$user_is_authorized = true;
-			}
-		}	
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);	
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
-			// get the year month date out of the sql date
-			$theDate = $row['date'];
-			list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
-			// check to see if we need to create a new year folder
-			if ($thisYear != $lastYear) 
-			{
-				// if this is not the first folder we need to close the last folder
-				if ($firstFolder)
-					$firstFolder = false;
-				else
-					$kml[] = ' </Folder>';
-				// create the new folder
-				$kml[] = ' <Folder>';
-				$kml[] = ' <name>' . $thisYear . '</name>'; 
-				$kml[] = ' <visibility>1</visibility>';
-				
-			}		
-			
-			// remove 00/00 from dates
-			$betterDate = $thisYear;
-			if ( $thisDay == '00' ) {
-				if ( $thisMonth != '00' ) 
-					$betterDate = $thisMonth . '/' . $betterDate;
-			} else
-				$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
-			
-			// add the placemark
-			$kml[] = ' <Placemark id="seed-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>FF14F0FF</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				$kml[] = '   <Style><LineStyle><color>FF14F0FF</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
-				$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
 			}
-			
-			$lastYear = $thisYear;
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
+			{
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id'])
+						// user is authorized
+						$user_is_authorized = true;
+				}
+			}	
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);	
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
+				// get the year month date out of the sql date
+				$theDate = $row['date'];
+				list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
+				// check to see if we need to create a new year folder
+				if ($thisYear != $lastYear) 
+				{
+					// if this is not the first folder we need to close the last folder
+					if ($firstFolder)
+						$firstFolder = false;
+					else
+						$kml[] = ' </Folder>';
+					// create the new folder
+					$kml[] = ' <Folder>';
+					$kml[] = ' <name>' . $thisYear . '</name>'; 
+					$kml[] = ' <visibility>1</visibility>';
+					
+				}		
+				
+				// remove 00/00 from dates
+				$betterDate = $thisYear;
+				if ( $thisDay == '00' ) {
+					if ( $thisMonth != '00' ) 
+						$betterDate = $thisMonth . '/' . $betterDate;
+				} else
+					$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
+				
+				// add the placemark
+				$kml[] = ' <Placemark id="seed-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>FF14F0FF</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					$kml[] = '   <Style><LineStyle><color>FF14F0FF</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
+					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+				}
+				
+				$lastYear = $thisYear;
+			}
 		}
 	} 
 	if (!$firstFolder)
@@ -630,6 +707,7 @@ if ($data_type == 'weed' || $data_type == 'all') {
 		$date_wildcard = $year . '-%';
 		$query = "SELECT * FROM weed WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
 	}
+	$result = mysql_query($query);
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -638,88 +716,103 @@ if ($data_type == 'weed' || $data_type == 'all') {
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
 	{
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id'])
-					// user is authorized
-					$user_is_authorized = true;
-			}
-		}		
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
-			// get the year month date out of the sql date
-			$theDate = $row['date'];
-			list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
-			// check to see if we need to create a new year folder
-			if ($thisYear != $lastYear) 
-			{
-				// if this is not the first folder we need to close the last folder
-				if ($firstFolder)
-					$firstFolder = false;
-				else
-					$kml[] = ' </Folder>';
-				// create the new folder
-				$kml[] = ' <Folder>';
-				$kml[] = ' <name>' . $thisYear . '</name>'; 
-				$kml[] = ' <visibility>1</visibility>';
-				
-			}		
-			
-			// remove 00/00 from dates
-			$betterDate = $thisYear;
-			if ( $thisDay == '00' ) {
-				if ( $thisMonth != '00' ) 
-					$betterDate = $thisMonth . '/' . $betterDate;
-			} else
-				$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
-			
-			// add the placemark
-			$kml[] = ' <Placemark id="weed-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>FF7800F0</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				$kml[] = '   <Style><LineStyle><color>FF7800F0</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
-				$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
 			}
-			
-			$lastYear = $thisYear;
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
+			{
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id'])
+						// user is authorized
+						$user_is_authorized = true;
+				}
+			}		
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
+				// get the year month date out of the sql date
+				$theDate = $row['date'];
+				list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
+				// check to see if we need to create a new year folder
+				if ($thisYear != $lastYear) 
+				{
+					// if this is not the first folder we need to close the last folder
+					if ($firstFolder)
+						$firstFolder = false;
+					else
+						$kml[] = ' </Folder>';
+					// create the new folder
+					$kml[] = ' <Folder>';
+					$kml[] = ' <name>' . $thisYear . '</name>'; 
+					$kml[] = ' <visibility>1</visibility>';
+					
+				}		
+				
+				// remove 00/00 from dates
+				$betterDate = $thisYear;
+				if ( $thisDay == '00' ) {
+					if ( $thisMonth != '00' ) 
+						$betterDate = $thisMonth . '/' . $betterDate;
+				} else
+					$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
+				
+				// add the placemark
+				$kml[] = ' <Placemark id="weed-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>FF7800F0</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					$kml[] = '   <Style><LineStyle><color>FF7800F0</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
+					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+				}
+				
+				$lastYear = $thisYear;
+			}
 		}
 	}
 	if (!$firstFolder)
@@ -766,6 +859,7 @@ if ($data_type == 'other' || $data_type == 'all') {
 		$date_wildcard = $year . '-%';
 		$query = "SELECT * FROM other WHERE date LIKE '$date_wildcard' ORDER BY date ASC";
 	}
+	$result = mysql_query($query);
 	
 	// set variables for while loop
 	$lastYear = '10000';
@@ -774,96 +868,109 @@ if ($data_type == 'other' || $data_type == 'all') {
 	// Iterates through the rows, printing a node for each row.
 	while ($row = @mysql_fetch_assoc($result)) 
 	{
-		$layer_is_private = false;
-		$user_is_authorized = false;
-		while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
-		{
-			if ($row['id'] == $private['layer_id']) {
-				// layer is private, so see if this user is authorized
-				$layer_is_private = true;
-				if ($user_id == $private['user_id'])
-					// user is authorized
-					$user_is_authorized = true;
-			}
-		}	
-		// reset pointer	
-		if (mysql_num_rows($private_layers) != 0)
-			mysql_data_seek($private_layers, 0);
-			
-		if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
-			// get the year month date out of the sql date
-			$theDate = $row['date'];
-			list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
-			// check to see if we need to create a new year folder
-			if ($thisYear != $lastYear) 
-			{
-				// if this is not the first folder we need to close the last folder
-				if ($firstFolder)
-					$firstFolder = false;
-				else
-					$kml[] = ' </Folder>';
-				// create the new folder
-				$kml[] = ' <Folder>';
-				$kml[] = ' <name>' .  $thisYear . '</name>'; 
-				$kml[] = ' <visibility>1</visibility>';
-				
-			}		
-			
-			// remove 00/00 from dates
-			$betterDate = $thisYear;
-			if ( $thisDay == '00' ) {
-				if ( $thisMonth != '00' ) 
-					$betterDate = $thisMonth . '/' . $betterDate;
-			} else
-				$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
-			
-			// add the placemark
-			$kml[] = ' <Placemark id="other-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
-			$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
-			$km[] = '   <visibility>1</visibility>';  
-			$kml[] = '   <description><![CDATA[' . $row['description'];  	
-			
-			$coordinates = trim($row['coordinates']);
-			$points = explode(' ', $coordinates);
-			$number_of_points = count($points);
-	
-			// display coordinates for simple polygons
-			if ($number_of_points < 10) {
-				$kml[] = '</br></br>Lat/Long Coordinates:<br>';
-				if ($number_of_points == 1)
-					$number_of_points = 2;
-				for($i = 0; $i < $number_of_points - 1; ++$i) {
-					$this_point = explode(',', $points[$i]);
-					$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
 				}
-			} 
-			
-			$kml[] = ']]></description>';
-			
-			// check if we are displyaing a polygon or a point
-			if ($number_of_points < 3) {
-				// display a point
-				$kml[] = ' <Style><IconStyle><color>' . $row['color'] . '</color>';
-				$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
-				$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></Point></Placemark>';
-			} else {
-				// display a polygon
-				$kml[] = '   <Style><LineStyle><color>' . $row['color'] . '</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.substr($row['color'],2).'</color></PolyStyle></Style>';
-				$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
-				$kml[] = $coordinates;
-				$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
 			}
-			
-			$lastYear = $thisYear;
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			$layer_is_private = false;
+			$user_is_authorized = false;
+			while (!$user_is_authorized && $private = @mysql_fetch_assoc($private_layers)) 
+			{
+				if ($row['id'] == $private['layer_id']) {
+					// layer is private, so see if this user is authorized
+					$layer_is_private = true;
+					if ($user_id == $private['user_id'])
+						// user is authorized
+						$user_is_authorized = true;
+				}
+			}	
+			// reset pointer	
+			if (mysql_num_rows($private_layers) != 0)
+				mysql_data_seek($private_layers, 0);
+				
+			if (!$layer_is_private || ($layer_is_private && $user_is_authorized)) {	
+				// get the year month date out of the sql date
+				$theDate = $row['date'];
+				list($thisYear, $thisMonth, $thisDay) = split('-', $theDate);
+				// check to see if we need to create a new year folder
+				if ($thisYear != $lastYear) 
+				{
+					// if this is not the first folder we need to close the last folder
+					if ($firstFolder)
+						$firstFolder = false;
+					else
+						$kml[] = ' </Folder>';
+					// create the new folder
+					$kml[] = ' <Folder>';
+					$kml[] = ' <name>' .  $thisYear . '</name>'; 
+					$kml[] = ' <visibility>1</visibility>';
+					
+				}		
+				
+				// remove 00/00 from dates
+				$betterDate = $thisYear;
+				if ( $thisDay == '00' ) {
+					if ( $thisMonth != '00' ) 
+						$betterDate = $thisMonth . '/' . $betterDate;
+				} else
+					$betterDate = $thisMonth . '/' . $thisDay . '/' . $betterDate;
+				
+				// add the placemark
+				$kml[] = ' <Placemark id="other-' . $row['id'] . 'site' . $row['stewardshipsite_id'] . '">';
+				$kml[] = ' <name>' . $betterDate . ' ' . $row['title'] . '</name>'; 
+				$km[] = '   <visibility>1</visibility>';  
+				$kml[] = '   <description><![CDATA[' . $row['description'];  	
+				
+				$coordinates = trim($row['coordinates']);
+				$points = explode(' ', $coordinates);
+				$number_of_points = count($points);
+		
+				// display coordinates for simple polygons
+				if ($number_of_points < 10) {
+					$kml[] = '</br></br>Lat/Long Coordinates:<br>';
+					if ($number_of_points == 1)
+						$number_of_points = 2;
+					for($i = 0; $i < $number_of_points - 1; ++$i) {
+						$this_point = explode(',', $points[$i]);
+						$kml[] = round($this_point[1], 5) . ', ' . round($this_point[0], 5) . '<br>';
+					}
+				} 
+				
+				$kml[] = ']]></description>';
+				
+				// check if we are displyaing a polygon or a point
+				if ($number_of_points < 3) {
+					// display a point
+					$kml[] = ' <Style><IconStyle><color>' . $row['color'] . '</color>';
+					$kml[] = ' <Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon>';
+					$kml[] = ' <scale>0.8</scale></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><Point><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></Point></Placemark>';
+				} else {
+					// display a polygon
+					$kml[] = '   <Style><LineStyle><color>' . $row['color'] . '</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.substr($row['color'],2).'</color></PolyStyle></Style>';
+					$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+					$kml[] = $coordinates;
+					$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+				}
+				
+				$lastYear = $thisYear;
+			}
 		}
 	} 
 	if (!$firstFolder)
 		$kml[] = ' </Folder>';
 }
-//if (!$firstFolder)
-//	$kml[] = ' </Folder>';
 $kml[] = ' </Document>';
 $kml[] = '</kml>';
 $kmlOutput = join("\n", $kml);
