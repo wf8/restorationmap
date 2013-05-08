@@ -5,7 +5,7 @@
  * ---------------------------------------------------------
  */
  
- var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel', 'visual_report_panel' ];
+ var monitoringPanelList = [ 'sc2011Panel','sc2011invasivesPanel','bcnPointCountPanel','frogPanel', 'landAuditPanel','landAudit2001Panel','natural_communties_panel', 'ws_display_data_panel', 'ws_data_entry_panel', 'shrubSurveyPanel', 'shrubSurveyUploadPanel', 'visual_report_panel', 'bartelVegPanel', 'bartelVegUploadPanel' ];
 
 /**
  * ---------------------------------------------------------
@@ -55,6 +55,10 @@ function initMonitoringLayers() {
 		if (tree.lookup(node).getName() == "Visual Reports") {
 			zoom_to_visual_report();
 			open_visual_report_panel();
+		}
+		if (tree.lookup(node).getName() == "Bartel Grasslands Vegetation") {
+			zoom_to_bartel_veg_data();
+			open_bartel_veg_panel();
 		}
 	});	
 	// detect when networklinks are loaded
@@ -165,6 +169,15 @@ function initMonitoringLayers() {
 			if (visual_report_kml_object != null) 
 				ge.getFeatures().removeChild(visual_report_kml_object);
 		}
+		if (tree.lookup(node).getName() == "Bartel Grasslands Vegetation" && tree.lookup(node).getVisibility()) {
+			if (bartel_veg_kml_object != null) 
+				ge.getFeatures().appendChild(bartel_veg_kml_object);
+			open_bartel_veg_panel();
+		}
+		if (tree.lookup(node).getName() == "Bartel Grasslands Vegetation" && !tree.lookup(node).getVisibility()) {
+			if (bartel_veg_kml_object != null) 
+				ge.getFeatures().removeChild(bartel_veg_kml_object);
+		}
 	});
 	// make sure monitoring layers are null to start
 	sc2011KmlObject = null;
@@ -178,6 +191,7 @@ function initMonitoringLayers() {
 	ws_kml_object = null;
 	shrub_survey_kml_object = null;
 	visual_report_kml_object = null;
+	bartel_veg_kml_object = null;
 }
 
 function resizeMonitorPanels(windowHeight) {
@@ -1308,4 +1322,89 @@ function download_visual_report_data() {
 	document.getElementById('downloadString').value = visual_report_kml_object.getKml();
 	// fade does not work while submitting form, so delay form submission
 	setTimeout("document.getElementById('downloadKmlForm').submit()", 300);
+}
+
+/**
+ * ---------------------------------------------------------
+ *
+ * Bartel Grasslands Vegetation Monitoring
+ *
+ * ---------------------------------------------------------
+ */
+ 
+var bartel_veg_kml_object = null; 
+
+function open_bartel_veg_panel() {
+	closeAllPanels();
+	// load year range options
+	var d=new Date();
+	var year = d.getFullYear();
+	//var year_options = "<option value='All'>All</option>";
+	var year_options = "";
+	while (year >= 2002) {
+		year_options = year_options + "<option>" + year + "</option>";
+		year--;
+	}
+	year_options = year_options + "</select>";
+	document.getElementById('bartel_veg_year_selector').innerHTML = "<select id='bartel_veg_year'>" + year_options;
+	
+	fade("bartelVegPanel");
+}
+
+function open_bartel_veg_upload_panel() {
+	closeAllPanels();
+	document.getElementById('uploadBartelVegError').value = "";
+	fade("bartelVegUploadPanel");
+}
+function start_bartel_veg_upload() {
+	document.getElementById('uploadBartelVegError').value = "Uploading...";
+	return true;
+}
+function stop_bartel_veg_upload( msg ){	
+	if ( msg.indexOf("Error:") != -1 )
+	{
+		document.getElementById('uploadBartelVegError').value = msg;
+	} else
+	{
+		document.getElementById('uploadBartelVegError').value = "Data successfully uploaded.";
+	} 
+}
+
+function zoom_to_bartel_veg_data() {
+	if (bartel_veg_kml_object != null) {
+		var bounds = gex.dom.computeBounds(bartel_veg_kml_object);
+		gex.view.setToBoundsView(bounds, { aspectRatio: 1.0 });
+	}
+}
+
+function load_bartel_veg_data() {
+	// show activity monitor
+	$('#bartel_veg_display_loading').activity({segments: 12, align: 'left', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	
+	//construct url
+	parameters = "year=" + document.getElementById("bartel_veg_year").value;
+	var la_url = "php/monitoring/bartel_veg_display.php?" + parameters;
+
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			// remove the old kmlObject
+			if (bartel_veg_kml_object != null) {
+				ge.getFeatures().removeChild(bartel_veg_kml_object);
+				bartel_veg_kml_object.release();
+			}
+			bartel_veg_kml_object = null;
+			//get the new kmlObject from response
+			bartel_veg_kml_object = ge.parseKml(ajaxRequest.responseText);
+			// add the new kmlObject to globe
+			ge.getFeatures().appendChild(bartel_veg_kml_object);
+			
+			// turn off activity monitor
+			$('#bartel_veg_display_loading').activity(false);
+		}
+	}
+	// send the new request		
+	ajaxRequest.open("GET", la_url, true);
+	ajaxRequest.send();
 }

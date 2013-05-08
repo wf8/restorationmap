@@ -63,6 +63,13 @@ $kml[] = '		<flyToView>0</flyToView>';
 $kml[] = '		<name>Monitoring Data</name>';
 $kml[] = '		<open>1</open>';
 $kml[] = '		<visibility>0</visibility>';
+
+$kml[] = '			<GroundOverlay id="bartel_veg">';
+$kml[] = '				<flyToView>0</flyToView>';
+$kml[] = '				<name>Bartel Grasslands Vegetation</name>';
+$kml[] = '				<open>0</open>';
+$kml[] = '				<visibility>0</visibility>';
+$kml[] = '			</GroundOverlay>';
 			
 $kml[] = '			<GroundOverlay id="bcn_point_count">';
 $kml[] = '				<flyToView>0</flyToView>';

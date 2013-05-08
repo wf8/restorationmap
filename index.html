@@ -974,7 +974,51 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 
         		</div>
         </div> 
-                  
+        <div class="panel" id="bartelVegPanel">
+        		<div class="panelContent">
+					<br><br><b>Bartel Grassland Vegetation Monitoring</b><br><br>
+					<br><br>	
+					Choose which year:<br>
+					<div style="position:relative;float:left;" id="bartel_veg_year_selector"><select id="bartel_veg_year">
+					</select></div>
+					<br><br><br>
+					<br><div id="bartel_veg_display_loading"></div>
+					<br><br>
+					<button onClick="load_bartel_veg_data();">Load data in map</button>
+					<button onClick="zoom_to_bartel_veg_data();">Zoom to data</button><br>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<button onClick="javascript:loggedIn('open_bartel_veg_upload_panel()', 'notLoggedInMessage()')">Upload new data</button>
+					<br><br><br>
+					Click on the map data points to view more data.<br><br>
+					All data were collected from 6 40-acre plots in which 20 individual quadrats were sampled and percent cover for all species was recorded.<br><br>
+        		</div>
+        </div> 
+        <div class="panel" id="bartelVegUploadPanel">
+        		<div class="panelContent">
+					<br><br><b>Upload Bartel Vegetation Data</b><br><br>
+					<br><br>
+					Upload tab delimited file: <br>
+					<form action="php/monitoring/bartel_veg_import.php" method="post" enctype="multipart/form-data" target="kml_upload_target" onsubmit="start_bartel_veg_upload();">
+						<input type="file" name="upload_file" id="upload_file"><br>
+						<input type="submit" name="submit" value="Upload">
+					</form>
+					<button onClick="closeAllPanels();">Close this panel</button>
+					<br><br>
+					<input type=text size=40 class="panelError" id="uploadBartelVegError">
+					<br><br>
+					Each quadrant can have 1 observation per year, extra data will be ignored. The file should contain no column titles. The columns should be tab delimited and organized as such:<br><br>
+					1) Plot<br>
+					2) Quadrant<br>
+					3) Year<br>	
+					4) NativeNSpp<br>	
+					5) Native Mean C<br>
+					6) Weighted Native FQI<br>	
+					7) Mean Wetness<br>	
+					8) Brome Cover<br>
+					9) Fescue Cover<br>
+					10) SOLALT Cover<br>
+				</div> 
+        </div>                   
         
     </body>
 </html>
