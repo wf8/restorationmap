@@ -1335,21 +1335,24 @@ function download_visual_report_data() {
 var bartel_veg_kml_object = null; 
 
 function open_bartel_veg_panel() {
-	closeAllPanels();
-	// load year range options
-	var d=new Date();
-	var year = d.getFullYear();
-	//var year_options = "<option value='All'>All</option>";
-	var year_options = "";
-	while (year >= 2002) {
-		year_options = year_options + "<option>" + year + "</option>";
-		year--;
+	closeAllPanels();	
+	// show activity monitor
+	$('#activity_loading').activity({segments: 12, align: 'right', valign: 'top', steps: 3, width:2, space: 1, length: 3, color: '#ffffff', speed: 1.5});
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			document.getElementById('bartel_veg_year_selector').innerHTML = ajaxRequest.responseText;
+			fade("bartelVegPanel");
+			// turn off activity monitor
+			$('#activity_loading').activity(false);
+		}
 	}
-	year_options = year_options + "</select>";
-	document.getElementById('bartel_veg_year_selector').innerHTML = "<select id='bartel_veg_year'>" + year_options;
-	
-	fade("bartelVegPanel");
-}
+	// send the new request		
+	var la_url = "php/monitoring/bartel_veg_get_years.php";
+	ajaxRequest.open("GET", la_url, true);
+	ajaxRequest.send();
+}	
 
 function open_bartel_veg_upload_panel() {
 	closeAllPanels();
@@ -1407,4 +1410,10 @@ function load_bartel_veg_data() {
 	// send the new request		
 	ajaxRequest.open("GET", la_url, true);
 	ajaxRequest.send();
+}
+function stop_bartel_veg_upload( msg ){	
+	if ( msg.indexOf("Error:") != -1 )
+		document.getElementById('uploadBartelVegError').value = msg;
+	else
+		document.getElementById('uploadBartelVegError').value = "Data successfully uploaded.";
 }
