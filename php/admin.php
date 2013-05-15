@@ -615,6 +615,7 @@ clicking 'upload', please wait!</b><br>
   						<option>Kenosha, WI</option>
   						<option>Lake, IL</option>
   						<option>Lake, IN</option>
+  						<option>Lafayette, WI</option>
   						<option>LaPorte, IN</option>
   						<option>Lee, IL</option>
   						<option>McHenry, IL</option>
