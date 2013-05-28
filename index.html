@@ -981,6 +981,17 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 					Choose which year:<br>
 					<div style="position:relative;float:left;" id="bartel_veg_year_selector"><select id="bartel_veg_year">
 					</select></div>
+					<br><br>
+					Choose which data type:<br>
+					<select id="bartel_veg_data_type">
+						<option>Weighted Native FQI</option>
+  						<option>NativeNSpp</option>
+  						<option>Native Mean C</option>
+  						<option>Mean Wetness</option>
+  						<option>Brome Cover</option>
+  						<option>Fescue Cover</option>
+  						<option>SOLALT Cover</option>
+					</select>
 					<br><br><br>
 					<br><div id="bartel_veg_display_loading"></div>
 					<br><br>
@@ -989,7 +1000,7 @@ Restoration Map is being developed with the support of Audubon Chicago Region as
 					<button onClick="closeAllPanels();">Close this panel</button>
 					<button onClick="loggedIn('open_bartel_veg_upload_panel()', 'notLoggedInMessage()');">Upload new data</button>
 					<br><br><br>
-					The size of the circles are proportionate to the weighted native FQI. Click on the map data points to view more data.<br><br>
+					The size of the circles are proportionate to the value of the selected data type. Click on the map data points to view more data.<br><br>
 					All data were collected from 6 40-acre plots in which 20 individual quadrats were sampled and percent cover for all species was recorded.<br><br>
         		</div>
         </div> 

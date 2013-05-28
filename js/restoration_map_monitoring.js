@@ -1386,6 +1386,7 @@ function load_bartel_veg_data() {
 	
 	//construct url
 	parameters = "year=" + document.getElementById("bartel_veg_year").value;
+	parameters = parameters + "&data_type=" + document.getElementById("bartel_veg_data_type").value;
 	var la_url = "php/monitoring/bartel_veg_display.php?" + parameters;
 
 	//setup new AJAX request 

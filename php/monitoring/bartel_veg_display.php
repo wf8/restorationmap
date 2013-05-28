@@ -14,6 +14,7 @@ if (!$db_selected)
 	die ('Can\'t use db : ' . mysql_error());
   
 $year = mysql_real_escape_string($_GET['year']);
+$data_type = mysql_real_escape_string($_GET['data_type']);
 
 //$icon_color = "AA14B4FF";
 //$icon_color = "AA3bff00";
@@ -48,6 +49,21 @@ if ($observations_results) {
 	// loop through each location
 	while ($location = mysql_fetch_assoc($locations_results)) {
 
+		if ($data_type == "Weighted Native FQI")
+			$scale = round( pow( ( ($observations[$i]["weighted_native_fqi"]+0.5) / 5 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "NativeNSpp")
+			$scale = round( pow( ( ($observations[$i]["native_n_spp"]+0.5) / 5 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "Native Mean C")
+			$scale = round( pow( ( ($observations[$i]["native_mean_c"]+0.5) / 5 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "Mean Wetness")
+			$scale = round( pow( ( ($observations[$i]["mean_wetness"]+0.5) / 5 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "Brome Cover")
+			$scale = round( pow( ( ($observations[$i]["brome_cover"]+0.5) / 10 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "Fescue Cover")
+			$scale = round( pow( ( ($observations[$i]["fescue_cover"]+0.5) / 10 ) , ( 1 / 2 ) ) , 2);
+		if ($data_type == "SOLALT Cover")
+			$scale = round( pow( ( ($observations[$i]["solalt_cover"]+0.5) / 10 ) , ( 1 / 2 ) ) , 2);
+		
 		$kml_string = "<Placemark><description><![CDATA[";
 		$kml_string = $kml_string . "<font face='arial'>Year: " . $year . '<br>';
 		$kml_string = $kml_string . "Plot: " . $location["plot"] . '<br>';
@@ -68,7 +84,7 @@ if ($observations_results) {
 		$kml_string = $kml_string . "</coordinates></Point>";
 
 		$kml_string = $kml_string . "<Style><IconStyle><color>".$icon_color."</color><colorMode>normal</colorMode><scale>";
-		$kml_string = $kml_string . round( pow( ( ($observations[$i]["weighted_native_fqi"]+0.5) / 5 ) , ( 1 / 2 ) ) , 2);
+		$kml_string = $kml_string . $scale;
 		$kml_string = $kml_string . "</scale><Icon><href>http://www.habitatproject.org/restorationmap/kml/images/circle.png</href></Icon>";
 		$kml_string = $kml_string . '<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/></IconStyle></Style></Placemark>';
 		
