@@ -30,6 +30,44 @@ $kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 $kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
 $kml[] = ' <Document>';
 
+// get kml for borders
+if ($data_type == 'all') {
+
+	 // Selects all the rows in the table 
+	 $query = "SELECT * FROM border WHERE 1";
+	 $result = mysql_query($query);
+	 if (!$result) 
+		die('Invalid query: ' . mysql_error());
+	
+	// Iterates through the rows, printing a node for each row.
+	while ($row = @mysql_fetch_assoc($result)) 
+	{
+		// check that we are in the right county
+		$correct_county = false;
+		if ($county !== 'All') {
+			while ($site = mysql_fetch_assoc($sites_results)) {
+				if ($site['id'] == $row['stewardshipsite_id']) {
+					$correct_county = true;
+					break;
+				}
+			}
+			// reset county pointer	
+			if (mysql_num_rows($sites_results) != 0)
+				mysql_data_seek($sites_results, 0);
+		}
+		if ($county == 'All' || $correct_county) {
+			// add the placemark
+			$kml[] = '<Placemark id="border-' . $row2['id'] . 'site' . $row['id'] . '">';
+			$kml[] = '<visibility>1</visibility>';   		
+			$kml[] = '<Style><BalloonStyle><displayMode>hide</displayMode></BalloonStyle>';
+			$kml[] = '<LineStyle><color>FFFFFFFF</color><width>2</width></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>';
+			$kml[] = '<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
+			$kml[] = $row['coordinates'];
+			$kml[] = '</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';	
+		}
+	} 
+}
+
 // get kml for trails
 if ($data_type == 'trails' || $data_type == 'all') {
 
