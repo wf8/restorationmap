@@ -3,13 +3,13 @@ session_start();
 
 require('../restorationmap_config.php');
 
-// Opens a connection to a MySQL server.
-$connection = mysql_connect ($db_server, 'habitaw0_sc2011', 'b0b0l1nk');
+// connect to MySQL server.
+$connection = mysql_connect ($db_server, $sc2011_db_user, $sc2011_db_password, true);
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
-// Sets the active MySQL database.
-$db_selected = mysql_select_db('habitaw0_sc2011birdblitz', $connection);
+// set active MySQL database.
+$db_selected = mysql_select_db($sc2011_db_database, $connection);
 if (!$db_selected) 
   die ('Can\'t use db : ' . mysql_error());
  
