@@ -4,7 +4,7 @@ session_start();
 require('../restorationmap_config.php');
 
 // connect to MySQL server.
-$connection = mysql_connect ($db_server, $sc2011_db_user, $sc2011_db_password, true);
+$connection = mysql_connect ($db_server, $sc2011_db_username, $sc2011_db_password, true);
 if (!$connection) 
   die('Not connected : ' . mysql_error());
 
