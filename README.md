@@ -2,4 +2,4 @@ restorationmap
 ==============
 
 
-please info see http://restorationmap.org 
+for info please see http://restorationmap.org 
