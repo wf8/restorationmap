@@ -117,6 +117,12 @@ while ($row = @mysql_fetch_assoc($result))
 			// get the coordinates so we can place the label
 			$shape_coordinates = $row['coordinates'];
 			$points = explode(' ', $shape_coordinates);
+			
+			$number_of_points = count($points);
+			// if the polygon is actually a straight line make the fill=0
+			if ($number_of_points == 3)
+				$fill = 0;
+			
 			// find the sum of all points
 			$number_of_points = count($points) - 1;
 			$counter = 0;
