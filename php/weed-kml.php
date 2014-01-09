@@ -144,12 +144,18 @@ while ($row = @mysql_fetch_assoc($result))
 		} else {
 			// display a polygon
 			// if the polygon is actually a straight line make the fill=0
+			$org_fill = $fill;
 			if ($number_of_points == 3)
 				$fill = 0;
+			if ($number_of_points == 4) {
+				if ($points[2] == $points[3])
+					$fill = 0;
+			}
 			$kml[] = '   <Style><LineStyle><color>FF7800F0</color></LineStyle><PolyStyle><fill>'.$fill.'</fill><color>'.$polygon_color.'</color></PolyStyle></Style>';
 			$kml[] = '   <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
 			$kml[] = $coordinates;
 			$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>';
+			$fill = $org_fill;
 		}
 		
 		$lastYear = $thisYear;

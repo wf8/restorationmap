@@ -120,9 +120,13 @@ while ($row = @mysql_fetch_assoc($result))
 			
 			$number_of_points = count($points);
 			// if the polygon is actually a straight line make the fill=0
+			$org_fill = $fill;
 			if ($number_of_points == 3)
 				$fill = 0;
-			
+			if ($number_of_points == 4) {
+				if ($points[2] == $points[3])
+					$fill = 0;
+			}
 			// find the sum of all points
 			$number_of_points = count($points) - 1;
 			$counter = 0;
@@ -147,6 +151,7 @@ while ($row = @mysql_fetch_assoc($result))
 			$kml[] = '</coordinates></Point><Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>';
 			$kml[] = $shape_coordinates;
 			$kml[] = ' </coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry></Placemark>';
+			$fill = $org_fill;
 		}		
 	}
 } 
