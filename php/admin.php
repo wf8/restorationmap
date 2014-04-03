@@ -1097,6 +1097,9 @@ clicking 'upload', please wait!</b><br>
 					return 0;
 				if (trim($points[0]) == trim(end($points)) && $number_of_points == 3)
 					return 0;
+				// make the last point the same as the first point to ensure the polygon is closed
+			        array_push($points, $points[0]);
+				$number_of_points++;
 				$counter = 0;
 				$sum = 0;
 				while ($counter < $number_of_points - 1) {		
