@@ -1178,8 +1178,12 @@ function saveNewShape() {
 	// save shape name and description
 	mapShape.name = shapeDate + " " + document.getElementById("shapeTitle").value;
 	mapShape.description = document.getElementById("shapeDescription").value;	
-	mapShape.save();
-	// hide save shape panel
+	response = mapShape.save();
+	if (response !== "") {
+        // plant of concern detected
+        return false;
+    }
+    // hide save shape panel
 	fade("savePanel");
 	if (sl_show_new_shape_div) {
 		fade("sl_new_shape_div");	
@@ -1251,9 +1255,13 @@ function saveEditShape() {
 	mapShape.name = shapeDate + " " + document.getElementById("editTitle").value;	
 	mapShape.description = document.getElementById("editDescription").value;
 
-	mapShape.endEdit();
 	// save the edited shape
-	mapShape.save();
+	response = mapShape.save();
+	if (response !== "") {
+        // plant of concern detected
+        return false;
+    }
+	mapShape.endEdit();
 	// clear all shapes			
 	gex.dom.clearFeatures();
 	// reload all shapes

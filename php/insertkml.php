@@ -9,6 +9,32 @@ if(!$_SESSION['valid']) {
     die();
 } 
 
+function check_POC_species($text) {
+    $file = fopen("Cook POC list.csv","r");
+    while (($row = fgetcsv($file)) !== FALSE) {
+        if ($row[0] !== "Genus") {
+            // check for "Genus species"
+            if (stristr($text, $row[0] . " " . $row[1])) 
+                return $row[0] . " " . $row[1];
+            // check for abbreviation1
+            if (stristr($text, $row[2]))
+                return $row[2];
+            // abbreviation2
+            if ($row[3] !== "" && stristr($text, $row[3]))
+                return $row[3];
+            // check for abbreviation1 with space in middle "act rub"
+            if (stristr($text, substr($row[2],0,3) . " " . substr($row[2],3,3)))
+                return substr($row[2],0,3) . " " . substr($row[2],3,3);
+            // abbreviation2 with space
+            if ($row[3] !== "" && stristr($text, substr($row[3],0,3) . " " . substr($row[3],3,3)))
+                return substr($row[3],0,3) . " " . substr($row[3],3,3);
+        }
+    }
+    fclose($file);
+    return "";
+}
+
+
  // Opens a connection to a MySQL server.
 $connection = mysql_connect ($db_server, $db_username, $db_password);
 if (!$connection) 
@@ -74,7 +100,18 @@ if ($table == 'trails') {
 	$title = mysql_real_escape_string($_POST[title]);
 	$description = mysql_real_escape_string($_POST[description]);
 	$coordinates = ltrim(mysql_real_escape_string($_POST[coordinates]));
-	
+
+    // warn user if they try to save a public shape with a Plant of Concern species
+    $poc_check = check_POC_species($title);
+    if ($poc_check !== "" && $authorized_users == '') {
+        echo "Warning: you are trying to save a public map layer with a title that includes the following Plant of Concern: " . $poc_check . ". Please rename the map layer or save it as private to protect species locations.";
+        exit;
+    }
+    $poc_check = check_POC_species($description);
+    if ($poc_check !== "" && $authorized_users == '') {
+        echo "Warning: you are trying to save a public map layer with a description that includes the following Plant of Concern: " . $poc_check . ". Please save the map layer as private to protect species locations.";
+        exit;
+    }
 	// allow 0 for month and day
 	$sql="SET SESSION sql_mode='ALLOW_INVALID_DATES'";
 	if (!mysql_query($sql,$connection)) 
@@ -149,4 +186,5 @@ if ($authorized_users !== '' && $table !== 'border' && $table !== 'trails') {
 	mysql_query($sql, $connection);
 }
 mysql_close($connection);
+echo "";
 ?>

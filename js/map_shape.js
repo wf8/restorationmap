@@ -227,15 +227,18 @@ MapShape.prototype.save = function() {
 		var params = "table=" + this.table + "&date=" + sqlDate + "&title=" + shapeTitle + "&id=" + dbId;
 		params = params + "&description=" + this.description + "&site=" + this.site + auth_users_param + "&coordinates=" + coordinates;		
 		// if it an 'other' shape, save the color to the other database table
-		if (this.table = 'other')
+		if (this.table == 'other')
 			params = params + "&color=" + this.color;	
 	}				
-	// send the new request 
+    // send the new request 
 	var url = "php/insertkml.php";			
-	ajaxRequest.open("POST", url, true);				
+    ajaxRequest.open("POST", url, false);				
 	// Send the proper header information along with the request 
 	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajaxRequest.send(params);		
+    if (ajaxRequest.responseText !== '')
+        alert(ajaxRequest.responseText);
+    return ajaxRequest.responseText;
 }
 
 /**
