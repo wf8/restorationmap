@@ -611,6 +611,7 @@ clicking 'upload', please wait!</b><br>
   						<option>DuPage, IL</option>
   						<option>Jasper, IN</option>
   						<option>Kane, IL</option>
+  						<option>Kankakee, IL</option>
   						<option>Kendall, IL</option>
   						<option>Kenosha, WI</option>
   						<option>Lake, IL</option>
