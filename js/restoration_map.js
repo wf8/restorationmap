@@ -151,7 +151,7 @@ function failureCB(errorCode) {
 			check = true;
 	}
 	// if safari/chrome good
-	if ($.browser.webkit) {
+	if ($.browser.webkit || $.browser.mozilla) {
 	   check = true;
 	}
 	// if unsupported, hide divs and show message
@@ -2163,7 +2163,7 @@ function loadTextCoordinates() {
 		theKml = theKml + '</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark></kml>';
 	} else {
 		// make a point
-		var theKml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Placemark><Style><IconStyle><scale>0.8</scale><Icon><href>http://habitatproject.org/restorationmap/images/placemark_circle.png</href></Icon></IconStyle></Style><Point><coordinates>';
+		var theKml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Placemark><Style><IconStyle><scale>0.8</scale><Icon><href>http://restorationmap.org/map/images/placemark_circle.png</href></Icon></IconStyle></Style><Point><coordinates>';
 		theKml = theKml + parsedCoordinates;
 		theKml = theKml + '</coordinates></Point></Placemark></kml>';
 	}

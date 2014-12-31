@@ -134,26 +134,26 @@ if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
     	}
 
 		// dont insert header row and only insert point count data for the correct year
-		if ( ($data[0] != 'SUB_ID') && ( strpos($data[11], 'Stationary Count') !== FALSE )
-				&& ( trim($data[31]) == trim($year_to_input) ) ) {
+		if ( ($data[0] != 'SUB_ID') && ( strpos($data[13], 'eBird - Stationary Count') !== FALSE )
+				&& ( trim($data[11]) == trim($year_to_input) ) ) {
         	// get all necessary data from row
         	$bcn_obs_id = mysql_real_escape_string($data[1]);
         	$common_name = mysql_real_escape_string($data[4]);
         	$how_many_at_least = mysql_real_escape_string($data[5]);
         	$how_many_most = mysql_real_escape_string($data[6]);
         	$time = mysql_real_escape_string($data[9]);
-        	$protocol_id = mysql_real_escape_string($data[10]);
-        	$user_id = mysql_real_escape_string($data[12]);
-        	$last_name = mysql_real_escape_string($data[13]);
-        	$first_name = mysql_real_escape_string($data[14]);
-        	$location_id = mysql_real_escape_string($data[22]);
-        	$location_name = mysql_real_escape_string($data[24]);
-        	$latitude = mysql_real_escape_string($data[26]);
-        	$longitude = mysql_real_escape_string($data[27]);
-        	$county = mysql_real_escape_string($data[28]);
-        	$subnational1_code = mysql_real_escape_string($data[29]);
-        	$month_day = mysql_real_escape_string($data[30]);
-        	$year = mysql_real_escape_string($data[31]);
+        	$protocol_id = mysql_real_escape_string($data[12]);
+        	$user_id = mysql_real_escape_string($data[14]);
+        	$last_name = mysql_real_escape_string($data[15]);
+        	$first_name = mysql_real_escape_string($data[16]);
+        	$location_id = mysql_real_escape_string($data[24]);
+        	$location_name = mysql_real_escape_string($data[26]);
+        	$latitude = mysql_real_escape_string($data[27]);
+        	$longitude = mysql_real_escape_string($data[28]);
+        	$county = mysql_real_escape_string($data[29]);
+        	$subnational1_code = mysql_real_escape_string($data[30]);
+        	$month_day = mysql_real_escape_string($data[10]);
+        	$year = mysql_real_escape_string($data[11]);
         	
         	$sql="INSERT INTO observations (bcn_obs_id, common_name, how_many_at_least, how_many_most, time, protocol_id, user_id, last_name, first_name, location_id, month_day, year) VALUES ('$bcn_obs_id', '$common_name', '$how_many_at_least', '$how_many_most', '$time', '$protocol_id', '$user_id', '$last_name', '$first_name', '$location_id', '$month_day', '$year')";
         	$observation_result = mysql_query($sql, $connection);   
